@@ -1,7 +1,7 @@
 package com.cinemamanagementsoftware;
 
 import com.cinemamanagementsoftware.database.CinemaService;
-import com.cinemamanagementsoftware.model.cinemaManagement.Cinema;
+import cinemaManagementSoftware.Cinema;
 
 public class Main {
 

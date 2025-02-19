@@ -3,7 +3,7 @@ package com.cinemamanagementsoftware.database;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.neo4j.ogm.config.Configuration;
-import model.Cinema;
+import cinemaManagementSoftware.Cinema;
 
 public class CinemaService {
     private final SessionFactory sessionFactory;

@@ -9,5 +9,7 @@
   <foreignModel>cinemaManagementSoftware.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="CinemaManagementSoftware" disposableProviderFactory="true"
-      ecorePackage="cinemaManagementSoftware.ecore#/"/>
+      ecorePackage="cinemaManagementSoftware.ecore#/">
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Cinema"/>
+  </genPackages>
 </genmodel:GenModel>
