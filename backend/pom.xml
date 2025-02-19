@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cinemamanagementsoftware</groupId>
+  <artifactId>CinemaManagementSoftware</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+        <!-- Neo4J Java Driver -->
+        <dependency>
+            <groupId>org.neo4j.driver</groupId>
+            <artifactId>neo4j-java-driver</artifactId>
+            <version>5.8.0</version>
+        </dependency>
+        
+        <!-- Neo4J OGM (Object Graph Mapper) für Konvertierungen von Ecore Modellen zu Graphen -->
+	    <dependency>
+	        <groupId>org.neo4j</groupId>
+	        <artifactId>neo4j-ogm-core</artifactId>
+	        <version>4.0.0</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.neo4j</groupId>
+	        <artifactId>neo4j-ogm-bolt-driver</artifactId>
+	        <version>4.0.0</version>
+	    </dependency>
+
+        <!-- JSON Parsing mit Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+
+        <!-- SLF4J für Logging (Pflicht für Neo4J) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+        
+        <!-- EMF Core -->
+    <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.ecore</artifactId>
+        <version>2.27.0</version>
+    </dependency>
+
+    <!-- EMF Common -->
+    <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.common</artifactId>
+        <version>2.27.0</version>
+    </dependency>
+    </dependencies>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>17</release>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
