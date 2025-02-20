@@ -73,6 +73,73 @@ public class CinemaManagementSoftwareSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case CinemaManagementSoftwarePackage.PERSON: {
+			Person person = (Person) theEObject;
+			T result = casePerson(person);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.CUSTOMER: {
+			Customer customer = (Customer) theEObject;
+			T result = caseCustomer(customer);
+			if (result == null)
+				result = casePerson(customer);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.CINEMA_OWNER: {
+			CinemaOwner cinemaOwner = (CinemaOwner) theEObject;
+			T result = caseCinemaOwner(cinemaOwner);
+			if (result == null)
+				result = casePerson(cinemaOwner);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.TICKET: {
+			Ticket ticket = (Ticket) theEObject;
+			T result = caseTicket(ticket);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.SCREENING: {
+			Screening screening = (Screening) theEObject;
+			T result = caseScreening(screening);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.MOVIE: {
+			Movie movie = (Movie) theEObject;
+			T result = caseMovie(movie);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.CINEMA_HALL: {
+			CinemaHall cinemaHall = (CinemaHall) theEObject;
+			T result = caseCinemaHall(cinemaHall);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.SEATING_ROW: {
+			SeatingRow seatingRow = (SeatingRow) theEObject;
+			T result = caseSeatingRow(seatingRow);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case CinemaManagementSoftwarePackage.SEAT: {
+			Seat seat = (Seat) theEObject;
+			T result = caseSeat(seat);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -90,6 +157,141 @@ public class CinemaManagementSoftwareSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCinema(Cinema object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Person</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Person</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePerson(Person object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Customer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Customer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCustomer(Customer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cinema Owner</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cinema Owner</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCinemaOwner(CinemaOwner object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ticket</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ticket</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTicket(Ticket object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Screening</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Screening</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseScreening(Screening object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Movie</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Movie</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMovie(Movie object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Cinema Hall</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Cinema Hall</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCinemaHall(CinemaHall object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Seating Row</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Seating Row</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSeatingRow(SeatingRow object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Seat</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Seat</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSeat(Seat object) {
 		return null;
 	}
 

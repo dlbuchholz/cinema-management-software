@@ -72,6 +72,51 @@ public class CinemaManagementSoftwareAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter casePerson(Person object) {
+			return createPersonAdapter();
+		}
+
+		@Override
+		public Adapter caseCustomer(Customer object) {
+			return createCustomerAdapter();
+		}
+
+		@Override
+		public Adapter caseCinemaOwner(CinemaOwner object) {
+			return createCinemaOwnerAdapter();
+		}
+
+		@Override
+		public Adapter caseTicket(Ticket object) {
+			return createTicketAdapter();
+		}
+
+		@Override
+		public Adapter caseScreening(Screening object) {
+			return createScreeningAdapter();
+		}
+
+		@Override
+		public Adapter caseMovie(Movie object) {
+			return createMovieAdapter();
+		}
+
+		@Override
+		public Adapter caseCinemaHall(CinemaHall object) {
+			return createCinemaHallAdapter();
+		}
+
+		@Override
+		public Adapter caseSeatingRow(SeatingRow object) {
+			return createSeatingRowAdapter();
+		}
+
+		@Override
+		public Adapter caseSeat(Seat object) {
+			return createSeatAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -101,6 +146,132 @@ public class CinemaManagementSoftwareAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCinemaAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.Person <em>Person</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.Person
+	 * @generated
+	 */
+	public Adapter createPersonAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.Customer <em>Customer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.Customer
+	 * @generated
+	 */
+	public Adapter createCustomerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.CinemaOwner <em>Cinema Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.CinemaOwner
+	 * @generated
+	 */
+	public Adapter createCinemaOwnerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.Ticket <em>Ticket</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.Ticket
+	 * @generated
+	 */
+	public Adapter createTicketAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.Screening <em>Screening</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.Screening
+	 * @generated
+	 */
+	public Adapter createScreeningAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.Movie <em>Movie</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.Movie
+	 * @generated
+	 */
+	public Adapter createMovieAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.CinemaHall <em>Cinema Hall</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.CinemaHall
+	 * @generated
+	 */
+	public Adapter createCinemaHallAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.SeatingRow <em>Seating Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.SeatingRow
+	 * @generated
+	 */
+	public Adapter createSeatingRowAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link cinemaManagementSoftware.Seat <em>Seat</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see cinemaManagementSoftware.Seat
+	 * @generated
+	 */
+	public Adapter createSeatAdapter() {
 		return null;
 	}
 

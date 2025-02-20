@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/CinemaManagementSoftware/src-gen" creationIcons="false"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/CinemaManagementSoftware/src-gen" creationIcons="false"
     editDirectory="/CinemaManagementSoftware.edit/src-gen" editorDirectory="/CinemaManagementSoftware.editor/src-gen"
     modelPluginID="CinemaManagementSoftware" modelName="CinemaManagementSoftware"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
@@ -10,6 +11,66 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="CinemaManagementSoftware" disposableProviderFactory="true"
       ecorePackage="cinemaManagementSoftware.ecore#/">
-    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Cinema"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="cinemaManagementSoftware.ecore#//Category">
+      <genEnumLiterals ecoreEnumLiteral="cinemaManagementSoftware.ecore#//Category/PARQUET"/>
+      <genEnumLiterals ecoreEnumLiteral="cinemaManagementSoftware.ecore#//Category/LOGE"/>
+      <genEnumLiterals ecoreEnumLiteral="cinemaManagementSoftware.ecore#//Category/LOGE_SERVICE"/>
+    </genEnums>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Cinema">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Cinema/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Cinema/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Cinema/location"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Cinema/owner"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Cinema/hall"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Cinema/totalIncome"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Person">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Person/id"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Customer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Customer/ticket"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Customer/email"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Customer/telephone"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//CinemaOwner"/>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Ticket">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Ticket/screening"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Ticket/seat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Ticket/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Ticket/isBooked"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Ticket/id"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Screening">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Screening/movie"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Screening/hall"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Screening/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Screening/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Screening/endTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Screening/id"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Screening/hasStarted"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Screening/numReservations"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Screening/numBookings"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Movie">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/id"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//CinemaHall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//CinemaHall/row"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//CinemaHall/id"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//CinemaHall/isConfigComplete"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//SeatingRow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//SeatingRow/cinemahall"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//SeatingRow/category"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//SeatingRow/seat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//SeatingRow/id"/>
+    </genClasses>
+    <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Seat">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Seat/row"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Seat/id"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
