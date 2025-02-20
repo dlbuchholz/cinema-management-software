@@ -24,10 +24,10 @@ Das Projekt besteht aus mehreren Komponenten, die in verschiedenen Ordnern organ
     - Wähle Existing Maven Projects und klicke auf Next.
     - Navigiere zum Ordner /backend/, wähle die pom.xml aus und klicke auf Finish.
     - Warte, bis Eclipse die Abhängigkeiten lädt (ggf. Maven → Update Project ausführen).
-4. Neo4J-Datenbank starten (optional)
+4. Neo4J-Datenbank starten
     - Stelle sicher, dass Neo4J installiert ist: https://neo4j.com/docs/desktop-manual/current/installation/download-installation
     - Starte die Datenbank mit: neo4j console
-    - Ändere das Passwort von neo4j auf http://localhost:7474/
+    - Bei erster Benutzung ändere das Passwort von neo4j auf http://localhost:7474/
       - Benutzername: neo4j
       - Altes Passwort: neo4j
       - Neues Passwort: lobster-child-atomic-canvas-infant-6060 
@@ -39,12 +39,12 @@ Das Projekt besteht aus mehreren Komponenten, die in verschiedenen Ordnern organ
 ## Was tun damit Ecore bzw EMF funktioniert?
 
 ### Ecore-Tools
-Eclipse -> Help -> Install new software -> Add
-Dann die URL https://download.eclipse.org/ecoretools/updates/releases/3.5.2/2023-06/ hinzufügen und alle Pakete daraus installieren
+- Eclipse -> Help -> Install new software -> Add
+- Dann die URL https://download.eclipse.org/ecoretools/updates/releases/3.5.2/2023-06/ hinzufügen und alle Pakete daraus installieren
 
 ### Eclipse Modeling Framework
-Eclipse -> Help -> Install new software -> Work with "All available sites"
-dort dann Eclipse Modeling Framework SDK suchen, auswählen und installieren.
+- Eclipse -> Help -> Install new software -> Work with "All available sites"
+- dort dann Eclipse Modeling Framework SDK suchen, auswählen und installieren.
 
 ### Warten
 Warte bis alles vollständig herunterladen wurde, meistens passiert das im Hintergrund. Vorher Eclipse keinesfalls schließen! Sobald es fertig ist, fragt Eclipse ob es neugestartet werden soll. Definitiv neustarten!
