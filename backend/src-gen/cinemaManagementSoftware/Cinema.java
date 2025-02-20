@@ -32,12 +32,12 @@ public interface Cinema extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(int)
+	 * @see #setId(long)
 	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCinema_Id()
 	 * @model
 	 * @generated
 	 */
-	int getId();
+	long getId();
 
 	/**
 	 * Sets the value of the '{@link cinemaManagementSoftware.Cinema#getId <em>Id</em>}' attribute.
@@ -47,7 +47,7 @@ public interface Cinema extends EObject {
 	 * @see #getId()
 	 * @generated
 	 */
-	void setId(int value);
+	void setId(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

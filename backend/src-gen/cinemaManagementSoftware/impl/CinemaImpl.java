@@ -17,6 +17,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Property;
+import org.neo4j.ogm.annotation.Relationship;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,6 +40,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
+@NodeEntity(label = "Cinema")
 public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -44,69 +50,77 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int ID_EDEFAULT = 0;
+	protected static final long ID_EDEFAULT = 0L;
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getId()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
-	protected int id = ID_EDEFAULT;
+	@Id
+	@GeneratedValue
+	protected long id = ID_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
+	@Property
 	protected static final String NAME_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
+	@Property
 	protected String name = NAME_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocation()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
+	@Property
 	protected static final String LOCATION_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocation()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
+	@Property
 	protected String location = LOCATION_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwner()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
+	@Relationship(type = "OWNED_BY", direction = Relationship.Direction.OUTGOING)
 	protected CinemaOwner owner;
 	/**
 	 * The cached value of the '{@link #getHall() <em>Hall</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getHall()
-	 * @generated
+	 * @generated NOT
 	 * @ordered
 	 */
+	@Relationship(type = "HAS_HALL", direction = Relationship.Direction.OUTGOING)
 	protected EList<CinemaHall> hall;
 
 	/**
@@ -134,7 +148,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated
 	 */
 	@Override
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -144,8 +158,8 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated
 	 */
 	@Override
-	public void setId(int newId) {
-		int oldId = id;
+	public void setId(long newId) {
+		long oldId = id;
 		id = newId;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
@@ -306,7 +320,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CINEMA__ID:
-			setId((Integer) newValue);
+			setId((Long) newValue);
 			return;
 		case CinemaManagementSoftwarePackage.CINEMA__NAME:
 			setName((String) newValue);

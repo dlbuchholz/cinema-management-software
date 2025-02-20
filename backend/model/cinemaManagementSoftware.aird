@@ -5,7 +5,7 @@
     <semanticResources>cinemaManagementSoftware.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_OQ0FMOrLEe-GF6aOT5KwHA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OS-oYOrLEe-GF6aOT5KwHA" name="cinemaManagementSoftware" repPath="#_OSLXIOrLEe-GF6aOT5KwHA" changeId="1740056451822">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OS-oYOrLEe-GF6aOT5KwHA" name="cinemaManagementSoftware" repPath="#_OSLXIOrLEe-GF6aOT5KwHA" changeId="1740063648737">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="cinemaManagementSoftware.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -440,7 +440,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_Mjn4gO-KEe-hcN95Txk-ug" name="id : EInt" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_Mjn4gO-KEe-hcN95Txk-ug" name="id : ELong" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Cinema/id"/>
         <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Cinema/id"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_MjpGoO-KEe-hcN95Txk-ug" labelAlignment="LEFT">

@@ -774,8 +774,8 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		// Initialize classes, features, and operations; add parameters
 		initEClass(cinemaEClass, Cinema.class, "Cinema", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCinema_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
-				Cinema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+		initEAttribute(getCinema_Id(), ecorePackage.getELong(), "id", null, 0,
+				1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCinema_Name(), ecorePackage.getEString(), "name",
 				null, 0, 1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE,
