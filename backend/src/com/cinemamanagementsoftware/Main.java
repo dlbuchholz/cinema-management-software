@@ -7,9 +7,13 @@ import cinemaManagementSoftware.Cinema;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories("com.cinemamanagementsoftware.database")
+@EntityScan("cinemaManagementSoftware.impl") 
 public class Main {
 
     public static void main(String[] args) {
@@ -29,7 +33,7 @@ public class Main {
         	cinema = cinemaService.createCinema("CineMega ABC", "Hannover");
             System.out.println("🎬 New cinema created: " + cinema.getName());
         } else {
-            System.out.println("✅ Cinema data successfully loaded from MySQL!");
+            System.out.println("✅ Cinema data successfully loaded!");
         }
 
         // Start Interactive Console
