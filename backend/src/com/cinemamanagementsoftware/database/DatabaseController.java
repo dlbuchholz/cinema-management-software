@@ -1,63 +1,37 @@
 package com.cinemamanagementsoftware.database;
 
-import org.neo4j.ogm.session.Session;
-import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.stereotype.Component;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 
-import java.util.Collection;
 
-import org.neo4j.ogm.config.Configuration;
-import cinemaManagementSoftware.Cinema;
-import cinemaManagementSoftware.impl.CinemaImpl;
+//Use a relational database for storing all cinema-related entities 
+//(e.g., Cinema, CinemaHall, CinemaOwner).
+//
+//For all statistics, Neo4J is used (GraphDatabaseController)
 
+@Component
 public class DatabaseController {
-    private final SessionFactory sessionFactory;
-    private final Session session;
 
-    public DatabaseController() {
-        Configuration config = new Configuration.Builder()
-                .uri("bolt://localhost:7687")
-                .credentials("neo4j", "lobster-child-atomic-canvas-infant-6060")
-                .build();
-        sessionFactory = new SessionFactory(config, "cinemaManagementSoftware");
-        session = sessionFactory.openSession();
-    }
-    
-    /**
-     * Tests the Neo4J connection by running a simple query.
-     */
-    public Boolean testConnection() {
-        try {
-            String query = "RETURN 'Neo4J Verbindung erfolgreich!' AS message";
-            String result = session.queryForObject(String.class, query, java.util.Collections.emptyMap());
-            System.out.println(result);
-            return true;
-        } catch (Exception e) {
-            System.out.println("Neo4J connection failed: " + e.getMessage());
-            e.printStackTrace();
-        }
-        
-        return false;
-    }
-    
-    /**
-     * Executes a Cypher Query.
-     */
-    public void executeQuery(String query) {
-        Session session = sessionFactory.openSession();
-        try {
-            System.out.println("Executing Cypher query: " + query);
-            session.query(query, java.util.Collections.emptyMap());
-            System.out.println("✅ Query executed successfully.");
-        } catch (Exception e) {
-            System.out.println("❌ Query execution failed: " + e.getMessage());
-        }
-    }
-    
-    public Session getSession() {
-    	return session;
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
-    public void close() {
-        sessionFactory.close();
+    @Transactional
+    public void save(Object entity) {
+        entityManager.persist(entity);
+    }
+
+    public <T> T find(Class<T> entityClass, Long id) {
+        return entityManager.find(entityClass, id);
+    }
+
+    @Transactional
+    public void delete(Object entity) {
+        entityManager.remove(entityManager.contains(entity) ? entity : entityManager.merge(entity));
     }
 }
