@@ -5,6 +5,12 @@ package cinemaManagementSoftware.impl;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Customer;
 import cinemaManagementSoftware.Ticket;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.util.Collection;
 
@@ -33,6 +39,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
+@Entity
+@Table(name = "customers")
 public class CustomerImpl extends PersonImpl implements Customer {
 	/**
 	 * The cached value of the '{@link #getTicket() <em>Ticket</em>}' reference list.
@@ -42,6 +50,7 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @generated
 	 * @ordered
 	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = TicketImpl.class)
 	protected EList<Ticket> ticket;
 
 	/**
@@ -62,6 +71,7 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @generated
 	 * @ordered
 	 */
+	@Column(nullable = false, unique = true)
 	protected String email = EMAIL_EDEFAULT;
 
 	/**
@@ -82,6 +92,7 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @generated
 	 * @ordered
 	 */
+	@Column(nullable = false)
 	protected String telephone = TELEPHONE_EDEFAULT;
 
 	/**

@@ -4,6 +4,9 @@ package cinemaManagementSoftware.impl;
 
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Person;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@MappedSuperclass
 public abstract class PersonImpl extends MinimalEObjectImpl.Container
 		implements Person {
 	/**
@@ -45,6 +49,8 @@ public abstract class PersonImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
+	@Id
+    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**

@@ -7,6 +7,17 @@ import cinemaManagementSoftware.CinemaHall;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Seat;
 import cinemaManagementSoftware.SeatingRow;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.util.Collection;
 
@@ -40,6 +51,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
+@Entity
+@Table(name = "seating_rows")
 public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		implements SeatingRow {
 	/**
@@ -50,6 +63,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
+	@ManyToOne(targetEntity = CinemaHallImpl.class)
+    @JoinColumn(name = "cinema_hall_id", nullable = false)
 	protected CinemaHall cinemahall;
 
 	/**
@@ -70,6 +85,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
+	@Enumerated(EnumType.STRING)
+    @Column(nullable = false)
 	protected Category category = CATEGORY_EDEFAULT;
 
 	/**
@@ -80,6 +97,7 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
+	@OneToMany(targetEntity = SeatImpl.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	protected EList<Seat> seat;
 
 	/**
@@ -100,6 +118,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
+	@Id
+    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**

@@ -4,6 +4,10 @@ package cinemaManagementSoftware.impl;
 
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Movie;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -28,6 +32,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@Entity
+@Table(name = "movies")
 public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -47,6 +53,7 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 * @ordered
 	 */
+	@Column(nullable = false, unique = true)
 	protected String name = NAME_EDEFAULT;
 
 	/**
@@ -67,6 +74,7 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 * @ordered
 	 */
+	@Column(columnDefinition = "TEXT")
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
@@ -87,6 +95,7 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 * @ordered
 	 */
+	@Column(nullable = false)
 	protected double length = LENGTH_EDEFAULT;
 
 	/**
@@ -107,6 +116,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 * @ordered
 	 */
+	@Id
+    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**

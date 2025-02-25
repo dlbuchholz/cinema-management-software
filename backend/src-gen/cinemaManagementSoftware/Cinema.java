@@ -5,6 +5,8 @@ package cinemaManagementSoftware;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import jakarta.persistence.MappedSuperclass;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Cinema</b></em>'.
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
+@MappedSuperclass
 public interface Cinema extends EObject {
 
 	/**

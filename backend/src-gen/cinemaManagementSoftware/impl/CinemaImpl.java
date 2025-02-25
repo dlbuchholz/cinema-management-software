@@ -106,7 +106,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@ManyToOne
+	@ManyToOne(targetEntity = CinemaOwnerImpl.class)
     @JoinColumn(name = "owner_id")
 	protected CinemaOwner owner;
 	/**
@@ -117,7 +117,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = CinemaHallImpl.class)
 	protected EList<CinemaHall> hall;
 
 	/**

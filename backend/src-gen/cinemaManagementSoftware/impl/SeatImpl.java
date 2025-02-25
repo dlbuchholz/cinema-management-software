@@ -5,6 +5,12 @@ package cinemaManagementSoftware.impl;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Seat;
 import cinemaManagementSoftware.SeatingRow;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -29,6 +35,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
+@Entity
+@Table(name = "seats")
 public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	/**
 	 * The cached value of the '{@link #getRow() <em>Row</em>}' reference.
@@ -38,6 +46,8 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * @generated
 	 * @ordered
 	 */
+	@ManyToOne(targetEntity = SeatingRowImpl.class)
+    @JoinColumn(name = "seating_row_id", nullable = false)
 	protected SeatingRow row;
 
 	/**
@@ -58,6 +68,8 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * @generated
 	 * @ordered
 	 */
+	@Id
+    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**
