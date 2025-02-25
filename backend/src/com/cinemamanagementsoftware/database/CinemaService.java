@@ -22,9 +22,9 @@ public class CinemaService {
     private final IdGenerator idGenerator;
 
     @Autowired
-    public CinemaService(CinemaRepository cinemaRepository) {
+    public CinemaService(CinemaRepository cinemaRepository,  IdGenerator idGenerator) {
         this.cinemaRepository = cinemaRepository;
-        this.idGenerator = new IdGenerator();
+        this.idGenerator = idGenerator;
     }
 
     public List<CinemaImpl> getAllCinemas() {

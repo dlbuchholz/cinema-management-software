@@ -2,6 +2,7 @@ package com.cinemamanagementsoftware.database;
 
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
@@ -12,7 +13,7 @@ import cinemaManagementSoftware.impl.CinemaImpl;
 // Use Neo4J only for statistical information (e.g., earnings per screening/film).
 //
 // For all other data => DatabaseController
-
+@Component
 public class GraphDatabaseController {
     private final SessionFactory sessionFactory;
     private final Session session;
