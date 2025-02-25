@@ -39,5 +39,9 @@ public class Main {
         // Start Interactive Console
         ConsoleInterface console = new ConsoleInterface(cinemaService, cinema, mySQLController, neo4jController);
         console.start();
+        
+        // Shutdown Spring Boot after execution
+        SpringApplication.exit(context);
+        System.exit(0);
     }
 }
