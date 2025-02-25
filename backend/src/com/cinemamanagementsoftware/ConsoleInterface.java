@@ -69,7 +69,7 @@ public class ConsoleInterface {
                 System.out.print("Enter new cinema name: ");
                 String newName = scanner.nextLine().trim();
                 cinema.setName(newName);
-                cinemaService.save(cinema);
+                //cinemaService.save(cinema);
                 System.out.println("✅ Cinema name updated to: " + newName);
                 break;
 
@@ -77,7 +77,7 @@ public class ConsoleInterface {
                 System.out.print("Enter new cinema location: ");
                 String newLocation = scanner.nextLine().trim();
                 cinema.setLocation(newLocation);
-                cinemaService.save(cinema);
+                //cinemaService.save(cinema);
                 System.out.println("✅ Cinema location updated to: " + newLocation);
                 break;
 

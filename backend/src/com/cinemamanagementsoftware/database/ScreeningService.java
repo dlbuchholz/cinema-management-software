@@ -44,7 +44,7 @@ public class ScreeningService {
 
     @Transactional
     public ScreeningImpl createScreening(ScreeningImpl screening) {
-        screening.setId(idGenerator.getNextId(ScreeningImpl.class)); // Assign a sequential ID
+        //screening.setId(idGenerator.getNextId(ScreeningImpl.class)); // Assign a sequential ID
         return screeningRepository.save(screening);
     }
 

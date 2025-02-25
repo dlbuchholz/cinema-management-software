@@ -45,7 +45,13 @@
 		    <artifactId>mariadb-java-client</artifactId>
 		    <version>3.3.2</version>
 		</dependency>
-
+		
+		<!-- Rabbit MQ -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-amqp</artifactId>
+		    <version>3.4.3</version>
+		</dependency>
 
 
         <!-- JSON Parsing mit Jackson -->
