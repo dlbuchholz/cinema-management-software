@@ -30,8 +30,18 @@ Das Projekt besteht aus mehreren Komponenten, die in verschiedenen Ordnern organ
     - Bei erster Benutzung ändere das Passwort von neo4j auf http://localhost:7474/
       - Benutzername: neo4j
       - Altes Passwort: neo4j
-      - Neues Passwort: lobster-child-atomic-canvas-infant-6060 
-
+      - Neues Passwort: lobster-child-atomic-canvas-infant-6060
+5. MariaDB-Server starten
+    - MariaDB installieren, wenn noch nicht getan (z.B. über XAMPP)
+    - MariaDB starten
+    - Hierfür wird kein Passwort benötigt oder vorrausgesetzt, gehe sicher, dass das Passwort für root leer ist
+    - Folgendes Kommando ausführen um die Datenbank zu erstellen:
+```
+CREATE DATABASE cinema_db;
+GRANT ALL PRIVILEGES ON cinema_db.* TO 'root'@'localhost';
+FLUSH PRIVILEGES;
+```
+    
 5. Backend starten
     - In Eclipse in der Datei com.cinemamanagementsoftware.Main unter Run → Run As → Java-Application
     - Alternativ mit Maven ausführen: mvn spring-boot:run
