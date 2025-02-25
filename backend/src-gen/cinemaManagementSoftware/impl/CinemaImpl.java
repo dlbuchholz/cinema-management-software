@@ -23,6 +23,8 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
 
+import jakarta.persistence.*;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Cinema</b></em>'.
@@ -40,7 +42,8 @@ import org.neo4j.ogm.annotation.Relationship;
  *
  * @generated
  */
-@NodeEntity(label = "Cinema")
+@Entity
+@Table(name = "cinemas")
 public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -60,8 +63,8 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @ordered
 	 */
 	@Id
-	@GeneratedValue
-	protected long id = ID_EDEFAULT;
+    @Column(name = "id", nullable = false, updatable = false)
+	protected long id;
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,7 +73,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@Property
 	protected static final String NAME_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -80,7 +82,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@Property
+	@Column(nullable = false)
 	protected String name = NAME_EDEFAULT;
 	/**
 	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
@@ -90,7 +92,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@Property
 	protected static final String LOCATION_EDEFAULT = null;
 	/**
 	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
@@ -100,7 +101,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@Property
+	@Column(nullable = false)
 	protected String location = LOCATION_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
@@ -110,7 +111,8 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@Relationship(type = "OWNED_BY", direction = Relationship.Direction.OUTGOING)
+	@ManyToOne
+    @JoinColumn(name = "owner_id")
 	protected CinemaOwner owner;
 	/**
 	 * The cached value of the '{@link #getHall() <em>Hall</em>}' reference list.
@@ -120,7 +122,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated NOT
 	 * @ordered
 	 */
-	@Relationship(type = "HAS_HALL", direction = Relationship.Direction.OUTGOING)
+	@OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
 	protected EList<CinemaHall> hall;
 
 	/**

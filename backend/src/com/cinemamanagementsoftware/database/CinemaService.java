@@ -1,54 +1,49 @@
 package com.cinemamanagementsoftware.database;
 
-import java.util.Collection;
-
-import org.neo4j.ogm.session.Session;
-
-import cinemaManagementSoftware.Cinema;
+import cinemaManagementSoftware.CinemaManagementSoftwareFactory;
 import cinemaManagementSoftware.impl.CinemaImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// Neo4J Persistence layer
+import java.util.List;
+
+/**
+ * Service layer for handling business logic related to Cinema entities.
+ * 
+ * This class interacts with the CinemaRepository to fetch, create, update, 
+ * and delete cinemas while ensuring proper ID assignment and persistence.
+ * 
+ * It integrates Ecore-generated objects with the Hibernate ORM framework.
+ */
+
+@Service
 public class CinemaService {
-	private final Session session;
-	
-	public CinemaService(DatabaseController dbController) {
-        this.session = dbController.getSession();  // Use the shared session
-    }
-	
-	 /**
-     * Saves the cinema (updates if it already exists).
-     */
-    public void save(Cinema cinema) {
-        System.out.println("Saving cinema: " + cinema.getName() + " to database...");
+    private final CinemaRepository cinemaRepository;
+    private final IdGenerator idGenerator;
 
-        try {
-            session.save(cinema);
-            System.out.println("Cinema saved successfully!");
-        } catch (Exception e) {
-            System.out.println("Error while saving Cinema: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * Loads the cinema from the database. Returns null if no cinema exists.
-     */
-    public Cinema load() {
-        Collection<CinemaImpl> cinemas = session.loadAll(CinemaImpl.class);
-        return cinemas.isEmpty() ? null : cinemas.iterator().next();
-    }
-    
-    public Cinema getCinemaById(Long id) {
-        return session.load(Cinema.class, id);
+    @Autowired
+    public CinemaService(CinemaRepository cinemaRepository) {
+        this.cinemaRepository = cinemaRepository;
+        this.idGenerator = new IdGenerator();
     }
 
-    public void delete(Cinema cinema) {
-        session.delete(cinema);
-        System.out.println("❌ Cinema deleted: " + cinema.getName());
+    public List<CinemaImpl> getAllCinemas() {
+        return cinemaRepository.findAll();
     }
 
-    public boolean exists() {
-        return !session.loadAll(CinemaImpl.class).isEmpty();
+    public CinemaImpl getCinemaById(Long id) {
+        return cinemaRepository.findById(id).orElse(null);
     }
 
+    public CinemaImpl createCinema(String name, String location) {
+        CinemaImpl cinema = (CinemaImpl) CinemaManagementSoftwareFactory.eINSTANCE.createCinema();
+        cinema.setId(idGenerator.getNextId(CinemaImpl.class)); // Assign sequential ID
+        cinema.setName(name);
+        cinema.setLocation(location);
+        return cinemaRepository.save(cinema);
+    }
+
+    public void deleteCinema(Long id) {
+        cinemaRepository.deleteById(id);
+    }
 }

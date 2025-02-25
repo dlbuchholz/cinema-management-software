@@ -2,6 +2,7 @@ package com.cinemamanagementsoftware;
 
 import com.cinemamanagementsoftware.database.CinemaService;
 import com.cinemamanagementsoftware.database.DatabaseController;
+import com.cinemamanagementsoftware.database.GraphDatabaseController;
 import cinemaManagementSoftware.Cinema;
 
 import java.util.Scanner;
@@ -9,15 +10,18 @@ import java.util.Scanner;
 public class ConsoleInterface {
     private final CinemaService cinemaService;
     private final Cinema cinema;
-    
     private final DatabaseController dbController;
+    private final GraphDatabaseController graphDbController;
     private final Scanner scanner;
 
-    public ConsoleInterface(CinemaService cinemaService, Cinema cinema, DatabaseController dbController) {
+    public ConsoleInterface(CinemaService cinemaService, Cinema cinema, 
+                            DatabaseController dbController, 
+                            GraphDatabaseController graphDbController) {
         this.cinemaService = cinemaService;
         this.cinema = cinema;
         this.scanner = new Scanner(System.in);
         this.dbController = dbController;
+        this.graphDbController = graphDbController;
     }
 
     public void start() {
@@ -41,11 +45,6 @@ public class ConsoleInterface {
     }
 
     private boolean handleCommand(String input) {
-        if (input.startsWith("/query ")) {
-            executeCypherQuery(input.substring(7));  // Extract query after "/query "
-            return true;
-        }
-
         switch (input) {
             case "/exit":
                 return false;
@@ -56,7 +55,7 @@ public class ConsoleInterface {
                 System.out.println("/info    - Show cinema details");
                 System.out.println("/rename  - Change cinema name");
                 System.out.println("/location - Change cinema location");
-                System.out.println("/query <Cypher Query> - Run a Neo4J query");
+                System.out.println("/stats   - Show cinema statistics from Neo4J");
                 System.out.println("/exit    - Quit the program");
                 break;
 
@@ -82,14 +81,14 @@ public class ConsoleInterface {
                 System.out.println("✅ Cinema location updated to: " + newLocation);
                 break;
 
+            case "/stats":
+                System.out.println("📊 Fetching statistics...");
+                graphDbController.executeQuery("MATCH (c:CinemaStatistics) RETURN c");
+                break;
+
             default:
                 System.out.println("⚠ Unknown command. Type `/help` for a list of commands.");
         }
         return true;
-    }
-
-    private void executeCypherQuery(String query) {
-        //System.out.println("Executing Cypher query: " + query);
-        dbController.executeQuery(query);
     }
 }
