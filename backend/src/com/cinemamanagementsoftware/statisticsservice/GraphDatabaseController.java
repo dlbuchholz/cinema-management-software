@@ -1,7 +1,8 @@
-package com.cinemamanagementsoftware.database;
+package com.cinemamanagementsoftware.statisticsservice;
 
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
@@ -9,11 +10,15 @@ import org.neo4j.ogm.config.Configuration;
 import cinemaManagementSoftware.Cinema;
 import cinemaManagementSoftware.impl.CinemaImpl;
 
-public class DatabaseController {
+// Use Neo4J only for statistical information (e.g., earnings per screening/film).
+//
+// For all other data => DatabaseController
+@Component
+public class GraphDatabaseController {
     private final SessionFactory sessionFactory;
     private final Session session;
 
-    public DatabaseController() {
+    public GraphDatabaseController() {
         Configuration config = new Configuration.Builder()
                 .uri("bolt://localhost:7687")
                 .credentials("neo4j", "lobster-child-atomic-canvas-infant-6060")
@@ -51,6 +56,18 @@ public class DatabaseController {
         } catch (Exception e) {
             System.out.println("❌ Query execution failed: " + e.getMessage());
         }
+    }
+
+    public void save(Object entity) {
+        session.save(entity);
+    }
+
+    public <T> T find(Class<T> entityClass, Long id) {
+        return session.load(entityClass, id);
+    }
+
+    public void delete(Object entity) {
+        session.delete(entity);
     }
     
     public Session getSession() {
