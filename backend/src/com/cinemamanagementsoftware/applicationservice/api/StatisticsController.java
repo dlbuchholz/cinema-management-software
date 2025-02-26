@@ -1,6 +1,6 @@
 package com.cinemamanagementsoftware.applicationservice.api;
 
-import com.cinemamanagementsoftware.messaging.RabbitMQSender;
+import com.cinemamanagementsoftware.config.RabbitMQSender;
 import com.cinemamanagementsoftware.persistenceservice.repositories.ScreeningRepository;
 
 import cinemaManagementSoftware.impl.ScreeningImpl;

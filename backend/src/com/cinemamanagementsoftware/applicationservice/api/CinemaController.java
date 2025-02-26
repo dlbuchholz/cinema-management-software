@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/cinemas")
+@RequestMapping("/api/cinema")
 public class CinemaController {
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;

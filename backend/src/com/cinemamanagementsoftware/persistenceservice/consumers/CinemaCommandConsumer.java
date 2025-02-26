@@ -2,6 +2,7 @@ package com.cinemamanagementsoftware.persistenceservice.consumers;
 
 import com.cinemamanagementsoftware.persistenceservice.entities.CinemaEntity;
 import com.cinemamanagementsoftware.persistenceservice.repositories.CinemaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cinemaManagementSoftware.impl.CinemaImpl;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -13,21 +14,25 @@ import java.util.Optional;
 
 @Component
 public class CinemaCommandConsumer {
-
     private final CinemaRepository cinemaRepository;
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public CinemaCommandConsumer(CinemaRepository cinemaRepository) {
+    public CinemaCommandConsumer(CinemaRepository cinemaRepository, ObjectMapper objectMapper) {
         this.cinemaRepository = cinemaRepository;
+        this.objectMapper = objectMapper;
     }
 
     @RabbitListener(queues = "cinema.create")
-    public void createCinema(Map<String, Object> cinemaData) {
-        CinemaImpl cinema = new CinemaImpl();
-        cinema.setName((String) cinemaData.get("name"));
-        cinema.setLocation((String) cinemaData.get("location"));
-        cinemaRepository.save(cinema);
-        System.out.println("🎬 New cinema saved: " + cinema.getName());
+    public void createCinema(String cinemaJson) {
+        try {
+            // Deserialize JSON directly into the entity class
+            CinemaEntity cinema = objectMapper.readValue(cinemaJson, CinemaEntity.class);
+            cinemaRepository.save(cinema);
+            System.out.println("🎬 Cinema saved: " + cinema.getName());
+        } catch (Exception e) {
+            System.err.println("❌ Error deserializing CinemaEntity: " + e.getMessage());
+        }
     }
 
     @RabbitListener(queues = "cinema.update")
