@@ -1,6 +1,6 @@
 package com.cinemamanagementsoftware.applicationservice.api;
 
-import com.cinemamanagementsoftware.config.RabbitMQSender;
+//import com.cinemamanagementsoftware.config.RabbitMQSender;
 import com.cinemamanagementsoftware.persistenceservice.repositories.ScreeningRepository;
 
 import cinemaManagementSoftware.impl.ScreeningImpl;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/statistics")
 public class StatisticsController {
-
+	/*
     private final ScreeningRepository screeningRepository;
     private final RabbitMQSender rabbitMQSender;
 
@@ -29,5 +29,5 @@ public class StatisticsController {
     public String sendEarningsStatistics(@RequestBody Map<String, Object> statistics) {
         rabbitMQSender.send(statistics);
         return "📨 Earnings statistics sent to RabbitMQ!";
-    }
+    }*/
 }

@@ -1,28 +1,68 @@
 package com.cinemamanagementsoftware.applicationservice;
 
-import com.cinemamanagementsoftware.database.CinemaService;
-import com.cinemamanagementsoftware.database.DatabaseController;
-import com.cinemamanagementsoftware.statisticsservice.GraphDatabaseController;
-
 import cinemaManagementSoftware.Cinema;
+import cinemaManagementSoftware.CinemaManagementSoftwareFactory;
+import com.cinemamanagementsoftware.statisticsservice.GraphDatabaseController;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emfcloud.jackson.module.EMFModule;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ConsoleInterface {
-    private final CinemaService cinemaService;
-    private final Cinema cinema;
-    private final DatabaseController dbController;
-    private final GraphDatabaseController graphDbController;
-    private final Scanner scanner;
+    private final RabbitTemplate rabbitTemplate;
+    private final GraphDatabaseController graphDatabaseController;
+    private final ObjectMapper objectMapper;
+    private Cinema cinema;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public ConsoleInterface(CinemaService cinemaService, Cinema cinema, 
-                            DatabaseController dbController, 
-                            GraphDatabaseController graphDbController) {
-        this.cinemaService = cinemaService;
-        this.cinema = cinema;
-        this.scanner = new Scanner(System.in);
-        this.dbController = dbController;
-        this.graphDbController = graphDbController;
+    public ConsoleInterface(RabbitTemplate rabbitTemplate, GraphDatabaseController graphDatabaseController) {
+        this.rabbitTemplate = rabbitTemplate;
+        this.graphDatabaseController = graphDatabaseController;
+        
+        // Setup EMF JSON-Jackson Serializer
+        this.objectMapper = new ObjectMapper();
+        this.objectMapper.registerModule(new EMFModule());
+
+        fetchOrCreateCinema();
+    }
+
+    private void fetchOrCreateCinema() {
+        System.out.println("📽️ Fetching cinema data...");
+
+        try {
+            // ✅ Directly send request and receive response
+            String jsonResponse = (String) rabbitTemplate.convertSendAndReceive("cinemaExchange", "cinema.fetch", "");
+
+            if (jsonResponse != null && !jsonResponse.isEmpty()) {
+                // Deserialize JSON into Ecore Cinema
+                cinema = objectMapper.readValue(jsonResponse, Cinema.class);
+                System.out.println("🎬 Loaded Cinema: " + cinema.getName() + " (" + cinema.getLocation() + ")");
+            } else {
+                System.out.println("⚠ No existing cinema found.");
+                promptCinemaCreation();
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error fetching cinema data: " + e.getMessage());
+            promptCinemaCreation();
+        }
+    }
+    
+    private void promptCinemaCreation() {
+        System.out.print("Enter Cinema Name: ");
+        String name = scanner.nextLine().trim();
+        System.out.print("Enter Cinema Location: ");
+        String location = scanner.nextLine().trim();
+        
+        cinema = CinemaManagementSoftwareFactory.eINSTANCE.createCinema();
+        cinema.setName(name);
+        cinema.setLocation(location);
+        createCinema();
     }
 
     public void start() {
@@ -42,7 +82,7 @@ public class ConsoleInterface {
         }
 
         scanner.close();
-        System.out.println("Exiting... Goodbye! 🎬");
+        System.out.println("👋 Exiting... Goodbye!");
     }
 
     private boolean handleCommand(String input) {
@@ -70,26 +110,74 @@ public class ConsoleInterface {
                 System.out.print("Enter new cinema name: ");
                 String newName = scanner.nextLine().trim();
                 cinema.setName(newName);
-                //cinemaService.save(cinema);
-                System.out.println("✅ Cinema name updated to: " + newName);
+                updateCinema();
                 break;
 
             case "/location":
                 System.out.print("Enter new cinema location: ");
                 String newLocation = scanner.nextLine().trim();
                 cinema.setLocation(newLocation);
-                //cinemaService.save(cinema);
-                System.out.println("✅ Cinema location updated to: " + newLocation);
+                updateCinema();
                 break;
 
             case "/stats":
                 System.out.println("📊 Fetching statistics...");
-                graphDbController.executeQuery("MATCH (c:CinemaStatistics) RETURN c");
+                graphDatabaseController.executeQuery("MATCH (c:CinemaStatistics) RETURN c");
                 break;
 
             default:
                 System.out.println("⚠ Unknown command. Type `/help` for a list of commands.");
         }
         return true;
+    }
+
+    private void createCinema() {
+        try {
+            // Serialize Ecore object
+            String jsonRequest = objectMapper.writeValueAsString(Collections.singletonMap("cinema", cinema));
+
+            // ✅ Send request and wait for response
+            System.out.println("📨 Sending create request and waiting for response...");
+            String jsonResponse = (String) rabbitTemplate.convertSendAndReceive("cinemaExchange", "cinema.create", jsonRequest);
+
+            if (jsonResponse != null && !jsonResponse.isEmpty()) {
+                cinema = objectMapper.readValue(jsonResponse, Cinema.class);
+                System.out.println("✅ Cinema created: " + cinema.getName() + " (ID: " + cinema.getId() + ")");
+            } else {
+                System.err.println("❌ Error: No response from the create operation.");
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error creating cinema: " + e.getMessage());
+        }
+    }
+    
+    private void fetchCinema() {
+        System.out.println("📽️ Fetching newly created cinema...");
+
+        try {
+            String jsonResponse = (String) rabbitTemplate.convertSendAndReceive("cinemaExchange", "cinema.fetch", "");
+
+            if (jsonResponse != null && !jsonResponse.isEmpty()) {
+                // Deserialize JSON into Ecore Cinema
+                cinema = objectMapper.readValue(jsonResponse, Cinema.class);
+                System.out.println("🎬 Loaded Cinema: " + cinema.getName() + " (" + cinema.getLocation() + ")");
+            } else {
+                System.err.println("❌ Unknown error fetching cinema data");
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error fetching cinema data: " + e.getMessage());
+
+        }
+    }
+
+    private void updateCinema() {
+        try {
+            // Serialize Ecore object
+            String jsonRequest = objectMapper.writeValueAsString(Collections.singletonMap("cinema", cinema));
+            rabbitTemplate.convertAndSend("cinemaExchange", "cinema.update", jsonRequest);
+            System.out.println("✅ Cinema update request sent!");
+        } catch (Exception e) {
+            System.err.println("❌ Error updating cinema: " + e.getMessage());
+        }
     }
 }

@@ -14,6 +14,10 @@ public class CinemaEntity {
 
     @Column(nullable = false)
     private String location;
+    
+    @ManyToOne(targetEntity = CinemaOwnerEntity.class)
+    @JoinColumn(name = "owner_id")
+	private CinemaOwnerEntity owner;
 
     // Getters and Setters
     public Long getId() { return id; }

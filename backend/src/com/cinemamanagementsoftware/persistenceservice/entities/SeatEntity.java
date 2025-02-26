@@ -10,7 +10,7 @@ public class SeatEntity {
     private Long id;
     
     @Column(nullable = false)
-    private int rowNumber;
+    private int row;
     
     @Column(nullable = false)
     private int seatNumber;

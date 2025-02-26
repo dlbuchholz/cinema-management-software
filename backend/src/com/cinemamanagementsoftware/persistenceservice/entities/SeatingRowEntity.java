@@ -12,5 +12,9 @@ public class SeatingRowEntity {
     private Long id;
     
     @OneToMany(mappedBy = "row", cascade = CascadeType.ALL)
-    private List<SeatEntity> seats;
+    private List<SeatEntity> seat;
+    
+    @ManyToOne
+    @JoinColumn(name = "cinema_hall_id", nullable = false)
+    private CinemaHallEntity cinemaHall;
 }

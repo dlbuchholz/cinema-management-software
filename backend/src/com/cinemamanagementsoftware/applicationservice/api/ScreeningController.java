@@ -1,6 +1,5 @@
 package com.cinemamanagementsoftware.applicationservice.api;
 
-import com.cinemamanagementsoftware.database.ScreeningService;
 import cinemaManagementSoftware.impl.ScreeningImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/screenings")
 public class ScreeningController {
+	/*
     private final ScreeningService screeningService;
 
     @Autowired
@@ -44,5 +44,5 @@ public class ScreeningController {
     @DeleteMapping("/{id}")
     public void deleteScreening(@PathVariable Long id) {
         screeningService.deleteScreening(id);
-    }
+    }*/
 }

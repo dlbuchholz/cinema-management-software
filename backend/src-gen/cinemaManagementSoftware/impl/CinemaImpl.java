@@ -7,7 +7,6 @@ import cinemaManagementSoftware.CinemaHall;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.CinemaOwner;
 
-import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
@@ -23,9 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,9 +40,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @generated
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, Serializable {
-	private static final long serialVersionUID = 1L;
+public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -65,7 +59,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, 
 	 * @generated
 	 * @ordered
 	 */
-	@JsonProperty("id")
 	protected long id = ID_EDEFAULT;
 
 	/**
@@ -86,7 +79,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, 
 	 * @generated
 	 * @ordered
 	 */
-	@JsonProperty("name")
 	protected String name = NAME_EDEFAULT;
 
 	/**
@@ -107,7 +99,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, 
 	 * @generated
 	 * @ordered
 	 */
-	@JsonProperty("location")
 	protected String location = LOCATION_EDEFAULT;
 
 	/**
@@ -118,7 +109,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, 
 	 * @generated
 	 * @ordered
 	 */
-	@JsonProperty("owner")
 	protected CinemaOwner owner;
 
 	/**
@@ -129,7 +119,6 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, 
 	 * @generated
 	 * @ordered
 	 */
-	@JsonProperty("hall")
 	protected EList<CinemaHall> hall;
 
 	/**
