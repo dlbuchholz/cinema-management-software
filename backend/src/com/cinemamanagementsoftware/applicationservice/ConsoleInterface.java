@@ -38,8 +38,8 @@ public class ConsoleInterface {
         try {
             // ✅ Directly send request and receive response
             String jsonResponse = (String) rabbitTemplate.convertSendAndReceive("cinemaExchange", "cinema.fetch", "");
-
-            if (jsonResponse != null && !jsonResponse.isEmpty()) {
+            
+            if (jsonResponse == "{}") {
                 // Deserialize JSON into Ecore Cinema
                 cinema = objectMapper.readValue(jsonResponse, Cinema.class);
                 System.out.println("🎬 Loaded Cinema: " + cinema.getName() + " (" + cinema.getLocation() + ")");

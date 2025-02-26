@@ -7,6 +7,8 @@ import cinemaManagementSoftware.Cinema;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,8 +39,10 @@ public class Main {
         GraphDatabaseController neo4jController = new GraphDatabaseController();
         
         // Register Ecore Package
-        //EPackage.Registry.INSTANCE.put(CinemaManagementSoftwarePackage.eNS_URI, CinemaManagementSoftwarePackage.eINSTANCE);
-
+        EPackage.Registry.INSTANCE.put(CinemaManagementSoftwarePackage.eNS_URI, CinemaManagementSoftwarePackage.eINSTANCE);
+        //CinemaManagementSoftwarePackage.eINSTANCE.eClass(); // Ensure package is registered
+        //Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+        
         // Start the interactive console interface	
         ConsoleInterface consoleInterface = new ConsoleInterface(rabbitTemplate, neo4jController);
         consoleInterface.start();
