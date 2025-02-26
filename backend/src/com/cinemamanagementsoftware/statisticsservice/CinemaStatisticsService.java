@@ -1,4 +1,4 @@
-package com.cinemamanagementsoftware.database;
+package com.cinemamanagementsoftware.statisticsservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1244,6 +1244,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CINEMA = eINSTANCE.getCinema();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1251,6 +1252,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CINEMA__ID = eINSTANCE.getCinema_Id();
+
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1258,6 +1260,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CINEMA__NAME = eINSTANCE.getCinema_Name();
+
 		/**
 		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1265,6 +1268,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CINEMA__LOCATION = eINSTANCE.getCinema_Location();
+
 		/**
 		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1272,6 +1276,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CINEMA__OWNER = eINSTANCE.getCinema_Owner();
+
 		/**
 		 * The meta object literal for the '<em><b>Hall</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1279,6 +1284,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CINEMA__HALL = eINSTANCE.getCinema_Hall();
+
 		/**
 		 * The meta object literal for the '<em><b>Total Income</b></em>' operation.
 		 * <!-- begin-user-doc -->
@@ -1286,6 +1292,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CINEMA___TOTAL_INCOME = eINSTANCE.getCinema__TotalIncome();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.PersonImpl <em>Person</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1295,6 +1302,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass PERSON = eINSTANCE.getPerson();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1302,6 +1310,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PERSON__ID = eINSTANCE.getPerson_Id();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.CustomerImpl <em>Customer</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1311,6 +1320,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CUSTOMER = eINSTANCE.getCustomer();
+
 		/**
 		 * The meta object literal for the '<em><b>Ticket</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1318,6 +1328,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CUSTOMER__TICKET = eINSTANCE.getCustomer_Ticket();
+
 		/**
 		 * The meta object literal for the '<em><b>Email</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1325,6 +1336,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CUSTOMER__EMAIL = eINSTANCE.getCustomer_Email();
+
 		/**
 		 * The meta object literal for the '<em><b>Telephone</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1332,6 +1344,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CUSTOMER__TELEPHONE = eINSTANCE.getCustomer_Telephone();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.CinemaOwnerImpl <em>Cinema Owner</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1341,6 +1354,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CINEMA_OWNER = eINSTANCE.getCinemaOwner();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.TicketImpl <em>Ticket</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1350,6 +1364,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass TICKET = eINSTANCE.getTicket();
+
 		/**
 		 * The meta object literal for the '<em><b>Screening</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1357,6 +1372,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TICKET__SCREENING = eINSTANCE.getTicket_Screening();
+
 		/**
 		 * The meta object literal for the '<em><b>Seat</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1364,6 +1380,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TICKET__SEAT = eINSTANCE.getTicket_Seat();
+
 		/**
 		 * The meta object literal for the '<em><b>Price</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1371,6 +1388,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TICKET__PRICE = eINSTANCE.getTicket_Price();
+
 		/**
 		 * The meta object literal for the '<em><b>Is Booked</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1378,6 +1396,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TICKET__IS_BOOKED = eINSTANCE.getTicket_IsBooked();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1385,6 +1404,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TICKET__ID = eINSTANCE.getTicket_Id();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.ScreeningImpl <em>Screening</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1394,6 +1414,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SCREENING = eINSTANCE.getScreening();
+
 		/**
 		 * The meta object literal for the '<em><b>Movie</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1401,6 +1422,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SCREENING__MOVIE = eINSTANCE.getScreening_Movie();
+
 		/**
 		 * The meta object literal for the '<em><b>Hall</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1408,6 +1430,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SCREENING__HALL = eINSTANCE.getScreening_Hall();
+
 		/**
 		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1415,6 +1438,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SCREENING__DATE = eINSTANCE.getScreening_Date();
+
 		/**
 		 * The meta object literal for the '<em><b>Start Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1422,6 +1446,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SCREENING__START_TIME = eINSTANCE.getScreening_StartTime();
+
 		/**
 		 * The meta object literal for the '<em><b>End Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1429,6 +1454,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SCREENING__END_TIME = eINSTANCE.getScreening_EndTime();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1436,6 +1462,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SCREENING__ID = eINSTANCE.getScreening_Id();
+
 		/**
 		 * The meta object literal for the '<em><b>Has Started</b></em>' operation.
 		 * <!-- begin-user-doc -->
@@ -1444,6 +1471,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 */
 		EOperation SCREENING___HAS_STARTED = eINSTANCE
 				.getScreening__HasStarted();
+
 		/**
 		 * The meta object literal for the '<em><b>Num Reservations</b></em>' operation.
 		 * <!-- begin-user-doc -->
@@ -1452,6 +1480,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 */
 		EOperation SCREENING___NUM_RESERVATIONS = eINSTANCE
 				.getScreening__NumReservations();
+
 		/**
 		 * The meta object literal for the '<em><b>Num Bookings</b></em>' operation.
 		 * <!-- begin-user-doc -->
@@ -1460,6 +1489,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 */
 		EOperation SCREENING___NUM_BOOKINGS = eINSTANCE
 				.getScreening__NumBookings();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.MovieImpl <em>Movie</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1469,6 +1499,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass MOVIE = eINSTANCE.getMovie();
+
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1476,6 +1507,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MOVIE__NAME = eINSTANCE.getMovie_Name();
+
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1483,6 +1515,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MOVIE__DESCRIPTION = eINSTANCE.getMovie_Description();
+
 		/**
 		 * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1490,6 +1523,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MOVIE__LENGTH = eINSTANCE.getMovie_Length();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1497,6 +1531,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MOVIE__ID = eINSTANCE.getMovie_Id();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.CinemaHallImpl <em>Cinema Hall</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1506,6 +1541,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass CINEMA_HALL = eINSTANCE.getCinemaHall();
+
 		/**
 		 * The meta object literal for the '<em><b>Row</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1513,6 +1549,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference CINEMA_HALL__ROW = eINSTANCE.getCinemaHall_Row();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1520,6 +1557,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CINEMA_HALL__ID = eINSTANCE.getCinemaHall_Id();
+
 		/**
 		 * The meta object literal for the '<em><b>Is Config Complete</b></em>' operation.
 		 * <!-- begin-user-doc -->
@@ -1528,6 +1566,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 */
 		EOperation CINEMA_HALL___IS_CONFIG_COMPLETE = eINSTANCE
 				.getCinemaHall__IsConfigComplete();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.SeatingRowImpl <em>Seating Row</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1537,6 +1576,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SEATING_ROW = eINSTANCE.getSeatingRow();
+
 		/**
 		 * The meta object literal for the '<em><b>Cinemahall</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1545,6 +1585,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 */
 		EReference SEATING_ROW__CINEMAHALL = eINSTANCE
 				.getSeatingRow_Cinemahall();
+
 		/**
 		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1552,6 +1593,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEATING_ROW__CATEGORY = eINSTANCE.getSeatingRow_Category();
+
 		/**
 		 * The meta object literal for the '<em><b>Seat</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
@@ -1559,6 +1601,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEATING_ROW__SEAT = eINSTANCE.getSeatingRow_Seat();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1566,6 +1609,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEATING_ROW__ID = eINSTANCE.getSeatingRow_Id();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.SeatImpl <em>Seat</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1575,6 +1619,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SEAT = eINSTANCE.getSeat();
+
 		/**
 		 * The meta object literal for the '<em><b>Row</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
@@ -1582,6 +1627,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SEAT__ROW = eINSTANCE.getSeat_Row();
+
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -1589,6 +1635,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEAT__ID = eINSTANCE.getSeat_Id();
+
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.Category <em>Category</em>}' enum.
 		 * <!-- begin-user-doc -->

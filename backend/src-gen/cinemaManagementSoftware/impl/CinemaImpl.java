@@ -5,20 +5,27 @@ package cinemaManagementSoftware.impl;
 import cinemaManagementSoftware.Cinema;
 import cinemaManagementSoftware.CinemaHall;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
-
 import cinemaManagementSoftware.CinemaOwner;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,9 +44,9 @@ import jakarta.persistence.*;
  *
  * @generated
  */
-@Entity
-@Table(name = "cinemas")
-public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema, Serializable {
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,75 +56,80 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @ordered
 	 */
 	protected static final long ID_EDEFAULT = 0L;
+
 	/**
 	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getId()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@Id
-    @Column(name = "id", nullable = false, updatable = false)
-	protected long id;
+	@JsonProperty("id")
+	protected long id = ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getName()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@Column(nullable = false)
+	@JsonProperty("name")
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocation()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
 	protected static final String LOCATION_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLocation()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@Column(nullable = false)
+	@JsonProperty("location")
 	protected String location = LOCATION_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwner()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@ManyToOne(targetEntity = CinemaOwnerImpl.class)
-    @JoinColumn(name = "owner_id")
+	@JsonProperty("owner")
 	protected CinemaOwner owner;
+
 	/**
 	 * The cached value of the '{@link #getHall() <em>Hall</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getHall()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = CinemaHallImpl.class)
+	@JsonProperty("hall")
 	protected EList<CinemaHall> hall;
 
 	/**

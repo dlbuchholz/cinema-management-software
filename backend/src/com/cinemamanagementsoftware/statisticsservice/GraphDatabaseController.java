@@ -1,4 +1,4 @@
-package com.cinemamanagementsoftware.database;
+package com.cinemamanagementsoftware.statisticsservice;
 
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;

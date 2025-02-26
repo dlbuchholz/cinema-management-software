@@ -1,8 +1,9 @@
-package com.cinemamanagementsoftware;
+package com.cinemamanagementsoftware.applicationservice;
 
 import com.cinemamanagementsoftware.database.CinemaService;
 import com.cinemamanagementsoftware.database.DatabaseController;
-import com.cinemamanagementsoftware.database.GraphDatabaseController;
+import com.cinemamanagementsoftware.statisticsservice.GraphDatabaseController;
+
 import cinemaManagementSoftware.Cinema;
 
 import java.util.Scanner;

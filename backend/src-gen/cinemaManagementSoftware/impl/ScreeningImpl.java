@@ -6,14 +6,6 @@ import cinemaManagementSoftware.CinemaHall;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Movie;
 import cinemaManagementSoftware.Screening;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -47,8 +39,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-@Entity
-@Table(name = "screenings")
 public class ScreeningImpl extends MinimalEObjectImpl.Container
 		implements Screening {
 	/**
@@ -59,8 +49,6 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	@ManyToOne(targetEntity = MovieImpl.class)
-    @JoinColumn(name = "movie_id", nullable = false)
 	protected Movie movie;
 
 	/**
@@ -71,8 +59,6 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	@ManyToOne(targetEntity = CinemaHallImpl.class)
-    @JoinColumn(name = "cinema_hall_id", nullable = false)
 	protected CinemaHall hall;
 
 	/**
@@ -93,8 +79,6 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	@Temporal(TemporalType.DATE)
-    @Column(nullable = false)
 	protected Date date = DATE_EDEFAULT;
 
 	/**
@@ -115,7 +99,6 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	@Column(name = "start_time", nullable = false)
 	protected double startTime = START_TIME_EDEFAULT;
 
 	/**
@@ -136,7 +119,6 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	@Column(name = "end_time", nullable = false)
 	protected double endTime = END_TIME_EDEFAULT;
 
 	/**
@@ -157,8 +139,6 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 * @ordered
 	 */
-	@Id
-    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**

@@ -1,4 +1,4 @@
-package com.cinemamanagementsoftware.api;
+package com.cinemamanagementsoftware.applicationservice.api;
 
 import com.cinemamanagementsoftware.database.ScreeningService;
 import cinemaManagementSoftware.impl.ScreeningImpl;

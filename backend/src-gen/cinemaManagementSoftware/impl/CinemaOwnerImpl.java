@@ -4,8 +4,6 @@ package cinemaManagementSoftware.impl;
 
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.CinemaOwner;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -16,8 +14,6 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-@Entity
-@Table(name = "cinema_owners")
 public class CinemaOwnerImpl extends PersonImpl implements CinemaOwner {
 	/**
 	 * <!-- begin-user-doc -->

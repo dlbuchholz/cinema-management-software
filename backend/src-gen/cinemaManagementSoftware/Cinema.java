@@ -3,9 +3,8 @@
 package cinemaManagementSoftware;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
-import jakarta.persistence.MappedSuperclass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,9 +26,7 @@ import jakarta.persistence.MappedSuperclass;
  * @model
  * @generated
  */
-@MappedSuperclass
 public interface Cinema extends EObject {
-
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -137,4 +134,5 @@ public interface Cinema extends EObject {
 	 * @generated
 	 */
 	void totalIncome();
+
 } // Cinema

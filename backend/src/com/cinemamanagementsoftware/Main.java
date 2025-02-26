@@ -1,8 +1,10 @@
 package com.cinemamanagementsoftware;
 
+import com.cinemamanagementsoftware.applicationservice.ConsoleInterface;
 import com.cinemamanagementsoftware.database.CinemaService;
 import com.cinemamanagementsoftware.database.DatabaseController;
-import com.cinemamanagementsoftware.database.GraphDatabaseController;
+import com.cinemamanagementsoftware.statisticsservice.GraphDatabaseController;
+
 import cinemaManagementSoftware.Cinema;
 
 import org.springframework.boot.SpringApplication;

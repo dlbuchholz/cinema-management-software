@@ -1,8 +1,9 @@
-package com.cinemamanagementsoftware.database;
+package com.cinemamanagementsoftware.persistenceservice.repositories;
 
-import cinemaManagementSoftware.impl.CinemaImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.cinemamanagementsoftware.persistenceservice.entities.CinemaEntity;
 
 /**
  * Repository interface for managing Cinema entities in the MySQL database.
@@ -15,5 +16,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface CinemaRepository extends JpaRepository<CinemaImpl, Long> {
+public interface CinemaRepository extends JpaRepository<CinemaEntity, Long> {
 }

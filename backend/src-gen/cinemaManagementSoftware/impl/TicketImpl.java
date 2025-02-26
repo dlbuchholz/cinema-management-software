@@ -6,12 +6,6 @@ import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Screening;
 import cinemaManagementSoftware.Seat;
 import cinemaManagementSoftware.Ticket;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -38,8 +32,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-@Entity
-@Table(name = "tickets")
 public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	/**
 	 * The cached value of the '{@link #getScreening() <em>Screening</em>}' reference.
@@ -49,8 +41,6 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	 * @generated
 	 * @ordered
 	 */
-	@ManyToOne(targetEntity = ScreeningImpl.class)
-    @JoinColumn(name = "screening_id", nullable = false)
 	protected Screening screening;
 
 	/**
@@ -61,8 +51,6 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	 * @generated
 	 * @ordered
 	 */
-	@ManyToOne(targetEntity = SeatImpl.class)
-    @JoinColumn(name = "seat_id", nullable = false)
 	protected Seat seat;
 
 	/**
@@ -83,7 +71,6 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	 * @generated
 	 * @ordered
 	 */
-	@Column(nullable = false)
 	protected double price = PRICE_EDEFAULT;
 
 	/**
@@ -104,7 +91,6 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	 * @generated
 	 * @ordered
 	 */
-	@Column(name = "is_booked", nullable = false)
 	protected boolean isBooked = IS_BOOKED_EDEFAULT;
 
 	/**
@@ -125,8 +111,6 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	 * @generated
 	 * @ordered
 	 */
-	@Id
-    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**

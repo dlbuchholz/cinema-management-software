@@ -5,13 +5,6 @@ package cinemaManagementSoftware.impl;
 import cinemaManagementSoftware.CinemaHall;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.SeatingRow;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -45,8 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-@Entity
-@Table(name = "halls")
 public class CinemaHallImpl extends MinimalEObjectImpl.Container
 		implements CinemaHall {
 	/**
@@ -54,11 +45,9 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRow()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
-			targetEntity = SeatingRowImpl.class)
 	protected EList<SeatingRow> row;
 
 	/**
@@ -76,11 +65,9 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getId()
-	 * @generated NOT
+	 * @generated
 	 * @ordered
 	 */
-	@Id
-    @Column(name = "id", nullable = false, updatable = false)
 	protected int id = ID_EDEFAULT;
 
 	/**
