@@ -1,5 +1,108 @@
 # 📡 API-Spezifikation für das Kino-Reservierungs- & Buchungssystem
 
+## API Datenmodelle (JSON-Schema)
+
+
+### **Kunde (Customer)**
+```json
+{
+  "id": 1,
+  "email": "kunde@example.com",
+  "telephone": "+49123456789",
+  "tickets": [1, 2, 3]
+}
+```
+### **Kinobesitzer (CinemaOwner)**
+```json
+{
+  "id": 1,
+  "cinemas": [1, 2]
+}
+```
+### **Kino (Cinema)**
+```json
+{
+  "id": 1,
+  "name": "CineMega ABC",
+  "location": "Hannover",
+  "totalIncome": 50000.00,
+  "owner": 1,
+  "halls": [1, 2, 3]
+}
+```
+### **Kinosaal (CinemaHall)**
+```json
+{
+  "id": 1,
+  "isConfigComplete": true,
+  "cinema": 1,
+  "screenings": [1, 2],
+  "seatingRows": [1, 2, 3]
+}
+```
+### **Sitzreihe (SeatingRow)**
+```json
+{
+  "id": 1,
+  "category": "LOGE",
+  "cinemaHall": 1,
+  "seats": [1, 2, 3, 4]
+}
+```
+### **Sitzplatz (Seat)**
+```json
+{
+  "id": 1,
+  "seatingRow": 1,
+  "ticket": 5
+}
+```
+### **Film (Movie)**
+```json
+{
+  "id": 1,
+  "name": "Inception",
+  "description": "Ein Science-Fiction-Film über Träume.",
+  "length": 148.0,
+  "screenings": [1, 2]
+}
+```
+
+### **Vorführung (Screening)**
+```json
+{
+  "id": 1,
+  "date": "2025-03-10",
+  "startTime": 20.30,
+  "endTime": 22.58,
+  "hasStarted": false,
+  "numReservations": 10,
+  "numBookings": 20,
+  "cinemaHall": 1,
+  "movie": 1,
+  "tickets": [1, 2, 3, 4, 5]
+}
+```
+
+### **Ticket bzw Buchung/Reservierung (ticket)**
+```json
+{
+  "id": 1,
+  "price": 12.50,
+  "isBooked": false,
+  "screening": 1,
+  "seat": 1,
+  "customer": 1
+}
+```
+
+### **Sitzreihenkategorie (Category)**
+```json
+{
+  "categories": ["PARQUET", "LOGE", "LOGE_SERVICE"]
+}
+```
+
 ## 📝 **Beispielanfragen (cURL)**
 
 📌 **Ein neues Kino erstellen:**
