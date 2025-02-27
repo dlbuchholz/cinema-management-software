@@ -1,5 +1,31 @@
 # 📡 API-Spezifikation für das Kino-Reservierungs- & Buchungssystem
 
+## 📝 **Beispielanfragen (cURL)**
+
+📌 **Ein neues Kino erstellen:**
+```sh
+curl -X POST http://localhost:8080/api/cinemas \
+     -H "Content-Type: application/json" \
+     -d '{"name": "CineMega ABC", "location": "Hannover"}'
+```
+
+📌 **Die Kino-Liste abrufen:**
+```sh
+curl -X GET http://localhost:8080/api/cinemas
+```
+
+📌 **Ein Kino umbenennen:**
+```sh
+curl -X PATCH http://localhost:8080/api/cinemas/1 \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Neues Kino"}'
+```
+
+📌 **Ein Kino löschen**
+```sh
+curl -X DELETE http://localhost:8080/api/cinemas/1
+```
+
 
 ## 🎟️ **Kunde (Ticketbuchung & Reservierung)**
 
