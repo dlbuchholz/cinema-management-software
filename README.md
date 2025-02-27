@@ -103,61 +103,7 @@ Das **Java/Maven-Backend** ist in verschiedene Services unterteilt:
 - **Neo4J** (Statistiken & Graph-Datenbank für Verknüpfungen)
 
 ## 📡 API Endpoints
-
-### 🎬 **Kino-Management**
-| Methode  | Endpoint               | Beschreibung                     |
-|----------|------------------------|----------------------------------|
-| `GET`    | `/api/cinemas`         | Liste aller Kinos abrufen       |
-| `POST`   | `/api/cinemas`         | Neues Kino erstellen            |
-| `PATCH`  | `/api/cinemas/{id}`    | Kino aktualisieren              |
-| `DELETE` | `/api/cinemas/{id}`    | Kino löschen                    |
-
-### 🎥 **Vorführungen & Sitzplätze**
-| Methode  | Endpoint                   | Beschreibung                            |
-|----------|----------------------------|-----------------------------------------|
-| `GET`    | `/api/screenings`          | Alle Vorführungen abrufen              |
-| `GET`    | `/api/screenings/{id}`      | Eine spezifische Vorführung abrufen    |
-| `POST`   | `/api/screenings`          | Neue Vorführung erstellen              |
-| `PATCH`  | `/api/screenings/{id}`      | Vorführung aktualisieren               |
-| `DELETE` | `/api/screenings/{id}`      | Vorführung löschen                     |
-| `GET`    | `/api/seats/{screeningId}`  | Sitzplätze für eine Vorführung abrufen |
-| `PATCH`  | `/api/seats/{seatId}`       | Sitzplatzstatus aktualisieren          |
-
-### 📊 **Statistiken & Analysen**
-| Methode  | Endpoint              | Beschreibung                               |
-|----------|-----------------------|--------------------------------------------|
-| `GET`    | `/api/statistics`     | Gesamtstatistiken abrufen                 |
-| `GET`    | `/api/statistics/{id}`| Statistiken zu einem spezifischen Kino    |
-
----
-
-### 📝 **Beispielanfragen (cURL)**
-
-📌 **Ein neues Kino erstellen:**
-```sh
-curl -X POST http://localhost:8080/api/cinemas \
-     -H "Content-Type: application/json" \
-     -d '{"name": "CineMega ABC", "location": "Hannover"}'
-```
-
-📌 **Die Kino-Liste abrufen:**
-```sh
-curl -X GET http://localhost:8080/api/cinemas
-```
-
-📌 **Ein Kino umbenennen:**
-```sh
-curl -X PATCH http://localhost:8080/api/cinemas/1 \
-     -H "Content-Type: application/json" \
-     -d '{"name": "Neues Kino"}'
-```
-
-📌 **Ein Kino löschen**
-```sh
-curl -X DELETE http://localhost:8080/api/cinemas/1
-```
-
-
+=> [Siehe hier die Liste der API Endpoints](https://github.com/dlbuchholz/cinema-management-software/blob/stable/API.md)
 
 ## Import des Projekts in Eclipse
 1. Eclipse mit Maven-Unterstützung installieren
