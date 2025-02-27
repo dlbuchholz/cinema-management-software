@@ -40,11 +40,11 @@ curl -X DELETE http://localhost:8080/api/cinemas/1
 ### 🛒 **Reservierung & Buchung**
 | Methode  | Endpoint                           | Beschreibung                                       |
 |----------|----------------------------------|--------------------------------------------------|
-| `POST`   | `/api/reservations`               | Eine neue Reservierung anlegen                   |
-| `PATCH`  | `/api/reservations/{id}/confirm`  | Reservierung in eine Buchung umwandeln           |
-| `DELETE` | `/api/reservations/{id}`          | Reservierung stornieren                          |
-| `POST`   | `/api/bookings`                   | Direkt eine Buchung erstellen (nicht stornierbar) |
-| `GET`    | `/api/bookings/{id}`              | Details einer Buchung abrufen                    |
+| `POST`   | `/api/tickets/reservation`               | Eine neue Reservierung anlegen                   |
+| `PATCH`  | `/api/tickets/{id}/confirm`  | Reservierung in eine Buchung umwandeln           |
+| `DELETE` | `/api/tickets/{id}/cancel`          | Reservierung stornieren                          |
+| `POST`   | `/api/tickets`                   | Direkt eine Buchung erstellen (nicht stornierbar) |
+| `GET`    | `/api/tickets/{id}`              | Details einer Buchung/Reservierung abrufen                    |
 
 ### 🪑 **Sitzplatz-Verwaltung**
 | Methode  | Endpoint                                 | Beschreibung                                       |
