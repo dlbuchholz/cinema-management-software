@@ -140,6 +140,96 @@ curl -X DELETE http://localhost:8080/api/cinemas/1
 | `GET`    | `/api/movies/{id}/screenings`    | Liste aller kommenden Vorführungen für einen Film  |
 | `GET`    | `/api/screenings/{id}`           | Details zu einer spezifischen Vorführung abrufen   |
 
+### 🔐 Authentifizierung & Benutzerverwaltung**
+📌 **Einen neuen Kunden registrieren**
+
+POST /api/customers/register
+```json
+{
+  "email": "kunde@example.com",
+  "password": "securepassword",
+  "telephone": "+49123456789"
+}
+```
+
+📌 **Login eines Kunden**
+
+POST /api/customers/login
+```json
+{
+  "email": "kunde@example.com",
+  "password": "securepassword"
+}
+```
+
+Antwort (bei Fehler leeres JSON)
+```json
+{
+  "token": "eyJhbGciOiJIUzI1..."
+}
+```
+
+📌 **Aktuelles Token ungütltig machen**
+
+POST /api/customers/logout
+mit Token
+
+
+📌 **Eigene Kundendaten abrufen**
+
+POST /api/customers/{id}
+mit Token
+
+Antwort:
+```json
+{
+  "id": 1,
+  "email": "kunde@example.com",
+  "telephone": "+49123456789"
+}
+```
+
+📌 **Eigene Kundendaten aktualisieren**
+
+PATCH /api/customers/{id}
+mit Token
+```json
+{
+  "telephone": "+49123456789"
+}
+```
+
+📌 **Kundenkonto löschen**
+
+DELETE /api/customers/{id}
+mit Token!
+
+📌 **Alle eigenen Tickets anzeigen**
+
+GET /api/customers/{id}/tickets
+mit Token
+
+Antwort:
+```json
+[
+  {
+    "id": 1,
+    "screening": 1,
+    "seat": 10,
+    "price": 12.50,
+    "isBooked": true
+  },
+  {
+    "id": 2,
+    "screening": 2,
+    "seat": 15,
+    "price": 15.00,
+    "isBooked": false
+  }
+]
+```
+
+
 ### 🛒 **Reservierung & Buchung**
 | Methode  | Endpoint                           | Beschreibung                                       |
 |----------|----------------------------------|--------------------------------------------------|
