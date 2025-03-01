@@ -161,13 +161,31 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int PERSON__ID = 0;
 
 	/**
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__PASSWORD = 1;
+
+	/**
+	 * The feature id for the '<em><b>Email</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSON__EMAIL = 2;
+
+	/**
 	 * The number of structural features of the '<em>Person</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSON_FEATURE_COUNT = 1;
+	int PERSON_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Person</em>' class.
@@ -198,6 +216,24 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int CUSTOMER__ID = PERSON__ID;
 
 	/**
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER__PASSWORD = PERSON__PASSWORD;
+
+	/**
+	 * The feature id for the '<em><b>Email</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER__EMAIL = PERSON__EMAIL;
+
+	/**
 	 * The feature id for the '<em><b>Ticket</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -207,22 +243,31 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int CUSTOMER__TICKET = PERSON_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Email</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CUSTOMER__EMAIL = PERSON_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Telephone</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOMER__TELEPHONE = PERSON_FEATURE_COUNT + 2;
+	int CUSTOMER__TELEPHONE = PERSON_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER__NAME = PERSON_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Surname</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER__SURNAME = PERSON_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Customer</em>' class.
@@ -231,7 +276,34 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOMER_FEATURE_COUNT = PERSON_FEATURE_COUNT + 3;
+	int CUSTOMER_FEATURE_COUNT = PERSON_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Book</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER___BOOK = PERSON_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Reserve</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER___RESERVE = PERSON_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Cancel</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CUSTOMER___CANCEL = PERSON_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Customer</em>' class.
@@ -240,7 +312,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CUSTOMER_OPERATION_COUNT = PERSON_OPERATION_COUNT + 0;
+	int CUSTOMER_OPERATION_COUNT = PERSON_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link cinemaManagementSoftware.impl.CinemaOwnerImpl <em>Cinema Owner</em>}' class.
@@ -260,6 +332,24 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @ordered
 	 */
 	int CINEMA_OWNER__ID = PERSON__ID;
+
+	/**
+	 * The feature id for the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_OWNER__PASSWORD = PERSON__PASSWORD;
+
+	/**
+	 * The feature id for the '<em><b>Email</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_OWNER__EMAIL = PERSON__EMAIL;
 
 	/**
 	 * The number of structural features of the '<em>Cinema Owner</em>' class.
@@ -797,6 +887,28 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	EAttribute getPerson_Id();
 
 	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Person#getPassword <em>Password</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Password</em>'.
+	 * @see cinemaManagementSoftware.Person#getPassword()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EAttribute getPerson_Password();
+
+	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Person#getEmail <em>Email</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Email</em>'.
+	 * @see cinemaManagementSoftware.Person#getEmail()
+	 * @see #getPerson()
+	 * @generated
+	 */
+	EAttribute getPerson_Email();
+
+	/**
 	 * Returns the meta object for class '{@link cinemaManagementSoftware.Customer <em>Customer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -818,17 +930,6 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	EReference getCustomer_Ticket();
 
 	/**
-	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Customer#getEmail <em>Email</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Email</em>'.
-	 * @see cinemaManagementSoftware.Customer#getEmail()
-	 * @see #getCustomer()
-	 * @generated
-	 */
-	EAttribute getCustomer_Email();
-
-	/**
 	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Customer#getTelephone <em>Telephone</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -838,6 +939,58 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getCustomer_Telephone();
+
+	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Customer#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see cinemaManagementSoftware.Customer#getName()
+	 * @see #getCustomer()
+	 * @generated
+	 */
+	EAttribute getCustomer_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Customer#getSurname <em>Surname</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Surname</em>'.
+	 * @see cinemaManagementSoftware.Customer#getSurname()
+	 * @see #getCustomer()
+	 * @generated
+	 */
+	EAttribute getCustomer_Surname();
+
+	/**
+	 * Returns the meta object for the '{@link cinemaManagementSoftware.Customer#book() <em>Book</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Book</em>' operation.
+	 * @see cinemaManagementSoftware.Customer#book()
+	 * @generated
+	 */
+	EOperation getCustomer__Book();
+
+	/**
+	 * Returns the meta object for the '{@link cinemaManagementSoftware.Customer#reserve() <em>Reserve</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Reserve</em>' operation.
+	 * @see cinemaManagementSoftware.Customer#reserve()
+	 * @generated
+	 */
+	EOperation getCustomer__Reserve();
+
+	/**
+	 * Returns the meta object for the '{@link cinemaManagementSoftware.Customer#cancel() <em>Cancel</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Cancel</em>' operation.
+	 * @see cinemaManagementSoftware.Customer#cancel()
+	 * @generated
+	 */
+	EOperation getCustomer__Cancel();
 
 	/**
 	 * Returns the meta object for class '{@link cinemaManagementSoftware.CinemaOwner <em>Cinema Owner</em>}'.
@@ -1312,6 +1465,22 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		EAttribute PERSON__ID = eINSTANCE.getPerson_Id();
 
 		/**
+		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERSON__PASSWORD = eINSTANCE.getPerson_Password();
+
+		/**
+		 * The meta object literal for the '<em><b>Email</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERSON__EMAIL = eINSTANCE.getPerson_Email();
+
+		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.CustomerImpl <em>Customer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1330,20 +1499,52 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		EReference CUSTOMER__TICKET = eINSTANCE.getCustomer_Ticket();
 
 		/**
-		 * The meta object literal for the '<em><b>Email</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CUSTOMER__EMAIL = eINSTANCE.getCustomer_Email();
-
-		/**
 		 * The meta object literal for the '<em><b>Telephone</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute CUSTOMER__TELEPHONE = eINSTANCE.getCustomer_Telephone();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CUSTOMER__NAME = eINSTANCE.getCustomer_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Surname</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CUSTOMER__SURNAME = eINSTANCE.getCustomer_Surname();
+
+		/**
+		 * The meta object literal for the '<em><b>Book</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CUSTOMER___BOOK = eINSTANCE.getCustomer__Book();
+
+		/**
+		 * The meta object literal for the '<em><b>Reserve</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CUSTOMER___RESERVE = eINSTANCE.getCustomer__Reserve();
+
+		/**
+		 * The meta object literal for the '<em><b>Cancel</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CUSTOMER___CANCEL = eINSTANCE.getCustomer__Cancel();
 
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.CinemaOwnerImpl <em>Cinema Owner</em>}' class.

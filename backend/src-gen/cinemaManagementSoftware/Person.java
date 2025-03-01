@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link cinemaManagementSoftware.Person#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Person#getPassword <em>Password</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Person#getEmail <em>Email</em>}</li>
  * </ul>
  *
  * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getPerson()
@@ -42,5 +44,49 @@ public interface Person extends EObject {
 	 * @generated
 	 */
 	void setId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Password</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Password</em>' attribute.
+	 * @see #setPassword(String)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getPerson_Password()
+	 * @model
+	 * @generated
+	 */
+	String getPassword();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Person#getPassword <em>Password</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Password</em>' attribute.
+	 * @see #getPassword()
+	 * @generated
+	 */
+	void setPassword(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Email</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Email</em>' attribute.
+	 * @see #setEmail(String)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getPerson_Email()
+	 * @model
+	 * @generated
+	 */
+	String getEmail();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Person#getEmail <em>Email</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Email</em>' attribute.
+	 * @see #getEmail()
+	 * @generated
+	 */
+	void setEmail(String value);
 
 } // Person

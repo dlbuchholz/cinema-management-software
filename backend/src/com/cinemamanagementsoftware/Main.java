@@ -20,7 +20,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.cinemamanagementsoftware.config",                 			// Configurations (RabbitMQ, etc.)
-        "com.cinemamanagementsoftware.applicationservice",      		// REST API Controllers
+        "com.cinemamanagementsoftware.applicationservice",  
+        "com.cinemamanagementsoftware.authenticationservice",  			 // Security Service
         "com.cinemamanagementsoftware.persistenceservice",      		// Persistence Layer (JPA)
         "com.cinemamanagementsoftware.persistenceservice.consumers", 	// RabbitMQ Consumers
         "com.cinemamanagementsoftware.persistenceservice.repositories", // MySQL Repositories

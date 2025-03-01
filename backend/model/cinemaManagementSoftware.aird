@@ -5,7 +5,7 @@
     <semanticResources>cinemaManagementSoftware.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_OQ0FMOrLEe-GF6aOT5KwHA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OS-oYOrLEe-GF6aOT5KwHA" name="cinemaManagementSoftware" repPath="#_OSLXIOrLEe-GF6aOT5KwHA" changeId="1740063648737">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OS-oYOrLEe-GF6aOT5KwHA" name="cinemaManagementSoftware" repPath="#_OSLXIOrLEe-GF6aOT5KwHA" changeId="1740854766533">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="cinemaManagementSoftware.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -46,6 +46,14 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_Pmov0e-FEe-hcN95Txk-ug" fontName=".AppleSystemUIFont" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_Pmov0u-FEe-hcN95Txk-ug"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_-50OMPbMEe-8lIBGp7yhnQ" type="3010" element="_-5jIcPbMEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_-50OMfbMEe-8lIBGp7yhnQ" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_-50OMvbMEe-8lIBGp7yhnQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_MpRAwPbNEe-8lIBGp7yhnQ" type="3010" element="_MpDlZ_bNEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_MpRAwfbNEe-8lIBGp7yhnQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_MpRAwvbNEe-8lIBGp7yhnQ"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_O9PKUu-BEe-hcN95Txk-ug"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_O9PKU--BEe-hcN95Txk-ug"/>
           </children>
@@ -55,13 +63,29 @@
         <children xmi:type="notation:Node" xmi:id="_XXeLsO-BEe-hcN95Txk-ug" type="2003" element="_XXXeAO-BEe-hcN95Txk-ug">
           <children xmi:type="notation:Node" xmi:id="_XXeywO-BEe-hcN95Txk-ug" type="5007"/>
           <children xmi:type="notation:Node" xmi:id="_XXeywe-BEe-hcN95Txk-ug" type="7004">
-            <children xmi:type="notation:Node" xmi:id="_aL3wgO-CEe-hcN95Txk-ug" type="3010" element="_aLvNoO-CEe-hcN95Txk-ug">
-              <styles xmi:type="notation:FontStyle" xmi:id="_aL3wge-CEe-hcN95Txk-ug" fontName=".AppleSystemUIFont" fontHeight="8"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_aL3wgu-CEe-hcN95Txk-ug"/>
-            </children>
             <children xmi:type="notation:Node" xmi:id="_bN-GsO-CEe-hcN95Txk-ug" type="3010" element="_bN5OMe-CEe-hcN95Txk-ug">
               <styles xmi:type="notation:FontStyle" xmi:id="_bN-Gse-CEe-hcN95Txk-ug" fontName=".AppleSystemUIFont" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_bN-Gsu-CEe-hcN95Txk-ug"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_w1O5IPbMEe-8lIBGp7yhnQ" type="3010" element="_w0wYAPbMEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_w1O5IfbMEe-8lIBGp7yhnQ" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_w1O5IvbMEe-8lIBGp7yhnQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_2s2MwPbMEe-8lIBGp7yhnQ" type="3010" element="_2skf8PbMEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_2s2MwfbMEe-8lIBGp7yhnQ" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_2s2MwvbMEe-8lIBGp7yhnQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_WfQOcPbNEe-8lIBGp7yhnQ" type="3010" element="_WfEoQPbNEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_WfQOcfbNEe-8lIBGp7yhnQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_WfQOcvbNEe-8lIBGp7yhnQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_XqRQEPbNEe-8lIBGp7yhnQ" type="3010" element="_XqFC0PbNEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_XqRQEfbNEe-8lIBGp7yhnQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_XqRQEvbNEe-8lIBGp7yhnQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_a3bIkPbNEe-8lIBGp7yhnQ" type="3010" element="_a3LQ8PbNEe-8lIBGp7yhnQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_a3bIkfbNEe-8lIBGp7yhnQ" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_a3bIkvbNEe-8lIBGp7yhnQ"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_XXeywu-BEe-hcN95Txk-ug"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_XXeyw--BEe-hcN95Txk-ug"/>
@@ -476,7 +500,7 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_O8u0AO-BEe-hcN95Txk-ug" name="Person" tooltipText="" incomingEdges="_w1HDsO-BEe-hcN95Txk-ug _34EJFu-BEe-hcN95Txk-ug" width="12" height="10">
       <target xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Person"/>
       <semanticElements xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Person"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_TeOCMO-BEe-hcN95Txk-ug" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_Nt9X8_bNEe-8lIBGp7yhnQ" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
         <labelFormat>italic</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.1/@style"/>
       </ownedStyle>
@@ -489,22 +513,30 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-    </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_XXXeAO-BEe-hcN95Txk-ug" name="Customer" tooltipText="" outgoingEdges="_w1HDsO-BEe-hcN95Txk-ug _YzPJoO-CEe-hcN95Txk-ug" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Customer"/>
-      <semanticElements xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Customer"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_XXYFEO-BEe-hcN95Txk-ug" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
-        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
-      </ownedStyle>
-      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_aLvNoO-CEe-hcN95Txk-ug" name="email : EString" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/email"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/email"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_aLvNoe-CEe-hcN95Txk-ug" labelAlignment="LEFT">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_-5jIcPbMEe-8lIBGp7yhnQ" name="password : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Person/password"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Person/password"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_LQyx9vbNEe-8lIBGp7yhnQ" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_MpDlZ_bNEe-8lIBGp7yhnQ" name="email : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Person/email"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Person/email"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_MpEMcPbNEe-8lIBGp7yhnQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+    </ownedDiagramElements>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_XXXeAO-BEe-hcN95Txk-ug" name="Customer" tooltipText="" outgoingEdges="_w1HDsO-BEe-hcN95Txk-ug _YzPJoO-CEe-hcN95Txk-ug" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Customer"/>
+      <semanticElements xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Customer"/>
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_7iRqo_bMEe-8lIBGp7yhnQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+        <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
+      </ownedStyle>
+      <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_bN5OMe-CEe-hcN95Txk-ug" name="telephone : EString" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/telephone"/>
         <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/telephone"/>
@@ -513,16 +545,56 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_w0wYAPbMEe-8lIBGp7yhnQ" name="name : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/name"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/name"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_1BA9FfbMEe-8lIBGp7yhnQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_2skf8PbMEe-8lIBGp7yhnQ" name="surname : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/surname"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Customer/surname"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_7iSRufbMEe-8lIBGp7yhnQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_WfEoQPbNEe-8lIBGp7yhnQ" name="book()" tooltipText="book()">
+        <target xmi:type="ecore:EOperation" href="cinemaManagementSoftware.ecore#//Customer/book"/>
+        <semanticElements xmi:type="ecore:EOperation" href="cinemaManagementSoftware.ecore#//Customer/book"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_WfFPUPbNEe-8lIBGp7yhnQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_XqFC0PbNEe-8lIBGp7yhnQ" name="reserve()" tooltipText="reserve()">
+        <target xmi:type="ecore:EOperation" href="cinemaManagementSoftware.ecore#//Customer/reserve"/>
+        <semanticElements xmi:type="ecore:EOperation" href="cinemaManagementSoftware.ecore#//Customer/reserve"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_XqFC0fbNEe-8lIBGp7yhnQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_a3LQ8PbNEe-8lIBGp7yhnQ" name="cancel()" tooltipText="cancel()">
+        <target xmi:type="ecore:EOperation" href="cinemaManagementSoftware.ecore#//Customer/cancel"/>
+        <semanticElements xmi:type="ecore:EOperation" href="cinemaManagementSoftware.ecore#//Customer/cancel"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_a3L4APbNEe-8lIBGp7yhnQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" uid="_w1HDsO-BEe-hcN95Txk-ug" sourceNode="_XXXeAO-BEe-hcN95Txk-ug" targetNode="_O8u0AO-BEe-hcN95Txk-ug">
       <target xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Customer"/>
       <semanticElements xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Customer"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_w1Jf8O-BEe-hcN95Txk-ug" targetArrow="InputClosedArrow" routingStyle="tree">
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_7iUuDvbMEe-8lIBGp7yhnQ" targetArrow="InputClosedArrow" routingStyle="tree">
         <description xmi:type="style:EdgeStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']/@style"/>
-        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_w1Jf8e-BEe-hcN95Txk-ug" showIcon="false">
+        <beginLabelStyle xmi:type="diagram:BeginLabelStyle" uid="_7iUuD_bMEe-8lIBGp7yhnQ" showIcon="false">
           <labelFormat>italic</labelFormat>
         </beginLabelStyle>
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_w1Jf8u-BEe-hcN95Txk-ug" showIcon="false"/>
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_7iUuEPbMEe-8lIBGp7yhnQ" showIcon="false"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
