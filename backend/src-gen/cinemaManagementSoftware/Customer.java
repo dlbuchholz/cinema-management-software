@@ -14,8 +14,9 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link cinemaManagementSoftware.Customer#getTicket <em>Ticket</em>}</li>
- *   <li>{@link cinemaManagementSoftware.Customer#getEmail <em>Email</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Customer#getTelephone <em>Telephone</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Customer#getName <em>Name</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Customer#getSurname <em>Surname</em>}</li>
  * </ul>
  *
  * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCustomer()
@@ -34,28 +35,6 @@ public interface Customer extends Person {
 	 * @generated
 	 */
 	EList<Ticket> getTicket();
-
-	/**
-	 * Returns the value of the '<em><b>Email</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Email</em>' attribute.
-	 * @see #setEmail(String)
-	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCustomer_Email()
-	 * @model
-	 * @generated
-	 */
-	String getEmail();
-
-	/**
-	 * Sets the value of the '{@link cinemaManagementSoftware.Customer#getEmail <em>Email</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Email</em>' attribute.
-	 * @see #getEmail()
-	 * @generated
-	 */
-	void setEmail(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Telephone</b></em>' attribute.
@@ -78,5 +57,73 @@ public interface Customer extends Person {
 	 * @generated
 	 */
 	void setTelephone(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCustomer_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Customer#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Surname</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Surname</em>' attribute.
+	 * @see #setSurname(String)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCustomer_Surname()
+	 * @model
+	 * @generated
+	 */
+	String getSurname();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Customer#getSurname <em>Surname</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Surname</em>' attribute.
+	 * @see #getSurname()
+	 * @generated
+	 */
+	void setSurname(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void book();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void reserve();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void cancel();
 
 } // Customer
