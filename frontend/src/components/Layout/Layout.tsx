@@ -1,14 +1,10 @@
 import React from 'react';
 import { Layout as AntLayout, Menu, Breadcrumb, LayoutProps } from 'antd';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import {
-    HomeOutlined,
-    DashboardOutlined,
-    UserOutlined
-} from '@ant-design/icons';
+import { HomeOutlined, UserOutlined } from '@ant-design/icons';
 import styles from '../../assets/styles/Layout.module.css';
 
-const { Header, Content, Footer, Sider } = AntLayout;
+const { Content, Footer, Sider } = AntLayout;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
@@ -40,17 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </Menu>
             </Sider>
             <AntLayout>
-                <Header className={styles.header}>
-                    <Menu mode="horizontal" defaultSelectedKeys={['home']}>
-                        <Menu.Item key="home" icon={<DashboardOutlined />}>
-                            <Link to="/">Dashboard</Link>
-                        </Menu.Item>
-                        <Menu.Item key="admin" icon={<UserOutlined />}>
-                            <Link to="/admin">Admin Panel</Link>
-                        </Menu.Item>
-                    </Menu>
-                </Header>
-                <Content style={{ width: '100%', margin: '24px 16px 0' }}>
+                <Content style={{ margin: '24px 16px 0' }}>
                     <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                         <Breadcrumb.Item>
@@ -59,8 +45,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     </Breadcrumb>
                     <div className={styles.content}>
                         <Outlet />
+                        {children}
                     </div>
-                    {children}
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
                     Cinema Management Software ©2025
