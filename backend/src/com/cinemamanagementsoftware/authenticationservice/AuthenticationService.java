@@ -1,14 +1,12 @@
 package com.cinemamanagementsoftware.authenticationservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.*;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.security.Key;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthenticationService {
@@ -16,83 +14,90 @@ public class AuthenticationService {
     private final JwtUtil jwtUtil;
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
+	private final PasswordEncoder passwordEncoder;
     
-    public AuthenticationService(JwtUtil jwtUtil, RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
+    public AuthenticationService(JwtUtil jwtUtil, RabbitTemplate rabbitTemplate, ObjectMapper objectMapper, PasswordEncoder passwordEncoder) {
         this.jwtUtil = jwtUtil;
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RabbitListener(queues = "auth.register")
-    public void register(Map<String, String> request) {
-    	String email = request.get("email");
+    public String register(Map<String, String> request) {
+        String email = request.get("email");
         String name = request.get("name");
         String password = request.get("password");
         String telephone = request.get("telephone");
-        String responseQueue = request.get("responseQueue");
 
-        // 🔹 Request existing user from customer service
+        // Synchronously fetch existing user from customer service
         String existingUserJson = (String) rabbitTemplate.convertSendAndReceive("customer.fetch", email);
-
-        if (existingUserJson != null && !existingUserJson.isEmpty()) {
-            rabbitTemplate.convertAndSend(responseQueue, "❌ User already exists!");
-            return;
+        if (existingUserJson != null && !existingUserJson.trim().isEmpty() && !existingUserJson.equals("{}")) {
+            return "{\"status\":\"error\", \"message\":\"User already exists!\"}";
         }
 
-        // 🔹 Create user payload
+        // Encode the password using PasswordEncoder
+        String hashedPassword = passwordEncoder.encode(password);
+
+        // Prepare new user payload with the hashed password
         Map<String, String> newUser = new HashMap<>();
         newUser.put("email", email);
         newUser.put("name", name);
-        newUser.put("password", password); // Password hashing is handled by persistence service
+        newUser.put("password", hashedPassword);
         newUser.put("telephone", telephone);
         
-        // 🔹 Send user creation request
+        // Asynchronously send user creation request (no reply expected)
         rabbitTemplate.convertAndSend("customer.create", newUser);
 
-        // 🔹 Generate JWT
+        // Generate JWT and return success JSON
         String token = jwtUtil.generateToken(email);
-        rabbitTemplate.convertAndSend(responseQueue, token);
+        return "{\"status\":\"success\", \"token\":\"" + token + "\"}";
     }
 
     @RabbitListener(queues = "auth.login")
-    public void login(Map<String, String> request) {
+    public String login(Map<String, String> request) {
         String email = request.get("email");
         String password = request.get("password");
-        String responseQueue = request.get("responseQueue");
 
-        // 🔹 Fetch user from customer service
+        // Synchronously fetch user from customer service
         String userJson = (String) rabbitTemplate.convertSendAndReceive("customer.fetch", email);
-
-        if (userJson == null || userJson.isEmpty()) {
-            rabbitTemplate.convertAndSend(responseQueue, "❌ Invalid credentials!");
-            return;
+        if (userJson == null || userJson.trim().isEmpty() || userJson.equals("{}")) {
+            return "{\"status\":\"error\", \"message\":\"Invalid credentials!\"}";
         }
-
         try {
+            // Convert the JSON string to a Map
             Map<String, String> user = objectMapper.readValue(userJson, Map.class);
             String storedPassword = user.get("password");
-
-            // 🔹 Validate password
-            if (!password.equals(storedPassword)) {
-                rabbitTemplate.convertAndSend(responseQueue, "❌ Invalid credentials!");
-                return;
+            // Compare raw password with the stored hashed password using PasswordEncoder
+            if (!passwordEncoder.matches(password, storedPassword)) {
+                return "{\"status\":\"error\", \"message\":\"Invalid credentials!\"}";
             }
-
-            // 🔹 Generate JWT
+            // Generate JWT token on successful authentication
             String token = jwtUtil.generateToken(email);
-            rabbitTemplate.convertAndSend(responseQueue, token);
-
+            return "{\"status\":\"success\", \"token\":\"" + token + "\"}";
         } catch (Exception e) {
-            rabbitTemplate.convertAndSend(responseQueue, "❌ Error processing request");
+            return "{\"status\":\"error\", \"message\":\"Error processing login: " + e.getMessage() + "\"}";
         }
     }
 
     @RabbitListener(queues = "auth.validateToken")
-    public void validateToken(Map<String, String> request) {
-        String token = request.get("token");
-        String responseQueue = request.get("responseQueue");
-
-        boolean isValid = jwtUtil.validateToken(token);
-        rabbitTemplate.convertAndSend(responseQueue, isValid ? "✅ Valid" : "❌ Invalid");
+    public String validateToken(Map<String, String> request) {
+        try {
+            // Log the incoming request for debugging (remove or adjust logging in production)
+            System.out.println("validateToken called with request: " + request);
+            
+            String token = request.get("token");
+            if (token == null || token.trim().isEmpty()) {
+                return "{\"status\":\"error\", \"message\":\"Token not provided\"}";
+            }
+            boolean isValid = jwtUtil.validateToken(token);
+            return isValid 
+                    ? "{\"status\":\"success\", \"message\":\"Token is valid\"}"
+                    : "{\"status\":\"error\", \"message\":\"Invalid token\"}";
+        } catch (Exception e) {
+            // Log exception details for debugging
+            System.err.println("Error in validateToken: " + e.getMessage());
+            return "{\"status\":\"error\", \"message\":\"Error validating token: " + e.getMessage() + "\"}";
+        }
     }
 }
