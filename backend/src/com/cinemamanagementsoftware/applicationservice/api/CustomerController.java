@@ -42,7 +42,6 @@ public class CustomerController {
 
     @PostMapping("/validate")
     public String validateToken(@RequestBody HashMap<String, String> request) {
-    	System.out.println("TEST");
         try {
             Object response = rabbitTemplate.convertSendAndReceive("auth.validateToken", request);
             if (response == null) {
