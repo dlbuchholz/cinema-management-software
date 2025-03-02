@@ -33,6 +33,21 @@ public class RabbitMQConfig {
 	}
 	
 	@Bean
+    public Queue registerQueue() { return new Queue("auth.register"); }
+
+    @Bean
+    public Queue loginQueue() { return new Queue("auth.login"); }
+
+    @Bean
+    public Queue validateTokenQueue() { return new Queue("auth.validateToken"); }
+    
+    @Bean
+    public Queue customerCreateQueue() { return new Queue("customer.create", true); }
+   
+    @Bean
+    public Queue customerFetchQueue() { return new Queue("customer.fetch", true); }
+	
+	@Bean
 	public TopicExchange exchange() {
 	    return new TopicExchange("cinemaExchange");
 	}

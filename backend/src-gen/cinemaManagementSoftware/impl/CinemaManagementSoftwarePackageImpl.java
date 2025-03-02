@@ -273,6 +273,26 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPerson_Password() {
+		return (EAttribute) personEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getPerson_Email() {
+		return (EAttribute) personEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCustomer() {
 		return customerEClass;
 	}
@@ -293,7 +313,7 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCustomer_Email() {
+	public EAttribute getCustomer_Telephone() {
 		return (EAttribute) customerEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -303,8 +323,48 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getCustomer_Telephone() {
+	public EAttribute getCustomer_Name() {
 		return (EAttribute) customerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getCustomer_Surname() {
+		return (EAttribute) customerEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCustomer__Book() {
+		return customerEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCustomer__Reserve() {
+		return customerEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EOperation getCustomer__Cancel() {
+		return customerEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -697,11 +757,17 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 
 		personEClass = createEClass(PERSON);
 		createEAttribute(personEClass, PERSON__ID);
+		createEAttribute(personEClass, PERSON__PASSWORD);
+		createEAttribute(personEClass, PERSON__EMAIL);
 
 		customerEClass = createEClass(CUSTOMER);
 		createEReference(customerEClass, CUSTOMER__TICKET);
-		createEAttribute(customerEClass, CUSTOMER__EMAIL);
 		createEAttribute(customerEClass, CUSTOMER__TELEPHONE);
+		createEAttribute(customerEClass, CUSTOMER__NAME);
+		createEAttribute(customerEClass, CUSTOMER__SURNAME);
+		createEOperation(customerEClass, CUSTOMER___BOOK);
+		createEOperation(customerEClass, CUSTOMER___RESERVE);
+		createEOperation(customerEClass, CUSTOMER___CANCEL);
 
 		cinemaOwnerEClass = createEClass(CINEMA_OWNER);
 
@@ -811,6 +877,14 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		initEAttribute(getPerson_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
 				Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPerson_Password(), ecorePackage.getEString(),
+				"password", null, 0, 1, Person.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPerson_Email(), ecorePackage.getEString(), "email",
+				null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(customerEClass, Customer.class, "Customer", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -818,14 +892,27 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 				null, 1, -1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCustomer_Email(), ecorePackage.getEString(), "email",
-				null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 		initEAttribute(getCustomer_Telephone(), ecorePackage.getEString(),
 				"telephone", null, 0, 1, Customer.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomer_Name(), ecorePackage.getEString(), "name",
+				null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getCustomer_Surname(), ecorePackage.getEString(),
+				"surname", null, 0, 1, Customer.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getCustomer__Book(), null, "book", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+
+		initEOperation(getCustomer__Reserve(), null, "reserve", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+
+		initEOperation(getCustomer__Cancel(), null, "cancel", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
 
 		initEClass(cinemaOwnerEClass, CinemaOwner.class, "CinemaOwner",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

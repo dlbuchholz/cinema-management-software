@@ -6,6 +6,7 @@ import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
 import cinemaManagementSoftware.Customer;
 import cinemaManagementSoftware.Ticket;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -27,8 +28,9 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * </p>
  * <ul>
  *   <li>{@link cinemaManagementSoftware.impl.CustomerImpl#getTicket <em>Ticket</em>}</li>
- *   <li>{@link cinemaManagementSoftware.impl.CustomerImpl#getEmail <em>Email</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.CustomerImpl#getTelephone <em>Telephone</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.CustomerImpl#getName <em>Name</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.CustomerImpl#getSurname <em>Surname</em>}</li>
  * </ul>
  *
  * @generated
@@ -43,26 +45,6 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @ordered
 	 */
 	protected EList<Ticket> ticket;
-
-	/**
-	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEmail()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String EMAIL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getEmail() <em>Email</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEmail()
-	 * @generated
-	 * @ordered
-	 */
-	protected String email = EMAIL_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTelephone() <em>Telephone</em>}' attribute.
@@ -83,6 +65,46 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @ordered
 	 */
 	protected String telephone = TELEPHONE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSurname() <em>Surname</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSurname()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SURNAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSurname() <em>Surname</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSurname()
+	 * @generated
+	 * @ordered
+	 */
+	protected String surname = SURNAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,31 +145,6 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @generated
 	 */
 	@Override
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setEmail(String newEmail) {
-		String oldEmail = email;
-		email = newEmail;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CUSTOMER__EMAIL, oldEmail,
-					email));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public String getTelephone() {
 		return telephone;
 	}
@@ -173,14 +170,102 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @generated
 	 */
 	@Override
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.CUSTOMER__NAME, oldName,
+					name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getSurname() {
+		return surname;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSurname(String newSurname) {
+		String oldSurname = surname;
+		surname = newSurname;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.CUSTOMER__SURNAME,
+					oldSurname, surname));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void book() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void reserve() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void cancel() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CUSTOMER__TICKET:
 			return getTicket();
-		case CinemaManagementSoftwarePackage.CUSTOMER__EMAIL:
-			return getEmail();
 		case CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE:
 			return getTelephone();
+		case CinemaManagementSoftwarePackage.CUSTOMER__NAME:
+			return getName();
+		case CinemaManagementSoftwarePackage.CUSTOMER__SURNAME:
+			return getSurname();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -198,11 +283,14 @@ public class CustomerImpl extends PersonImpl implements Customer {
 			getTicket().clear();
 			getTicket().addAll((Collection<? extends Ticket>) newValue);
 			return;
-		case CinemaManagementSoftwarePackage.CUSTOMER__EMAIL:
-			setEmail((String) newValue);
-			return;
 		case CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE:
 			setTelephone((String) newValue);
+			return;
+		case CinemaManagementSoftwarePackage.CUSTOMER__NAME:
+			setName((String) newValue);
+			return;
+		case CinemaManagementSoftwarePackage.CUSTOMER__SURNAME:
+			setSurname((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,11 +307,14 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		case CinemaManagementSoftwarePackage.CUSTOMER__TICKET:
 			getTicket().clear();
 			return;
-		case CinemaManagementSoftwarePackage.CUSTOMER__EMAIL:
-			setEmail(EMAIL_EDEFAULT);
-			return;
 		case CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE:
 			setTelephone(TELEPHONE_EDEFAULT);
+			return;
+		case CinemaManagementSoftwarePackage.CUSTOMER__NAME:
+			setName(NAME_EDEFAULT);
+			return;
+		case CinemaManagementSoftwarePackage.CUSTOMER__SURNAME:
+			setSurname(SURNAME_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -239,14 +330,39 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CUSTOMER__TICKET:
 			return ticket != null && !ticket.isEmpty();
-		case CinemaManagementSoftwarePackage.CUSTOMER__EMAIL:
-			return EMAIL_EDEFAULT == null ? email != null
-					: !EMAIL_EDEFAULT.equals(email);
 		case CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE:
 			return TELEPHONE_EDEFAULT == null ? telephone != null
 					: !TELEPHONE_EDEFAULT.equals(telephone);
+		case CinemaManagementSoftwarePackage.CUSTOMER__NAME:
+			return NAME_EDEFAULT == null ? name != null
+					: !NAME_EDEFAULT.equals(name);
+		case CinemaManagementSoftwarePackage.CUSTOMER__SURNAME:
+			return SURNAME_EDEFAULT == null ? surname != null
+					: !SURNAME_EDEFAULT.equals(surname);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments)
+			throws InvocationTargetException {
+		switch (operationID) {
+		case CinemaManagementSoftwarePackage.CUSTOMER___BOOK:
+			book();
+			return null;
+		case CinemaManagementSoftwarePackage.CUSTOMER___RESERVE:
+			reserve();
+			return null;
+		case CinemaManagementSoftwarePackage.CUSTOMER___CANCEL:
+			cancel();
+			return null;
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
@@ -260,10 +376,12 @@ public class CustomerImpl extends PersonImpl implements Customer {
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (email: ");
-		result.append(email);
-		result.append(", telephone: ");
+		result.append(" (telephone: ");
 		result.append(telephone);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", surname: ");
+		result.append(surname);
 		result.append(')');
 		return result.toString();
 	}

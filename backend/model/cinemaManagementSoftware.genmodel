@@ -26,11 +26,17 @@
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Person">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Person/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Person/password"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Person/email"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Customer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Customer/ticket"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Customer/email"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Customer/telephone"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Customer/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Customer/surname"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Customer/book"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Customer/reserve"/>
+      <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Customer/cancel"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//CinemaOwner"/>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Ticket">
