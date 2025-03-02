@@ -46,7 +46,7 @@ public class CinemaCommandConsumer {
             	System.out.println("⚠ No cinema found, returning empty response.");
             }
         } catch (Exception e) {
-            System.err.println("❌ Error fetching cinema: " + e.getMessage());
+            System.err.println("Error fetching cinema: " + e.getMessage());
         }
         return "{}";
     }

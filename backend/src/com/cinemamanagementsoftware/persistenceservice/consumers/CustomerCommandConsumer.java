@@ -23,6 +23,20 @@ public class CustomerCommandConsumer {
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
     }
+    
+    @RabbitListener(queues = "customer.fetchById")
+    public String fetchCustomerById(Long id) {
+        Optional<CustomerEntity> customer = customerRepository.findById(id);
+        if (customer.isPresent()) {
+            try {
+                return objectMapper.writeValueAsString(customer.get());
+            } catch (Exception e) {
+                return "{}";
+            }
+        } else {
+            return "{}";
+        }
+    }
 
     @RabbitListener(queues = "customer.fetch")
     public String fetchCustomer(String email) {

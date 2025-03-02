@@ -46,6 +46,9 @@ public class RabbitMQConfig {
    
     @Bean
     public Queue customerFetchQueue() { return new Queue("customer.fetch", true); }
+    
+    @Bean
+    public Queue customerFetchByIdQueue() { return new Queue("customer.fetchById", true); }
 	
 	@Bean
 	public TopicExchange exchange() {
