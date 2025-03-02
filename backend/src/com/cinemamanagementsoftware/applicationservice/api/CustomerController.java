@@ -2,9 +2,7 @@ package com.cinemamanagementsoftware.applicationservice.api;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -18,32 +16,41 @@ public class CustomerController {
 
     @PostMapping("/register")
     public String register(@RequestBody HashMap<String, String> user) {
-        String responseQueue = "auth.response." + UUID.randomUUID();
-        user.put("responseQueue", responseQueue);
-
-        rabbitTemplate.convertAndSend("auth.register", user);
-        
-        // ✅ Wait for response
-        Object response = rabbitTemplate.receiveAndConvert(responseQueue, 5000);
-        
-        return response != null ? response.toString() : "{\"error\": \"Timeout\"}";
+        try {
+            Object response = rabbitTemplate.convertSendAndReceive("auth.register", user);
+            if (response == null) {
+                return "{\"status\":\"error\",\"message\":\"Timeout\"}";
+            }
+            return response.toString();
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error processing registration: " + e.getMessage() + "\"}";
+        }
     }
 
     @PostMapping("/login")
     public String login(@RequestBody HashMap<String, String> user) {
-        String responseQueue = "auth.response." + UUID.randomUUID();
-        user.put("responseQueue", responseQueue);
-
-        rabbitTemplate.convertAndSend("auth.login", user);
-        return (String) rabbitTemplate.receiveAndConvert(responseQueue, 5000);
+        try {
+            Object response = rabbitTemplate.convertSendAndReceive("auth.login", user);
+            if (response == null) {
+                return "{\"status\":\"error\",\"message\":\"Timeout\"}";
+            }
+            return response.toString();
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error processing login: " + e.getMessage() + "\"}";
+        }
     }
 
     @PostMapping("/validate")
     public String validateToken(@RequestBody HashMap<String, String> request) {
-        String responseQueue = "auth.response." + UUID.randomUUID();
-        request.put("responseQueue", responseQueue);
-
-        rabbitTemplate.convertAndSend("auth.validateToken", request);
-        return (String) rabbitTemplate.receiveAndConvert(responseQueue, 5000);
+    	System.out.println("TEST");
+        try {
+            Object response = rabbitTemplate.convertSendAndReceive("auth.validateToken", request);
+            if (response == null) {
+                return "{\"status\":\"error\",\"message\":\"Timeout\"}";
+            }
+            return response.toString();
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error validating token: " + e.getMessage() + "\"}";
+        }
     }
 }

@@ -16,29 +16,26 @@ public class CustomerCommandConsumer {
     private final CustomerRepository customerRepository;
     private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
-    private final PasswordEncoder passwordEncoder;
 
     public CustomerCommandConsumer(CustomerRepository customerRepository, RabbitTemplate rabbitTemplate, 
-                                   ObjectMapper objectMapper, PasswordEncoder passwordEncoder) {
+                                   ObjectMapper objectMapper) {
         this.customerRepository = customerRepository;
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @RabbitListener(queues = "customer.fetch")
-    public void fetchCustomer(String email) {
+    public String fetchCustomer(String email) {
         Optional<CustomerEntity> customer = customerRepository.findByEmail(email);
 
         if (customer.isPresent()) {
             try {
-                String userJson = objectMapper.writeValueAsString(customer.get());
-                rabbitTemplate.convertAndSend("customer.fetch.response", userJson);
+                return objectMapper.writeValueAsString(customer.get());
             } catch (Exception e) {
-                rabbitTemplate.convertAndSend("customer.fetch.response", "");
+                return "{}";
             }
         } else {
-            rabbitTemplate.convertAndSend("customer.fetch.response", "");
+            return "{}";
         }
     }
 
@@ -50,10 +47,10 @@ public class CustomerCommandConsumer {
             String telephone = request.get("telephone");
             String name = request.get("name");
 
-            CustomerEntity newCustomer = new CustomerEntity(email, passwordEncoder.encode(password), name, telephone);
+            CustomerEntity newCustomer = new CustomerEntity(email, password, name, telephone);
             customerRepository.save(newCustomer);
         } catch (Exception e) {
-            System.err.println("❌ Error creating customer: " + e.getMessage());
+            System.err.println("Error creating customer: " + e.getMessage());
         }
     }
 }

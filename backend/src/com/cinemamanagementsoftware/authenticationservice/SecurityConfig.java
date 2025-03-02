@@ -11,16 +11,27 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/customers/register", "/api/customers/login").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .build();
-    }
+	
+	// Temporarily disabled until we know which API points to secure:
+	/*
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	    return http.csrf().disable()
+	            .authorizeHttpRequests(auth -> auth
+	                    .requestMatchers("/api/customers/register", 
+	                                     "/api/customers/login", 
+	                                     "/api/customers/validate").permitAll()
+	                    .anyRequest().authenticated()
+	            )
+	            .build();
+	}*/
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	    return http.csrf().disable()
+	               .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+	               .build();
+	}
 
     @Bean
     public PasswordEncoder passwordEncoder() {
