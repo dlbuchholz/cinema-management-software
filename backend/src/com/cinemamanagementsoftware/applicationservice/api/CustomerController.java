@@ -60,6 +60,41 @@ public class CustomerController {
                     .body("{\"status\":\"error\", \"message\":\"Error processing request: " + e.getMessage() + "\"}");
         }
     }
+    
+    @GetMapping("/me")
+    public ResponseEntity<String> getCustomerProfile() {
+        // Get the current authenticated user from the SecurityContext
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(401)
+                    .body("{\"status\":\"error\", \"message\":\"Unauthorized\"}");
+        }
+
+        // The JwtAuthenticationFilter sets the principal as the user's email
+        String email = (String) authentication.getPrincipal();
+
+        // Use email to fetch the customer data using RabbitMQ
+        Object response = rabbitTemplate.convertSendAndReceive("customer.fetch", email);
+        if (response == null || response.toString().trim().isEmpty() || response.toString().equals("{}")) {
+            return ResponseEntity.status(404)
+                    .body("{\"status\":\"error\", \"message\":\"Customer not found\"}");
+        }
+
+        try {
+            // Optionally, validate that the customer record's email matches the token's email.
+            Map<String, Object> customerMap = objectMapper.readValue(response.toString(), Map.class);
+            String customerEmail = (String) customerMap.get("email");
+
+            if (!email.equals(customerEmail)) {
+                return ResponseEntity.status(403)
+                        .body("{\"status\":\"error\", \"message\":\"Access denied\"}");
+            }
+            return ResponseEntity.ok(response.toString());
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body("{\"status\":\"error\", \"message\":\"Error processing request: " + e.getMessage() + "\"}");
+        }
+    }
 
     @PostMapping("/register")
     public String register(@RequestBody HashMap<String, String> user) {
