@@ -553,7 +553,7 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EAttribute getMovie_Name() {
+	public EAttribute getMovie_Title() {
 		return (EAttribute) movieEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -585,6 +585,16 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	@Override
 	public EAttribute getMovie_Id() {
 		return (EAttribute) movieEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getMovie_Genre() {
+		return (EAttribute) movieEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -790,10 +800,11 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		createEOperation(screeningEClass, SCREENING___NUM_BOOKINGS);
 
 		movieEClass = createEClass(MOVIE);
-		createEAttribute(movieEClass, MOVIE__NAME);
+		createEAttribute(movieEClass, MOVIE__TITLE);
 		createEAttribute(movieEClass, MOVIE__DESCRIPTION);
 		createEAttribute(movieEClass, MOVIE__LENGTH);
 		createEAttribute(movieEClass, MOVIE__ID);
+		createEAttribute(movieEClass, MOVIE__GENRE);
 
 		cinemaHallEClass = createEClass(CINEMA_HALL);
 		createEReference(cinemaHallEClass, CINEMA_HALL__ROW);
@@ -976,9 +987,10 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 
 		initEClass(movieEClass, Movie.class, "Movie", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMovie_Name(), ecorePackage.getEString(), "name", null,
-				0, 1, Movie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMovie_Title(), ecorePackage.getEString(), "title",
+				null, 0, 1, Movie.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEAttribute(getMovie_Description(), ecorePackage.getEString(),
 				"description", null, 0, 1, Movie.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
@@ -990,6 +1002,10 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		initEAttribute(getMovie_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
 				Movie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMovie_Genre(), ecorePackage.getEString(), "genre",
+				null, 0, 1, Movie.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(cinemaHallEClass, CinemaHall.class, "CinemaHall",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -58,10 +58,11 @@
       <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//Screening/numBookings"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Movie">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/length"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Movie/genre"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//CinemaHall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//CinemaHall/row"/>

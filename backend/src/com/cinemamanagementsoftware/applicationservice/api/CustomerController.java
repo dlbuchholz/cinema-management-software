@@ -1,13 +1,21 @@
 package com.cinemamanagementsoftware.applicationservice.api;
 
+import com.cinemamanagementsoftware.applicationservice.api.*;
+import com.cinemamanagementsoftware.applicationservice.api.APIUtils;
+
+import org.eclipse.emfcloud.jackson.module.EMFModule;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cinemaManagementSoftware.Customer;
+
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +29,7 @@ public class CustomerController {
     public CustomerController(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
+        this.objectMapper.registerModule(new EMFModule());
     }
     
     @GetMapping("/{id}")
@@ -95,27 +104,38 @@ public class CustomerController {
                     .body("{\"status\":\"error\", \"message\":\"Error processing request: " + e.getMessage() + "\"}");
         }
     }
-
+    
     @PostMapping("/register")
-    public String register(@RequestBody HashMap<String, String> user) {
+    public String register(@RequestBody String jsonCustomer) {
         try {
-            Object response = rabbitTemplate.convertSendAndReceive("auth.register", user);
-            if (response == null) {
-                return "{\"status\":\"error\",\"message\":\"Timeout\"}";
+            String validatedJson = APIUtils.ensureEClassField(jsonCustomer, "http://www.example.org/cinemaManagementSoftware#//Customer");
+            
+            // Try to deserialize JSON to Customer ecore entity, return an error if it cannot construct
+            Customer customer = objectMapper.readValue(validatedJson, Customer.class);
+            if (customer == null || customer.getName() == null || customer.getEmail() == null || customer.getPassword() == null || customer.getTelephone() == null) {
+                return "{\"status\":\"error\",\"message\":\"Customer entity is missing required fields!\"}";
             }
-            return response.toString();
+            
+            Map<String, String> customerMap = objectMapper.readValue(validatedJson, new TypeReference<Map<String, String>>() {});
+            String response = (String) rabbitTemplate.convertSendAndReceive("auth.register", customerMap);
+            return response != null ? response : "{\"status\":\"error\",\"message\":\"AuthenticationService TimeOut\"}";
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Error processing registration: " + e.getMessage() + "\"}";
         }
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody HashMap<String, String> user) {
+    public String login(@RequestBody Map<String, String> user) {
         try {
+            if (!user.containsKey("email") || !user.containsKey("password")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required fields: email and password\"}";
+            }
+
             Object response = rabbitTemplate.convertSendAndReceive("auth.login", user);
             if (response == null) {
                 return "{\"status\":\"error\",\"message\":\"Timeout\"}";
             }
+
             return response.toString();
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Error processing login: " + e.getMessage() + "\"}";
@@ -133,5 +153,11 @@ public class CustomerController {
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Error validating token: " + e.getMessage() + "\"}";
         }
+    }
+
+    @PostMapping("/logout")
+    public String logout(@RequestBody Map<String, String> request) {
+        Object response = rabbitTemplate.convertSendAndReceive("auth.logout", request);
+        return response != null ? response.toString() : "No response from AuthService!";
     }
 }

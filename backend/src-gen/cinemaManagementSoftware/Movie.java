@@ -13,10 +13,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link cinemaManagementSoftware.Movie#getName <em>Name</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Movie#getTitle <em>Title</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Movie#getDescription <em>Description</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Movie#getLength <em>Length</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Movie#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Movie#getGenre <em>Genre</em>}</li>
  * </ul>
  *
  * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getMovie()
@@ -25,26 +26,26 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Movie extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getMovie_Name()
+	 * @return the value of the '<em>Title</em>' attribute.
+	 * @see #setTitle(String)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getMovie_Title()
 	 * @model
 	 * @generated
 	 */
-	String getName();
+	String getTitle();
 
 	/**
-	 * Sets the value of the '{@link cinemaManagementSoftware.Movie#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link cinemaManagementSoftware.Movie#getTitle <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Title</em>' attribute.
+	 * @see #getTitle()
 	 * @generated
 	 */
-	void setName(String value);
+	void setTitle(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -111,5 +112,27 @@ public interface Movie extends EObject {
 	 * @generated
 	 */
 	void setId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Genre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Genre</em>' attribute.
+	 * @see #setGenre(String)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getMovie_Genre()
+	 * @model
+	 * @generated
+	 */
+	String getGenre();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Movie#getGenre <em>Genre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Genre</em>' attribute.
+	 * @see #getGenre()
+	 * @generated
+	 */
+	void setGenre(String value);
 
 } // Movie
