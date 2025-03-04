@@ -25,6 +25,16 @@ public class MovieController {
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
     }
+    
+    @GetMapping("/search")
+    public Object searchMovies(@RequestParam String query) {
+        if (query == null || query.trim().isEmpty()) {
+            return "{\"status\":\"error\",\"message\":\"Search query cannot be empty!\"}";
+        }
+
+        Object response = rabbitTemplate.convertSendAndReceive("movie.search", query.trim());
+        return Objects.requireNonNullElse(response, "{\"status\":\"error\",\"message\":\"No movies found\"}");
+    }
 
     // Get all movies
     @GetMapping

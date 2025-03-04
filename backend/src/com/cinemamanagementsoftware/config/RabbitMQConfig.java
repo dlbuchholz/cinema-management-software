@@ -26,6 +26,14 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue movieDeleteQueue() { return new Queue("movie.delete", true); }
+    
+    @Bean
+    public Queue movieSearchQueue() { return new Queue("movie.search", true); }
+
+    @Bean
+    public Binding bindingMovieSearch(@Qualifier("movieSearchQueue") Queue queue, TopicExchange movieExchange) {
+        return BindingBuilder.bind(queue).to(movieExchange).with("movie.search");
+    }
 
     // Cinema Queues
     @Bean

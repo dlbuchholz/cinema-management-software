@@ -21,6 +21,21 @@ public class MovieCommandConsumer {
         this.movieRepository = movieRepository;
         this.objectMapper = objectMapper;
     }
+    
+    @RabbitListener(queues = "movie.search")
+    public String searchMovies(String query) {
+        try {
+            List<MovieEntity> matchingMovies = movieRepository.findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrGenreContainingIgnoreCase(query, query, query);
+
+            if (matchingMovies.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"No movies found\"}";
+            }
+
+            return objectMapper.writeValueAsString(matchingMovies);
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error processing movie search\"}";
+        }
+    }
 
     // Fetch all movies
     @RabbitListener(queues = "movie.fetch.all")
