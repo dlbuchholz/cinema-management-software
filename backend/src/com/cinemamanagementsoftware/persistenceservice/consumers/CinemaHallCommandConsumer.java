@@ -6,6 +6,8 @@ import com.cinemamanagementsoftware.persistenceservice.repositories.CinemaHallRe
 import com.cinemamanagementsoftware.persistenceservice.repositories.CinemaRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate6.Hibernate6Module;
+
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class CinemaHallCommandConsumer {
         this.cinemaHallRepository = cinemaHallRepository;
         this.cinemaRepository = cinemaRepository;
         this.objectMapper = objectMapper;
+        objectMapper.registerModule(new Hibernate6Module());
     }
 
     // Fetch all Cinema Halls
