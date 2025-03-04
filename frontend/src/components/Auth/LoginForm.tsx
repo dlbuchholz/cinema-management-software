@@ -35,7 +35,7 @@ const LoginForm: React.FC = () => {
     return (
         <div className={styles['auth-container']}>
             <form onSubmit={handleSubmit} className={styles['auth-card']}>
-                <h2>Sign in with Email</h2>
+                <h2>Welcome</h2>
                 <p>Access your account and manage cinemas efficiently.</p>
                 <input
                     type="text"

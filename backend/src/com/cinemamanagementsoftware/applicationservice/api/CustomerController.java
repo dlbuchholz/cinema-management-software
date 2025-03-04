@@ -154,7 +154,7 @@ public class CustomerController {
             return "{\"status\":\"error\",\"message\":\"Error validating token: " + e.getMessage() + "\"}";
         }
     }
-    
+
     @PostMapping("/logout")
     public String logout(@RequestBody Map<String, String> request) {
         Object response = rabbitTemplate.convertSendAndReceive("auth.logout", request);

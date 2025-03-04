@@ -1,5 +1,4 @@
 .logo {
-  height: 32px;
   margin: 16px;
   color: white;
   font-size: 18px;
@@ -14,7 +13,8 @@
 .content {
   padding: 24px;
   background: #fff;
-  min-height: 360px;
   border-radius: 8px;
+  max-height: calc(100vh - 150px);
+  overflow: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
