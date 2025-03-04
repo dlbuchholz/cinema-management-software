@@ -100,4 +100,16 @@ public class AuthenticationService {
             return "{\"status\":\"error\", \"message\":\"Error validating token: " + e.getMessage() + "\"}";
         }
     }
+    
+    @RabbitListener(queues = "auth.logout")
+    public String logout(Map<String, String> request) {
+        String token = request.get("token");
+
+        if (token == null || !JwtUtil.validateToken(token)) {
+            return "{\"status\":\"error\", \"message\":\"Invalid token\"}";
+        }
+
+        JwtUtil.invalidateToken(token);
+        return "{\"status\":\"success\", \"message\":\"Token has been revoked.\"}";
+    }
 }

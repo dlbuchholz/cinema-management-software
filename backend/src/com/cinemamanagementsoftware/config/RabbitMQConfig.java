@@ -37,6 +37,9 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue loginQueue() { return new Queue("auth.login"); }
+    
+    @Bean
+    public Queue logoutQueue() { return new Queue("auth.logout"); }
 
     @Bean
     public Queue validateTokenQueue() { return new Queue("auth.validateToken"); }
