@@ -5,7 +5,7 @@
     <semanticResources>cinemaManagementSoftware.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_OQ0FMOrLEe-GF6aOT5KwHA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OS-oYOrLEe-GF6aOT5KwHA" name="cinemaManagementSoftware" repPath="#_OSLXIOrLEe-GF6aOT5KwHA" changeId="1740854766533">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_OS-oYOrLEe-GF6aOT5KwHA" name="cinemaManagementSoftware" repPath="#_OSLXIOrLEe-GF6aOT5KwHA" changeId="1741093164922">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="cinemaManagementSoftware.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -179,11 +179,15 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_OKloke-FEe-hcN95Txk-ug" fontName=".AppleSystemUIFont" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_OKloku-FEe-hcN95Txk-ug"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_d6GSMPj4Ee-VvKFglEDFzQ" type="3010" element="_d5nKAPj4Ee-VvKFglEDFzQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_d6GSMfj4Ee-VvKFglEDFzQ" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_d6GSMvj4Ee-VvKFglEDFzQ"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_zraF9e-CEe-hcN95Txk-ug"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_zraF9u-CEe-hcN95Txk-ug"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_zraF8e-CEe-hcN95Txk-ug" fontName=".AppleSystemUIFont" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zraF8u-CEe-hcN95Txk-ug" x="40" y="712" width="120" height="100"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zraF8u-CEe-hcN95Txk-ug" x="40" y="712" width="120" height="130"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_9Qd7sO-CEe-hcN95Txk-ug" type="2003" element="_9QYcIO-CEe-hcN95Txk-ug">
           <children xmi:type="notation:Node" xmi:id="_9Qd7s--CEe-hcN95Txk-ug" type="5007"/>
@@ -739,13 +743,13 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_zrSxMO-CEe-hcN95Txk-ug" name="Movie" tooltipText="" incomingEdges="_1Epw1u-CEe-hcN95Txk-ug" width="12" height="10">
       <target xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Movie"/>
       <semanticElements xmi:type="ecore:EClass" href="cinemaManagementSoftware.ecore#//Movie"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_7MKPve-EEe-hcN95Txk-ug" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_f6hR2vj4Ee-VvKFglEDFzQ" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_05L1wO-EEe-hcN95Txk-ug" name="name : EString" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/name"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/name"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_05L1wO-EEe-hcN95Txk-ug" name="title : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/title"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/title"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_2ixpyu-EEe-hcN95Txk-ug" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
@@ -771,6 +775,14 @@
         <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/id"/>
         <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/id"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_OKe65O-FEe-hcN95Txk-ug" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_d5nKAPj4Ee-VvKFglEDFzQ" name="genre : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/genre"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="cinemaManagementSoftware.ecore#//Movie/genre"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_f6juFfj4Ee-VvKFglEDFzQ" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>

@@ -20,34 +20,35 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cinemaManagementSoftware.impl.MovieImpl#getName <em>Name</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.MovieImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.MovieImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.MovieImpl#getLength <em>Length</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.MovieImpl#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.MovieImpl#getGenre <em>Genre</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getTitle()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String TITLE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getTitle() <em>Title</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getTitle()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String title = TITLE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -110,6 +111,26 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	protected int id = ID_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getGenre() <em>Genre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String GENRE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getGenre() <em>Genre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenre()
+	 * @generated
+	 * @ordered
+	 */
+	protected String genre = GENRE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -134,8 +155,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 */
 	@Override
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
 	/**
@@ -144,13 +165,13 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 */
 	@Override
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setTitle(String newTitle) {
+		String oldTitle = title;
+		title = newTitle;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.MOVIE__NAME, oldName,
-					name));
+					CinemaManagementSoftwarePackage.MOVIE__TITLE, oldTitle,
+					title));
 	}
 
 	/**
@@ -233,16 +254,43 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	 * @generated
 	 */
 	@Override
+	public String getGenre() {
+		return genre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGenre(String newGenre) {
+		String oldGenre = genre;
+		genre = newGenre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.MOVIE__GENRE, oldGenre,
+					genre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case CinemaManagementSoftwarePackage.MOVIE__NAME:
-			return getName();
+		case CinemaManagementSoftwarePackage.MOVIE__TITLE:
+			return getTitle();
 		case CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION:
 			return getDescription();
 		case CinemaManagementSoftwarePackage.MOVIE__LENGTH:
 			return getLength();
 		case CinemaManagementSoftwarePackage.MOVIE__ID:
 			return getId();
+		case CinemaManagementSoftwarePackage.MOVIE__GENRE:
+			return getGenre();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,8 +303,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case CinemaManagementSoftwarePackage.MOVIE__NAME:
-			setName((String) newValue);
+		case CinemaManagementSoftwarePackage.MOVIE__TITLE:
+			setTitle((String) newValue);
 			return;
 		case CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION:
 			setDescription((String) newValue);
@@ -266,6 +314,9 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 			return;
 		case CinemaManagementSoftwarePackage.MOVIE__ID:
 			setId((Integer) newValue);
+			return;
+		case CinemaManagementSoftwarePackage.MOVIE__GENRE:
+			setGenre((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -279,8 +330,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case CinemaManagementSoftwarePackage.MOVIE__NAME:
-			setName(NAME_EDEFAULT);
+		case CinemaManagementSoftwarePackage.MOVIE__TITLE:
+			setTitle(TITLE_EDEFAULT);
 			return;
 		case CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION:
 			setDescription(DESCRIPTION_EDEFAULT);
@@ -290,6 +341,9 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 			return;
 		case CinemaManagementSoftwarePackage.MOVIE__ID:
 			setId(ID_EDEFAULT);
+			return;
+		case CinemaManagementSoftwarePackage.MOVIE__GENRE:
+			setGenre(GENRE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -303,9 +357,9 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case CinemaManagementSoftwarePackage.MOVIE__NAME:
-			return NAME_EDEFAULT == null ? name != null
-					: !NAME_EDEFAULT.equals(name);
+		case CinemaManagementSoftwarePackage.MOVIE__TITLE:
+			return TITLE_EDEFAULT == null ? title != null
+					: !TITLE_EDEFAULT.equals(title);
 		case CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION:
 			return DESCRIPTION_EDEFAULT == null ? description != null
 					: !DESCRIPTION_EDEFAULT.equals(description);
@@ -313,6 +367,9 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 			return length != LENGTH_EDEFAULT;
 		case CinemaManagementSoftwarePackage.MOVIE__ID:
 			return id != ID_EDEFAULT;
+		case CinemaManagementSoftwarePackage.MOVIE__GENRE:
+			return GENRE_EDEFAULT == null ? genre != null
+					: !GENRE_EDEFAULT.equals(genre);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -328,14 +385,16 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 			return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (title: ");
+		result.append(title);
 		result.append(", description: ");
 		result.append(description);
 		result.append(", length: ");
 		result.append(length);
 		result.append(", id: ");
 		result.append(id);
+		result.append(", genre: ");
+		result.append(genre);
 		result.append(')');
 		return result.toString();
 	}

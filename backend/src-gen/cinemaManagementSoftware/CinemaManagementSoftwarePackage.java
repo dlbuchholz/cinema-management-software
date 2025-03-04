@@ -562,13 +562,13 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int MOVIE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MOVIE__NAME = 0;
+	int MOVIE__TITLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -598,13 +598,22 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int MOVIE__ID = 3;
 
 	/**
+	 * The feature id for the '<em><b>Genre</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MOVIE__GENRE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Movie</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MOVIE_FEATURE_COUNT = 4;
+	int MOVIE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Movie</em>' class.
@@ -1184,15 +1193,15 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	EClass getMovie();
 
 	/**
-	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Movie#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Movie#getTitle <em>Title</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see cinemaManagementSoftware.Movie#getName()
+	 * @return the meta object for the attribute '<em>Title</em>'.
+	 * @see cinemaManagementSoftware.Movie#getTitle()
 	 * @see #getMovie()
 	 * @generated
 	 */
-	EAttribute getMovie_Name();
+	EAttribute getMovie_Title();
 
 	/**
 	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Movie#getDescription <em>Description</em>}'.
@@ -1226,6 +1235,17 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMovie_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Movie#getGenre <em>Genre</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Genre</em>'.
+	 * @see cinemaManagementSoftware.Movie#getGenre()
+	 * @see #getMovie()
+	 * @generated
+	 */
+	EAttribute getMovie_Genre();
 
 	/**
 	 * Returns the meta object for class '{@link cinemaManagementSoftware.CinemaHall <em>Cinema Hall</em>}'.
@@ -1702,12 +1722,12 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		EClass MOVIE = eINSTANCE.getMovie();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Title</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute MOVIE__NAME = eINSTANCE.getMovie_Name();
+		EAttribute MOVIE__TITLE = eINSTANCE.getMovie_Title();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -1732,6 +1752,14 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MOVIE__ID = eINSTANCE.getMovie_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Genre</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MOVIE__GENRE = eINSTANCE.getMovie_Genre();
 
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.CinemaHallImpl <em>Cinema Hall</em>}' class.
