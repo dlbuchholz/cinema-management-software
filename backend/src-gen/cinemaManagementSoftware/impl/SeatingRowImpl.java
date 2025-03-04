@@ -34,8 +34,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link cinemaManagementSoftware.impl.SeatingRowImpl#getCinemahall <em>Cinemahall</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.SeatingRowImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link cinemaManagementSoftware.impl.SeatingRowImpl#getSeat <em>Seat</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.SeatingRowImpl#getSeats <em>Seats</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.SeatingRowImpl#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.SeatingRowImpl#getRowNr <em>Row Nr</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,14 +74,14 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	protected Category category = CATEGORY_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSeat() <em>Seat</em>}' reference list.
+	 * The cached value of the '{@link #getSeats() <em>Seats</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSeat()
+	 * @see #getSeats()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Seat> seat;
+	protected EList<Seat> seats;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -101,6 +102,26 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @ordered
 	 */
 	protected int id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRowNr() <em>Row Nr</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRowNr()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ROW_NR_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getRowNr() <em>Row Nr</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRowNr()
+	 * @generated
+	 * @ordered
+	 */
+	protected int rowNr = ROW_NR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,13 +250,13 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public EList<Seat> getSeat() {
-		if (seat == null) {
-			seat = new EObjectWithInverseResolvingEList<Seat>(Seat.class, this,
-					CinemaManagementSoftwarePackage.SEATING_ROW__SEAT,
+	public EList<Seat> getSeats() {
+		if (seats == null) {
+			seats = new EObjectWithInverseResolvingEList<Seat>(Seat.class, this,
+					CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 					CinemaManagementSoftwarePackage.SEAT__ROW);
 		}
-		return seat;
+		return seats;
 	}
 
 	/**
@@ -268,6 +289,31 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public int getRowNr() {
+		return rowNr;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setRowNr(int newRowNr) {
+		int oldRowNr = rowNr;
+		rowNr = newRowNr;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR,
+					oldRowNr, rowNr));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -279,8 +325,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW,
 						CinemaHall.class, msgs);
 			return basicSetCinemahall((CinemaHall) otherEnd, msgs);
-		case CinemaManagementSoftwarePackage.SEATING_ROW__SEAT:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSeat())
+		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSeats())
 					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -297,8 +343,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL:
 			return basicSetCinemahall(null, msgs);
-		case CinemaManagementSoftwarePackage.SEATING_ROW__SEAT:
-			return ((InternalEList<?>) getSeat()).basicRemove(otherEnd, msgs);
+		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
+			return ((InternalEList<?>) getSeats()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -317,10 +363,12 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 			return basicGetCinemahall();
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CATEGORY:
 			return getCategory();
-		case CinemaManagementSoftwarePackage.SEATING_ROW__SEAT:
-			return getSeat();
+		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
+			return getSeats();
 		case CinemaManagementSoftwarePackage.SEATING_ROW__ID:
 			return getId();
+		case CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR:
+			return getRowNr();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -340,12 +388,15 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CATEGORY:
 			setCategory((Category) newValue);
 			return;
-		case CinemaManagementSoftwarePackage.SEATING_ROW__SEAT:
-			getSeat().clear();
-			getSeat().addAll((Collection<? extends Seat>) newValue);
+		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
+			getSeats().clear();
+			getSeats().addAll((Collection<? extends Seat>) newValue);
 			return;
 		case CinemaManagementSoftwarePackage.SEATING_ROW__ID:
 			setId((Integer) newValue);
+			return;
+		case CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR:
+			setRowNr((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -365,11 +416,14 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CATEGORY:
 			setCategory(CATEGORY_EDEFAULT);
 			return;
-		case CinemaManagementSoftwarePackage.SEATING_ROW__SEAT:
-			getSeat().clear();
+		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
+			getSeats().clear();
 			return;
 		case CinemaManagementSoftwarePackage.SEATING_ROW__ID:
 			setId(ID_EDEFAULT);
+			return;
+		case CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR:
+			setRowNr(ROW_NR_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -387,10 +441,12 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 			return cinemahall != null;
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CATEGORY:
 			return category != CATEGORY_EDEFAULT;
-		case CinemaManagementSoftwarePackage.SEATING_ROW__SEAT:
-			return seat != null && !seat.isEmpty();
+		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
+			return seats != null && !seats.isEmpty();
 		case CinemaManagementSoftwarePackage.SEATING_ROW__ID:
 			return id != ID_EDEFAULT;
+		case CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR:
+			return rowNr != ROW_NR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -410,6 +466,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		result.append(category);
 		result.append(", id: ");
 		result.append(id);
+		result.append(", rowNr: ");
+		result.append(rowNr);
 		result.append(')');
 		return result.toString();
 	}

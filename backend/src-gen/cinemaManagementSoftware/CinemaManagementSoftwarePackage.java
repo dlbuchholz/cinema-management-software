@@ -653,13 +653,31 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int CINEMA_HALL__ID = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_HALL__NAME = 2;
+
+	/**
+	 * The feature id for the '<em><b>Cinema</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CINEMA_HALL__CINEMA = 3;
+
+	/**
 	 * The number of structural features of the '<em>Cinema Hall</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CINEMA_HALL_FEATURE_COUNT = 2;
+	int CINEMA_HALL_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Is Config Complete</em>' operation.
@@ -708,13 +726,13 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int SEATING_ROW__CATEGORY = 1;
 
 	/**
-	 * The feature id for the '<em><b>Seat</b></em>' reference list.
+	 * The feature id for the '<em><b>Seats</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEATING_ROW__SEAT = 2;
+	int SEATING_ROW__SEATS = 2;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -726,13 +744,22 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int SEATING_ROW__ID = 3;
 
 	/**
+	 * The feature id for the '<em><b>Row Nr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEATING_ROW__ROW_NR = 4;
+
+	/**
 	 * The number of structural features of the '<em>Seating Row</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEATING_ROW_FEATURE_COUNT = 4;
+	int SEATING_ROW_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Seating Row</em>' class.
@@ -772,13 +799,22 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int SEAT__ID = 1;
 
 	/**
+	 * The feature id for the '<em><b>Seat Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEAT__SEAT_NUMBER = 2;
+
+	/**
 	 * The number of structural features of the '<em>Seat</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEAT_FEATURE_COUNT = 2;
+	int SEAT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Seat</em>' class.
@@ -1280,6 +1316,28 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	EAttribute getCinemaHall_Id();
 
 	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.CinemaHall#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see cinemaManagementSoftware.CinemaHall#getName()
+	 * @see #getCinemaHall()
+	 * @generated
+	 */
+	EAttribute getCinemaHall_Name();
+
+	/**
+	 * Returns the meta object for the reference '{@link cinemaManagementSoftware.CinemaHall#getCinema <em>Cinema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Cinema</em>'.
+	 * @see cinemaManagementSoftware.CinemaHall#getCinema()
+	 * @see #getCinemaHall()
+	 * @generated
+	 */
+	EReference getCinemaHall_Cinema();
+
+	/**
 	 * Returns the meta object for the '{@link cinemaManagementSoftware.CinemaHall#isConfigComplete() <em>Is Config Complete</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1322,15 +1380,15 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	EAttribute getSeatingRow_Category();
 
 	/**
-	 * Returns the meta object for the reference list '{@link cinemaManagementSoftware.SeatingRow#getSeat <em>Seat</em>}'.
+	 * Returns the meta object for the reference list '{@link cinemaManagementSoftware.SeatingRow#getSeats <em>Seats</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Seat</em>'.
-	 * @see cinemaManagementSoftware.SeatingRow#getSeat()
+	 * @return the meta object for the reference list '<em>Seats</em>'.
+	 * @see cinemaManagementSoftware.SeatingRow#getSeats()
 	 * @see #getSeatingRow()
 	 * @generated
 	 */
-	EReference getSeatingRow_Seat();
+	EReference getSeatingRow_Seats();
 
 	/**
 	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.SeatingRow#getId <em>Id</em>}'.
@@ -1342,6 +1400,17 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSeatingRow_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.SeatingRow#getRowNr <em>Row Nr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Row Nr</em>'.
+	 * @see cinemaManagementSoftware.SeatingRow#getRowNr()
+	 * @see #getSeatingRow()
+	 * @generated
+	 */
+	EAttribute getSeatingRow_RowNr();
 
 	/**
 	 * Returns the meta object for class '{@link cinemaManagementSoftware.Seat <em>Seat</em>}'.
@@ -1374,6 +1443,17 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSeat_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link cinemaManagementSoftware.Seat#getSeatNumber <em>Seat Number</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Seat Number</em>'.
+	 * @see cinemaManagementSoftware.Seat#getSeatNumber()
+	 * @see #getSeat()
+	 * @generated
+	 */
+	EAttribute getSeat_SeatNumber();
 
 	/**
 	 * Returns the meta object for enum '{@link cinemaManagementSoftware.Category <em>Category</em>}'.
@@ -1788,6 +1868,22 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		EAttribute CINEMA_HALL__ID = eINSTANCE.getCinemaHall_Id();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CINEMA_HALL__NAME = eINSTANCE.getCinemaHall_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Cinema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CINEMA_HALL__CINEMA = eINSTANCE.getCinemaHall_Cinema();
+
+		/**
 		 * The meta object literal for the '<em><b>Is Config Complete</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1824,12 +1920,12 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		EAttribute SEATING_ROW__CATEGORY = eINSTANCE.getSeatingRow_Category();
 
 		/**
-		 * The meta object literal for the '<em><b>Seat</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Seats</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SEATING_ROW__SEAT = eINSTANCE.getSeatingRow_Seat();
+		EReference SEATING_ROW__SEATS = eINSTANCE.getSeatingRow_Seats();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -1838,6 +1934,14 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEATING_ROW__ID = eINSTANCE.getSeatingRow_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Row Nr</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEATING_ROW__ROW_NR = eINSTANCE.getSeatingRow_RowNr();
 
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.SeatImpl <em>Seat</em>}' class.
@@ -1864,6 +1968,14 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEAT__ID = eINSTANCE.getSeat_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Seat Number</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEAT__SEAT_NUMBER = eINSTANCE.getSeat_SeatNumber();
 
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.Category <em>Category</em>}' enum.

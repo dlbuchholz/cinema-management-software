@@ -13,6 +13,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -20,8 +21,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -266,8 +267,10 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	@Override
 	public EList<CinemaHall> getHall() {
 		if (hall == null) {
-			hall = new EObjectResolvingEList<CinemaHall>(CinemaHall.class, this,
-					CinemaManagementSoftwarePackage.CINEMA__HALL);
+			hall = new EObjectWithInverseResolvingEList<CinemaHall>(
+					CinemaHall.class, this,
+					CinemaManagementSoftwarePackage.CINEMA__HALL,
+					CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA);
 		}
 		return hall;
 	}
@@ -282,6 +285,38 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case CinemaManagementSoftwarePackage.CINEMA__HALL:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHall())
+					.basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case CinemaManagementSoftwarePackage.CINEMA__HALL:
+			return ((InternalEList<?>) getHall()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

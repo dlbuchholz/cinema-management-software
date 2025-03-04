@@ -17,8 +17,9 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link cinemaManagementSoftware.SeatingRow#getCinemahall <em>Cinemahall</em>}</li>
  *   <li>{@link cinemaManagementSoftware.SeatingRow#getCategory <em>Category</em>}</li>
- *   <li>{@link cinemaManagementSoftware.SeatingRow#getSeat <em>Seat</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.SeatingRow#getSeats <em>Seats</em>}</li>
  *   <li>{@link cinemaManagementSoftware.SeatingRow#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.SeatingRow#getRowNr <em>Row Nr</em>}</li>
  * </ul>
  *
  * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeatingRow()
@@ -76,18 +77,18 @@ public interface SeatingRow extends EObject {
 	void setCategory(Category value);
 
 	/**
-	 * Returns the value of the '<em><b>Seat</b></em>' reference list.
+	 * Returns the value of the '<em><b>Seats</b></em>' reference list.
 	 * The list contents are of type {@link cinemaManagementSoftware.Seat}.
 	 * It is bidirectional and its opposite is '{@link cinemaManagementSoftware.Seat#getRow <em>Row</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Seat</em>' reference list.
-	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeatingRow_Seat()
+	 * @return the value of the '<em>Seats</em>' reference list.
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeatingRow_Seats()
 	 * @see cinemaManagementSoftware.Seat#getRow
 	 * @model opposite="row" required="true"
 	 * @generated
 	 */
-	EList<Seat> getSeat();
+	EList<Seat> getSeats();
 
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
@@ -110,5 +111,27 @@ public interface SeatingRow extends EObject {
 	 * @generated
 	 */
 	void setId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Row Nr</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Row Nr</em>' attribute.
+	 * @see #setRowNr(int)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeatingRow_RowNr()
+	 * @model
+	 * @generated
+	 */
+	int getRowNr();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.SeatingRow#getRowNr <em>Row Nr</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Row Nr</em>' attribute.
+	 * @see #getRowNr()
+	 * @generated
+	 */
+	void setRowNr(int value);
 
 } // SeatingRow

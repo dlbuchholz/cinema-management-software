@@ -118,11 +118,13 @@ public interface Cinema extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Hall</b></em>' reference list.
 	 * The list contents are of type {@link cinemaManagementSoftware.CinemaHall}.
+	 * It is bidirectional and its opposite is '{@link cinemaManagementSoftware.CinemaHall#getCinema <em>Cinema</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Hall</em>' reference list.
 	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCinema_Hall()
-	 * @model required="true"
+	 * @see cinemaManagementSoftware.CinemaHall#getCinema
+	 * @model opposite="cinema" required="true"
 	 * @generated
 	 */
 	EList<CinemaHall> getHall();
