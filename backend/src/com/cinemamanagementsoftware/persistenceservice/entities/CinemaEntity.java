@@ -1,5 +1,9 @@
 package com.cinemamanagementsoftware.persistenceservice.entities;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +22,9 @@ public class CinemaEntity {
     @ManyToOne(targetEntity = CinemaOwnerEntity.class)
     @JoinColumn(name = "owner_id")
 	private CinemaOwnerEntity owner;
+    
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CinemaHallEntity> cinemaHalls;
 
     // Getters and Setters
     public Long getId() { return id; }

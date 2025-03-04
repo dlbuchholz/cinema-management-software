@@ -9,7 +9,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//CinemaOwner"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="hall" lowerBound="1" upperBound="-1"
-        eType="#//CinemaHall"/>
+        eType="#//CinemaHall" eOpposite="#//CinemaHall/cinema"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Person" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -58,19 +58,24 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="row" lowerBound="1" upperBound="-1"
         eType="#//SeatingRow" eOpposite="#//SeatingRow/cinemahall"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cinema" lowerBound="1"
+        eType="#//Cinema" eOpposite="#//Cinema/hall"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SeatingRow">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cinemahall" lowerBound="1"
         eType="#//CinemaHall" eOpposite="#//CinemaHall/row"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="category" eType="#//Category"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="seat" lowerBound="1" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seats" lowerBound="1" upperBound="-1"
         eType="#//Seat" eOpposite="#//Seat/row"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rowNr" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Seat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="row" lowerBound="1" eType="#//SeatingRow"
-        eOpposite="#//SeatingRow/seat"/>
+        eOpposite="#//SeatingRow/seats"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="seatNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Category">
     <eLiterals name="PARQUET"/>

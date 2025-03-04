@@ -67,17 +67,21 @@
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//CinemaHall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//CinemaHall/row"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//CinemaHall/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//CinemaHall/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//CinemaHall/cinema"/>
       <genOperations ecoreOperation="cinemaManagementSoftware.ecore#//CinemaHall/isConfigComplete"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//SeatingRow">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//SeatingRow/cinemahall"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//SeatingRow/category"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//SeatingRow/seat"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//SeatingRow/seats"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//SeatingRow/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//SeatingRow/rowNr"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Seat">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Seat/row"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Seat/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Seat/seatNumber"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

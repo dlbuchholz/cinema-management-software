@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link cinemaManagementSoftware.impl.SeatImpl#getRow <em>Row</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.SeatImpl#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.SeatImpl#getSeatNumber <em>Seat Number</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,6 +60,26 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * @ordered
 	 */
 	protected int id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSeatNumber() <em>Seat Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeatNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int SEAT_NUMBER_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getSeatNumber() <em>Seat Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSeatNumber()
+	 * @generated
+	 * @ordered
+	 */
+	protected int seatNumber = SEAT_NUMBER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,11 +161,11 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 			NotificationChain msgs = null;
 			if (row != null)
 				msgs = ((InternalEObject) row).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.SEATING_ROW__SEAT,
+						CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 						SeatingRow.class, msgs);
 			if (newRow != null)
 				msgs = ((InternalEObject) newRow).eInverseAdd(this,
-						CinemaManagementSoftwarePackage.SEATING_ROW__SEAT,
+						CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 						SeatingRow.class, msgs);
 			msgs = basicSetRow(newRow, msgs);
 			if (msgs != null)
@@ -184,13 +205,38 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * @generated
 	 */
 	@Override
+	public int getSeatNumber() {
+		return seatNumber;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSeatNumber(int newSeatNumber) {
+		int oldSeatNumber = seatNumber;
+		seatNumber = newSeatNumber;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER,
+					oldSeatNumber, seatNumber));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.SEAT__ROW:
 			if (row != null)
 				msgs = ((InternalEObject) row).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.SEATING_ROW__SEAT,
+						CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 						SeatingRow.class, msgs);
 			return basicSetRow((SeatingRow) otherEnd, msgs);
 		}
@@ -226,6 +272,8 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 			return basicGetRow();
 		case CinemaManagementSoftwarePackage.SEAT__ID:
 			return getId();
+		case CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER:
+			return getSeatNumber();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -243,6 +291,9 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 			return;
 		case CinemaManagementSoftwarePackage.SEAT__ID:
 			setId((Integer) newValue);
+			return;
+		case CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER:
+			setSeatNumber((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,6 +313,9 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 		case CinemaManagementSoftwarePackage.SEAT__ID:
 			setId(ID_EDEFAULT);
 			return;
+		case CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER:
+			setSeatNumber(SEAT_NUMBER_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -278,6 +332,8 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 			return row != null;
 		case CinemaManagementSoftwarePackage.SEAT__ID:
 			return id != ID_EDEFAULT;
+		case CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER:
+			return seatNumber != SEAT_NUMBER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -295,6 +351,8 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (id: ");
 		result.append(id);
+		result.append(", seatNumber: ");
+		result.append(seatNumber);
 		result.append(')');
 		return result.toString();
 	}

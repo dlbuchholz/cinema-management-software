@@ -633,6 +633,26 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	@Override
+	public EAttribute getCinemaHall_Name() {
+		return (EAttribute) cinemaHallEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getCinemaHall_Cinema() {
+		return (EReference) cinemaHallEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EOperation getCinemaHall__IsConfigComplete() {
 		return cinemaHallEClass.getEOperations().get(0);
 	}
@@ -673,7 +693,7 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	 * @generated
 	 */
 	@Override
-	public EReference getSeatingRow_Seat() {
+	public EReference getSeatingRow_Seats() {
 		return (EReference) seatingRowEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -685,6 +705,16 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	@Override
 	public EAttribute getSeatingRow_Id() {
 		return (EAttribute) seatingRowEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSeatingRow_RowNr() {
+		return (EAttribute) seatingRowEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -715,6 +745,16 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	@Override
 	public EAttribute getSeat_Id() {
 		return (EAttribute) seatEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSeat_SeatNumber() {
+		return (EAttribute) seatEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -809,17 +849,21 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		cinemaHallEClass = createEClass(CINEMA_HALL);
 		createEReference(cinemaHallEClass, CINEMA_HALL__ROW);
 		createEAttribute(cinemaHallEClass, CINEMA_HALL__ID);
+		createEAttribute(cinemaHallEClass, CINEMA_HALL__NAME);
+		createEReference(cinemaHallEClass, CINEMA_HALL__CINEMA);
 		createEOperation(cinemaHallEClass, CINEMA_HALL___IS_CONFIG_COMPLETE);
 
 		seatingRowEClass = createEClass(SEATING_ROW);
 		createEReference(seatingRowEClass, SEATING_ROW__CINEMAHALL);
 		createEAttribute(seatingRowEClass, SEATING_ROW__CATEGORY);
-		createEReference(seatingRowEClass, SEATING_ROW__SEAT);
+		createEReference(seatingRowEClass, SEATING_ROW__SEATS);
 		createEAttribute(seatingRowEClass, SEATING_ROW__ID);
+		createEAttribute(seatingRowEClass, SEATING_ROW__ROW_NR);
 
 		seatEClass = createEClass(SEAT);
 		createEReference(seatEClass, SEAT__ROW);
 		createEAttribute(seatEClass, SEAT__ID);
+		createEAttribute(seatEClass, SEAT__SEAT_NUMBER);
 
 		// Create enums
 		categoryEEnum = createEEnum(CATEGORY);
@@ -875,10 +919,11 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 				null, 1, 1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCinema_Hall(), this.getCinemaHall(), null, "hall",
-				null, 1, -1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCinema_Hall(), this.getCinemaHall(),
+				this.getCinemaHall_Cinema(), "hall", null, 1, -1, Cinema.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEOperation(getCinema__TotalIncome(), null, "totalIncome", 0, 1,
 				IS_UNIQUE, IS_ORDERED);
@@ -1018,6 +1063,15 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 				0, 1, CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
+		initEAttribute(getCinemaHall_Name(), ecorePackage.getEString(), "name",
+				null, 0, 1, CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getCinemaHall_Cinema(), this.getCinema(),
+				this.getCinema_Hall(), "cinema", null, 1, 1, CinemaHall.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEOperation(getCinemaHall__IsConfigComplete(), null,
 				"isConfigComplete", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1033,25 +1087,34 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 				null, 0, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getSeatingRow_Seat(), this.getSeat(), this.getSeat_Row(),
-				"seat", null, 1, -1, SeatingRow.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSeatingRow_Seats(), this.getSeat(),
+				this.getSeat_Row(), "seats", null, 1, -1, SeatingRow.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 		initEAttribute(getSeatingRow_Id(), ecorePackage.getEInt(), "id", null,
 				0, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getSeatingRow_RowNr(), ecorePackage.getEInt(), "rowNr",
+				null, 0, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		initEClass(seatEClass, Seat.class, "Seat", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSeat_Row(), this.getSeatingRow(),
-				this.getSeatingRow_Seat(), "row", null, 1, 1, Seat.class,
+				this.getSeatingRow_Seats(), "row", null, 1, 1, Seat.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 		initEAttribute(getSeat_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
 				Seat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSeat_SeatNumber(), ecorePackage.getEInt(),
+				"seatNumber", null, 0, 1, Seat.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(categoryEEnum, Category.class, "Category");

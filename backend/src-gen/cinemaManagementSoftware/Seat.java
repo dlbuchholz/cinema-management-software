@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link cinemaManagementSoftware.Seat#getRow <em>Row</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Seat#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Seat#getSeatNumber <em>Seat Number</em>}</li>
  * </ul>
  *
  * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeat()
@@ -24,14 +25,14 @@ import org.eclipse.emf.ecore.EObject;
 public interface Seat extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Row</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link cinemaManagementSoftware.SeatingRow#getSeat <em>Seat</em>}'.
+	 * It is bidirectional and its opposite is '{@link cinemaManagementSoftware.SeatingRow#getSeats <em>Seats</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Row</em>' reference.
 	 * @see #setRow(SeatingRow)
 	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeat_Row()
-	 * @see cinemaManagementSoftware.SeatingRow#getSeat
-	 * @model opposite="seat" required="true"
+	 * @see cinemaManagementSoftware.SeatingRow#getSeats
+	 * @model opposite="seats" required="true"
 	 * @generated
 	 */
 	SeatingRow getRow();
@@ -67,5 +68,27 @@ public interface Seat extends EObject {
 	 * @generated
 	 */
 	void setId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Seat Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Seat Number</em>' attribute.
+	 * @see #setSeatNumber(int)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getSeat_SeatNumber()
+	 * @model
+	 * @generated
+	 */
+	int getSeatNumber();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Seat#getSeatNumber <em>Seat Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Seat Number</em>' attribute.
+	 * @see #getSeatNumber()
+	 * @generated
+	 */
+	void setSeatNumber(int value);
 
 } // Seat

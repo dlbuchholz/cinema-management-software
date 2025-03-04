@@ -10,6 +10,54 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
+	
+	// Seat Queues
+	@Bean
+	public Queue seatCreateQueue() { return new Queue("seat.create", true); }
+
+	@Bean
+	public Queue seatFetchQueue() { return new Queue("seat.fetch", true); }
+	
+	@Bean
+	public Queue seatFetchAllQueue() { return new Queue("seat.fetch.all", true); }
+
+	@Bean
+	public Queue seatUpdateQueue() { return new Queue("seat.update", true); }
+
+	@Bean
+	public Queue seatDeleteQueue() { return new Queue("seat.delete", true); }
+
+	// SeatingRow Queues
+	@Bean
+	public Queue seatingRowCreateQueue() { return new Queue("seatingRow.create", true); }
+
+	@Bean
+	public Queue seatingRowFetchQueue() { return new Queue("seatingRow.fetch", true); }
+	
+	@Bean
+	public Queue seatingRowFetchAllQueue() { return new Queue("seatingRow.fetch.all", true); }
+
+	@Bean
+	public Queue seatingRowUpdateQueue() { return new Queue("seatingRow.update", true); }
+
+	@Bean
+	public Queue seatingRowDeleteQueue() { return new Queue("seatingRow.delete", true); }
+	
+	// Cinema Hall Queues
+    @Bean
+    public Queue cinemaHallCreateQueue() { return new Queue("cinemaHall.create", true); }
+
+    @Bean
+    public Queue cinemaHallFetchQueue() { return new Queue("cinemaHall.fetch", true); }
+
+    @Bean
+    public Queue cinemaHallFetchAllQueue() { return new Queue("cinemaHall.fetch.all", true); }
+
+    @Bean
+    public Queue cinemaHallUpdateQueue() { return new Queue("cinemaHall.update", true); }
+
+    @Bean
+    public Queue cinemaHallDeleteQueue() { return new Queue("cinemaHall.delete", true); }
 
     // Movie Queues
     @Bean
@@ -73,9 +121,6 @@ public class RabbitMQConfig {
     // Exchanges
     @Bean
     public TopicExchange exchange() { return new TopicExchange("cinemaExchange"); }
-
-    @Bean
-    public TopicExchange movieExchange() { return new TopicExchange("movieExchange"); }
 
     // Movie Bindings
     @Bean
