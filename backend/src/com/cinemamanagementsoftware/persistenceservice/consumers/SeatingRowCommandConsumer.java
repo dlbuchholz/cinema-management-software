@@ -1,9 +1,13 @@
 package com.cinemamanagementsoftware.persistenceservice.consumers;
 
+import com.cinemamanagementsoftware.persistenceservice.entities.CinemaHallEntity;
 import com.cinemamanagementsoftware.persistenceservice.entities.SeatingRowEntity;
 import com.cinemamanagementsoftware.persistenceservice.repositories.CinemaHallRepository;
 import com.cinemamanagementsoftware.persistenceservice.repositories.SeatingRowRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import cinemaManagementSoftware.Category;
+
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
@@ -53,19 +57,27 @@ public class SeatingRowCommandConsumer {
     }
 
     @RabbitListener(queues = "seatingRow.create")
-    public String createSeatingRow(String jsonRequest) {
+    public String createSeatingRow(Map<String, Object> requestData) {
         try {
-            SeatingRowEntity row = objectMapper.readValue(jsonRequest, SeatingRowEntity.class);
-
-            // Validate that CinemaHall exists
-            if (!cinemaHallRepository.existsById(row.getCinemaHall().getId())) {
-                return "{\"status\":\"error\",\"message\":\"Invalid CinemaHall ID\"}";
+            if (!requestData.containsKey("cinema_hall_id") || !requestData.containsKey("category")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'cinema_hall_id' and 'category'\"}";
             }
 
-            seatingRowRepository.save(row);
-            return "{\"status\":\"success\",\"message\":\"Seating Row created!\"}";
+            Long cinemaHallId = Long.parseLong(requestData.get("cinema_hall_id").toString());
+            Optional<CinemaHallEntity> cinemaHall = cinemaHallRepository.findById(cinemaHallId);
+
+            if (cinemaHall.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Cinema Hall not found\"}";
+            }
+
+            SeatingRowEntity newRow = new SeatingRowEntity();
+            newRow.setCinemaHall(cinemaHall.get());
+            //newRow.setCategory(Category.valueOf(requestData.get("category").toString()));
+
+            seatingRowRepository.save(newRow);
+            return objectMapper.writeValueAsString(newRow);
         } catch (Exception e) {
-            return "{\"status\":\"error\",\"message\":\"Failed to create Seating Row\"}";
+            return "{\"status\":\"error\",\"message\":\"Failed to create Seating Row: " + e.getMessage() + "\"}";
         }
     }
 

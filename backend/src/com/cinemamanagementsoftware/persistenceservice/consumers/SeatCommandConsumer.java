@@ -1,6 +1,7 @@
 package com.cinemamanagementsoftware.persistenceservice.consumers;
 
 import com.cinemamanagementsoftware.persistenceservice.entities.SeatEntity;
+import com.cinemamanagementsoftware.persistenceservice.entities.SeatingRowEntity;
 import com.cinemamanagementsoftware.persistenceservice.repositories.SeatRepository;
 import com.cinemamanagementsoftware.persistenceservice.repositories.SeatingRowRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,19 +54,26 @@ public class SeatCommandConsumer {
     }
 
     @RabbitListener(queues = "seat.create")
-    public String createSeat(String jsonRequest) {
+    public String createSeat(Map<String, Object> requestData) {
         try {
-            SeatEntity seat = objectMapper.readValue(jsonRequest, SeatEntity.class);
-
-            // Validate that SeatingRow exists
-            if (!seatingRowRepository.existsById(seat.getRow().getId())) {
-                return "{\"status\":\"error\",\"message\":\"Invalid SeatingRow ID\"}";
+            if (!requestData.containsKey("row_id")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required field: 'row_id'\"}";
             }
 
-            seatRepository.save(seat);
-            return "{\"status\":\"success\",\"message\":\"Seat created!\"}";
+            Long rowId = Long.parseLong(requestData.get("row_id").toString());
+            Optional<SeatingRowEntity> row = seatingRowRepository.findById(rowId);
+
+            if (row.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Seating Row not found\"}";
+            }
+
+            SeatEntity newSeat = new SeatEntity();
+            newSeat.setRow(row.get());
+
+            seatRepository.save(newSeat);
+            return objectMapper.writeValueAsString(newSeat);
         } catch (Exception e) {
-            return "{\"status\":\"error\",\"message\":\"Failed to create Seat\"}";
+            return "{\"status\":\"error\",\"message\":\"Failed to create Seat: " + e.getMessage() + "\"}";
         }
     }
 
