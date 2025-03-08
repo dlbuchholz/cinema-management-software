@@ -1,5 +1,7 @@
 package com.cinemamanagementsoftware.persistenceservice.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +16,7 @@ import com.cinemamanagementsoftware.persistenceservice.entities.ScreeningEntity;
 
 @Repository
 public interface ScreeningRepository extends JpaRepository<ScreeningEntity, Long> {
+	List<ScreeningEntity> findByCinemaHallId(Long cinemaHallId);
+    List<ScreeningEntity> findByMovieId(Long movieId);
 	
 }
