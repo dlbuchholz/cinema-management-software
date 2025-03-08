@@ -29,7 +29,7 @@ public class SeatController {
 
     // Fetch a specific seat by ID
     @GetMapping("/{id}")
-    public Object getSeatById(@PathVariable Long id) {
+    public Object getSeatById(@PathVariable("id") Long id) {
         Object response = rabbitTemplate.convertSendAndReceive("seat.fetch", id);
         return Objects.requireNonNullElse(response, "{\"status\":\"error\",\"message\":\"Seat not found\"}");
     }

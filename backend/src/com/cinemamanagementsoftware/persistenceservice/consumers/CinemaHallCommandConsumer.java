@@ -33,10 +33,10 @@ public class CinemaHallCommandConsumer {
     @RabbitListener(queues = "cinemaHall.fetch.all")
     public String fetchAllCinemaHalls() {
         try {
-            List<CinemaHallEntity> halls = cinemaHallRepository.findAll();
+        	List<CinemaHallEntity> halls = cinemaHallRepository.findAllWithSeatingRows();
             return objectMapper.writeValueAsString(halls);
         } catch (Exception e) {
-            return "{\"status\":\"error\",\"message\":\"Failed to fetch cinema halls\"}";
+            return "{\"status\":\"error\",\"message\":\"Failed to fetch cinema halls:" + e.toString() + "\"}";
         }
     }
 
@@ -44,16 +44,16 @@ public class CinemaHallCommandConsumer {
     @RabbitListener(queues = "cinemaHall.fetch")
     public String fetchCinemaHall(Long id) {
         try {
-            Optional<CinemaHallEntity> hall = cinemaHallRepository.findById(id);
+            Optional<CinemaHallEntity> hall = cinemaHallRepository.findByIdWithSeatingRows(id);
             return hall.map(h -> {
                 try {
                     return objectMapper.writeValueAsString(h);
                 } catch (Exception e) {
-                    return "{\"status\":\"error\",\"message\":\"Failed to serialize cinema hall\"}";
+                    return "{\"status\":\"error\",\"message\":\"Failed to serialize cinema hall: " + e.toString() + "\"}";
                 }
             }).orElse("{\"status\":\"error\",\"message\":\"Cinema Hall not found\"}");
         } catch (Exception e) {
-            return "{\"status\":\"error\",\"message\":\"Failed to fetch cinema hall\"}";
+            return "{\"status\":\"error\",\"message\":\"Failed to fetch cinema hall:" + e.toString() + "\"}";
         }
     }
     
@@ -61,11 +61,11 @@ public class CinemaHallCommandConsumer {
     public String createCinemaHall(Map<String, Object> hallData) {
         try {
             // Validate required fields
-            if (!hallData.containsKey("name") || !hallData.containsKey("cinema_id")) {
-                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'name' and 'cinema_id'\"}";
+            if (!hallData.containsKey("name") || !hallData.containsKey("cinemaId")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'name' and 'cinemaId'\"}";
             }
 
-            Long cinemaId = Long.valueOf(hallData.get("cinema_id").toString());
+            Long cinemaId = Long.valueOf(hallData.get("cinemaId").toString());
             Optional<CinemaEntity> cinemaOptional = cinemaRepository.findById(cinemaId);
 
             if (cinemaOptional.isEmpty()) {

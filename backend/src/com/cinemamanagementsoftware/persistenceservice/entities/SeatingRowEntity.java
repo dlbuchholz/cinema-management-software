@@ -1,6 +1,10 @@
 package com.cinemamanagementsoftware.persistenceservice.entities;
 
 import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -15,10 +19,12 @@ public class SeatingRowEntity {
     private int rowNr;
     
     @OneToMany(mappedBy = "row", cascade = CascadeType.ALL)
-    private List<SeatEntity> seats;
+    @JsonManagedReference
+    private Set<SeatEntity> seats;
     
     @ManyToOne
     @JoinColumn(name = "cinema_hall_id", nullable = false)
+    @JsonBackReference
     private CinemaHallEntity cinemaHall;
     
     public SeatingRowEntity() {}
@@ -37,6 +43,6 @@ public class SeatingRowEntity {
     public CinemaHallEntity getCinemaHall() { return cinemaHall; }
     public void setCinemaHall(CinemaHallEntity cinemaHall) { this.cinemaHall = cinemaHall; }
 
-    public List<SeatEntity> getSeats() { return seats; }
-    public void setSeats(List<SeatEntity> seats) { this.seats = seats; }
+    public Set<SeatEntity> getSeats() { return seats; }
+    public void setSeats(Set<SeatEntity> seats) { this.seats = seats; }
 }
