@@ -1,5 +1,6 @@
 package com.cinemamanagementsoftware.persistenceservice.consumers;
 
+import com.cinemamanagementsoftware.persistenceservice.entities.CinemaEntity;
 import com.cinemamanagementsoftware.persistenceservice.entities.CinemaHallEntity;
 import com.cinemamanagementsoftware.persistenceservice.entities.SeatingRowEntity;
 import com.cinemamanagementsoftware.persistenceservice.repositories.CinemaHallRepository;
@@ -9,8 +10,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cinemaManagementSoftware.Category;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,13 +21,15 @@ import java.util.Optional;
 @Service
 public class SeatingRowCommandConsumer {
 
+	private final CinemaHallRepository hallRepository;
 	private final SeatingRowRepository seatingRowRepository;
-    private final CinemaHallRepository cinemaHallRepository;
+	private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
 
-    public SeatingRowCommandConsumer(SeatingRowRepository rowRepository, CinemaHallRepository hallRepository, ObjectMapper objectMapper) {
-        this.seatingRowRepository = rowRepository;
-        this.cinemaHallRepository = hallRepository;
+    public SeatingRowCommandConsumer(SeatingRowRepository rowRepository, CinemaHallRepository hallRepository, RabbitTemplate rabbitTemplate,  ObjectMapper objectMapper) {
+        this.hallRepository = hallRepository;
+		this.seatingRowRepository = rowRepository;
+        this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
     }
 
@@ -32,7 +37,7 @@ public class SeatingRowCommandConsumer {
     @RabbitListener(queues = "seatingRow.fetch.all")
     public String fetchAllSeatingRows() {
         try {
-            List<SeatingRowEntity> rows = seatingRowRepository.findAll();
+            List<SeatingRowEntity> rows = seatingRowRepository.findAllWithSeats();
             return objectMapper.writeValueAsString(rows);
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Failed to fetch seating rows\"}";
@@ -43,7 +48,7 @@ public class SeatingRowCommandConsumer {
     @RabbitListener(queues = "seatingRow.fetch")
     public String fetchSeatingRow(Long id) {
         try {
-            Optional<SeatingRowEntity> row = seatingRowRepository.findById(id);
+            Optional<SeatingRowEntity> row = seatingRowRepository.findByIdWithSeats(id);
             return row.map(r -> {
                 try {
                     return objectMapper.writeValueAsString(r);
@@ -59,19 +64,15 @@ public class SeatingRowCommandConsumer {
     @RabbitListener(queues = "seatingRow.create")
     public String createSeatingRow(Map<String, Object> requestData) {
         try {
-            if (!requestData.containsKey("cinema_hall_id") || !requestData.containsKey("category")) {
-                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'cinema_hall_id' and 'category'\"}";
-            }
-
-            Long cinemaHallId = Long.parseLong(requestData.get("cinema_hall_id").toString());
-            Optional<CinemaHallEntity> cinemaHall = cinemaHallRepository.findById(cinemaHallId);
-
-            if (cinemaHall.isEmpty()) {
-                return "{\"status\":\"error\",\"message\":\"Cinema Hall not found\"}";
+            if (!requestData.containsKey("cinemaHallId") || !requestData.containsKey("category")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'cinemaHallId' and 'category'\"}";
             }
 
             SeatingRowEntity newRow = new SeatingRowEntity();
-            newRow.setCinemaHall(cinemaHall.get());
+            Long hallId = Long.valueOf(requestData.get("cinemaHallId").toString());
+            
+            Optional<CinemaHallEntity> hallOptional = hallRepository.findById(hallId);
+            newRow.setCinemaHall(hallOptional.get());
             //newRow.setCategory(Category.valueOf(requestData.get("category").toString()));
 
             seatingRowRepository.save(newRow);

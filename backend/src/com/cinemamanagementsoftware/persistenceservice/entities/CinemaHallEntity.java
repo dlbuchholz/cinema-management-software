@@ -1,8 +1,11 @@
 package com.cinemamanagementsoftware.persistenceservice.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -21,7 +24,8 @@ public class CinemaHallEntity {
     private CinemaEntity cinema;
     
     @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SeatingRowEntity> seatingRows;
+    @JsonManagedReference
+    private Set<SeatingRowEntity> seatingRows;
     
     public CinemaHallEntity() {}
 
@@ -30,7 +34,7 @@ public class CinemaHallEntity {
         this.cinema = cinema;
     }
 
-    // ✅ Getters & Setters
+    // Getters & Setters
     public Long getId() { return id; }
     
     public String getName() { return name; }
@@ -39,6 +43,6 @@ public class CinemaHallEntity {
     public CinemaEntity getCinema() { return cinema; }
     public void setCinema(CinemaEntity cinema) { this.cinema = cinema; }
 
-    public List<SeatingRowEntity> getSeatingRows() { return seatingRows; }
-    public void setSeatingRows(List<SeatingRowEntity> seatingRows) { this.seatingRows = seatingRows; }
+    public Set<SeatingRowEntity> getSeatingRows() { return seatingRows; }
+    public void setSeatingRows(Set<SeatingRowEntity> seatingRows) { this.seatingRows = seatingRows; }
 }

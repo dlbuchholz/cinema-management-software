@@ -1,5 +1,7 @@
 package com.cinemamanagementsoftware.persistenceservice.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class SeatEntity {
     
     @ManyToOne
     @JoinColumn(name = "seating_row_id", nullable = false)
+    @JsonBackReference
     private SeatingRowEntity row;
     
     public SeatEntity() {}

@@ -56,11 +56,11 @@ public class SeatCommandConsumer {
     @RabbitListener(queues = "seat.create")
     public String createSeat(Map<String, Object> requestData) {
         try {
-            if (!requestData.containsKey("row_id")) {
-                return "{\"status\":\"error\",\"message\":\"Missing required field: 'row_id'\"}";
+            if (!requestData.containsKey("rowId")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required field: 'rowId'\"}";
             }
 
-            Long rowId = Long.parseLong(requestData.get("row_id").toString());
+            Long rowId = Long.parseLong(requestData.get("rowId").toString());
             Optional<SeatingRowEntity> row = seatingRowRepository.findById(rowId);
 
             if (row.isEmpty()) {
