@@ -11,6 +11,43 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 	
+	// Screening-related queues
+    @Bean
+    public Queue screeningCreateQueue() {
+        return new Queue("screening.create", true);
+    }
+
+    @Bean
+    public Queue screeningFetchAllQueue() {
+        return new Queue("screening.fetch.all", true);
+    }
+
+    @Bean
+    public Queue screeningFetchByIdQueue() {
+        return new Queue("screening.fetch", true);
+    }
+    
+    @Bean
+    public Queue screeningFetchByHallQueue() {
+        return new Queue("screening.fetch.byHall", true);
+    }
+
+    @Bean
+    public Queue screeningFetchByMovieQueue() {
+        return new Queue("screening.fetch.byMovie", true);
+    }
+
+
+    @Bean
+    public Queue screeningUpdateQueue() {
+        return new Queue("screening.update", true);
+    }
+
+    @Bean
+    public Queue screeningDeleteQueue() {
+        return new Queue("screening.delete", true);
+    }
+	
 	// Category Queues
 	@Bean
 	public Queue categoryFetchAllQueue() { return new Queue("category.fetch.all", true); }
