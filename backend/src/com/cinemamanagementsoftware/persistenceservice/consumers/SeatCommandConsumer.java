@@ -68,6 +68,9 @@ public class SeatCommandConsumer {
             }
 
             SeatEntity newSeat = new SeatEntity();
+            if (requestData.containsKey("seatNumber")) {
+            	newSeat.setSeatNumber(Integer.parseInt(requestData.get("seatNumber").toString()));
+            }
             newSeat.setRow(row.get());
 
             seatRepository.save(newSeat);

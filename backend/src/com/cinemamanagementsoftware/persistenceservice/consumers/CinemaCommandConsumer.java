@@ -37,10 +37,7 @@ public class CinemaCommandConsumer {
             Optional<CinemaEntity> existingCinema = cinemas.stream().findFirst();
 
             if (existingCinema.isPresent()) {
-                // ✅ Send the found cinema as JSON
                 String jsonResponse = objectMapper.writeValueAsString(existingCinema.get());
-                System.out.println("✅ Found existing cinema: " + existingCinema.get().getName());
-                System.out.println(responseQueue);
                 return jsonResponse;
             } else {
             	System.out.println("⚠ No cinema found, returning empty response.");

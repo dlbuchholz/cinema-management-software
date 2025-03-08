@@ -45,7 +45,7 @@ public class MovieController {
 
     // Get a specific movie by ID
     @GetMapping("/{id}")
-    public Object getMovieById(@PathVariable Long id) {
+    public Object getMovieById(@PathVariable("id") Long id) {
         Object response = rabbitTemplate.convertSendAndReceive("movie.fetch", id);
         return Objects.requireNonNullElse(response, "{\"status\":\"error\",\"message\":\"Movie not found\"}");
     }

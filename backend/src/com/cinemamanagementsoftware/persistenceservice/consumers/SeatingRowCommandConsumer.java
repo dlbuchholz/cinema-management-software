@@ -1,8 +1,10 @@
 package com.cinemamanagementsoftware.persistenceservice.consumers;
 
+import com.cinemamanagementsoftware.persistenceservice.entities.CategoryEntity;
 import com.cinemamanagementsoftware.persistenceservice.entities.CinemaEntity;
 import com.cinemamanagementsoftware.persistenceservice.entities.CinemaHallEntity;
 import com.cinemamanagementsoftware.persistenceservice.entities.SeatingRowEntity;
+import com.cinemamanagementsoftware.persistenceservice.repositories.CategoryRepository;
 import com.cinemamanagementsoftware.persistenceservice.repositories.CinemaHallRepository;
 import com.cinemamanagementsoftware.persistenceservice.repositories.SeatingRowRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,13 +24,19 @@ import java.util.Optional;
 public class SeatingRowCommandConsumer {
 
 	private final CinemaHallRepository hallRepository;
-	private final SeatingRowRepository seatingRowRepository;
-	private final RabbitTemplate rabbitTemplate;
+    private final SeatingRowRepository seatingRowRepository;
+    private final CategoryRepository categoryRepository;
+    private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
 
-    public SeatingRowCommandConsumer(SeatingRowRepository rowRepository, CinemaHallRepository hallRepository, RabbitTemplate rabbitTemplate,  ObjectMapper objectMapper) {
+    public SeatingRowCommandConsumer(SeatingRowRepository seatingRowRepository, 
+                                     CinemaHallRepository hallRepository, 
+                                     CategoryRepository categoryRepository,
+                                     RabbitTemplate rabbitTemplate,  
+                                     ObjectMapper objectMapper) {
         this.hallRepository = hallRepository;
-		this.seatingRowRepository = rowRepository;
+        this.seatingRowRepository = seatingRowRepository;
+        this.categoryRepository = categoryRepository;
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
     }
@@ -64,16 +72,28 @@ public class SeatingRowCommandConsumer {
     @RabbitListener(queues = "seatingRow.create")
     public String createSeatingRow(Map<String, Object> requestData) {
         try {
-            if (!requestData.containsKey("cinemaHallId") || !requestData.containsKey("category")) {
-                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'cinemaHallId' and 'category'\"}";
+            if (!requestData.containsKey("cinemaHallId") || !requestData.containsKey("category") || !requestData.containsKey("nr")) {
+                return "{\"status\":\"error\",\"message\":\"Missing required fields: 'cinemaHallId', 'categoryName' and 'nr'\"}";
             }
 
-            SeatingRowEntity newRow = new SeatingRowEntity();
             Long hallId = Long.valueOf(requestData.get("cinemaHallId").toString());
-            
+            String categoryName = requestData.get("category").toString();
+
+            // Look up the cinema hall
             Optional<CinemaHallEntity> hallOptional = hallRepository.findById(hallId);
+            if (hallOptional.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Cinema hall not found\"}";
+            } // look up the category by name
+            Optional<CategoryEntity> categoryOptional = categoryRepository.findByName(categoryName);
+            if (categoryOptional.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Category not found: " + categoryName + "\"}";
+            }
+
+            // ✅ Create and save the new SeatingRowEntity
+            SeatingRowEntity newRow = new SeatingRowEntity();
             newRow.setCinemaHall(hallOptional.get());
-            //newRow.setCategory(Category.valueOf(requestData.get("category").toString()));
+            newRow.setCategory(categoryOptional.get());
+            newRow.setRowNr(Integer.parseInt(requestData.get("nr").toString()));
 
             seatingRowRepository.save(newRow);
             return objectMapper.writeValueAsString(newRow);
@@ -94,8 +114,8 @@ public class SeatingRowCommandConsumer {
             }
 
             SeatingRowEntity row = rowOptional.get();
-            if (rowData.containsKey("rowNr")) {
-                row.setrowNr(Integer.parseInt(rowData.get("rowNr")));
+            if (rowData.containsKey("nr")) {
+                row.setRowNr(Integer.parseInt(rowData.get("nr")));
             }
 
             seatingRowRepository.save(row);
