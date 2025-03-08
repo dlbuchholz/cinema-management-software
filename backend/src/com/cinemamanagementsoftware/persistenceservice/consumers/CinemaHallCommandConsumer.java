@@ -77,8 +77,10 @@ public class CinemaHallCommandConsumer {
             newHall.setName(hallData.get("name").toString());
             newHall.setCinema(cinema);
 
-            cinemaHallRepository.save(newHall);
-            return "{\"status\":\"success\",\"message\":\"Cinema Hall created successfully\"}";
+            // Save the entity and return the created object
+            CinemaHallEntity savedHall = cinemaHallRepository.save(newHall);
+            return objectMapper.writeValueAsString(savedHall);
+
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Error creating Cinema Hall: " + e.getMessage() + "\"}";
         }

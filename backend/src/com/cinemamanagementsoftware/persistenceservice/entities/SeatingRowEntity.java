@@ -27,18 +27,31 @@ public class SeatingRowEntity {
     @JsonBackReference
     private CinemaHallEntity cinemaHall;
     
-    public SeatingRowEntity() {}
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private CategoryEntity category;
+    
+    public CategoryEntity getCategory() {
+		return category;
+	}
 
-    public SeatingRowEntity(int rowNr, CinemaHallEntity cinemaHall) {
+	public void setCategory(CategoryEntity category) {
+		this.category = category;
+	}
+
+	public SeatingRowEntity() {}
+
+    public SeatingRowEntity(int rowNr, CinemaHallEntity cinemaHall, CategoryEntity category) {
         this.rowNr = rowNr;
         this.cinemaHall = cinemaHall;
+        this.category = category;
     }
 
     // Getters & Setters
     public Long getId() { return id; }
 
-    public int getrowNr() { return rowNr; }
-    public void setrowNr(int rowNr) { this.rowNr = rowNr; }
+    public int getNr() { return rowNr; }
+    public void setRowNr(int rowNr) { this.rowNr = rowNr; }
 
     public CinemaHallEntity getCinemaHall() { return cinemaHall; }
     public void setCinemaHall(CinemaHallEntity cinemaHall) { this.cinemaHall = cinemaHall; }

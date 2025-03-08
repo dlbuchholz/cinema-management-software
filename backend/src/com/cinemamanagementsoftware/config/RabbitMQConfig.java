@@ -11,6 +11,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 	
+	// Category Queues
+	@Bean
+	public Queue categoryFetchAllQueue() { return new Queue("category.fetch.all", true); }
+
+	@Bean
+	public Queue categoryFetchQueue() { return new Queue("category.fetch", true); }
+
+	@Bean
+	public Queue categoryCreateQueue() { return new Queue("category.create", true); }
+
+	@Bean
+	public Queue categoryDeleteQueue() { return new Queue("category.delete", true); }
+	
 	// Seat Queues
 	@Bean
 	public Queue seatCreateQueue() { return new Queue("seat.create", true); }
