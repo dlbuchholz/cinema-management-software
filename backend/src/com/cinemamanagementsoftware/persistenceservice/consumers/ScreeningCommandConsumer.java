@@ -8,6 +8,7 @@ import com.cinemamanagementsoftware.persistenceservice.repositories.MovieReposit
 import com.cinemamanagementsoftware.persistenceservice.repositories.ScreeningRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -20,15 +21,18 @@ public class ScreeningCommandConsumer {
     private final MovieRepository movieRepository;
     private final CinemaHallRepository cinemaHallRepository;
     private final ObjectMapper objectMapper;
+    private final RabbitTemplate rabbitTemplate;
 
     public ScreeningCommandConsumer(ScreeningRepository screeningRepository,
                                     MovieRepository movieRepository,
                                     CinemaHallRepository cinemaHallRepository,
+                                    RabbitTemplate rabbitTemplate,
                                     ObjectMapper objectMapper) {
         this.screeningRepository = screeningRepository;
         this.movieRepository = movieRepository;
         this.cinemaHallRepository = cinemaHallRepository;
         this.objectMapper = objectMapper;
+		this.rabbitTemplate = rabbitTemplate;
     }
 
     // Fetch all screenings
@@ -119,6 +123,17 @@ public class ScreeningCommandConsumer {
 
             ScreeningEntity newScreening = new ScreeningEntity(movieOpt.get(), hallOpt.get(), screeningDate, startTime, endTime);
             screeningRepository.save(newScreening);
+            
+            // ðŸ”” Publish event to RabbitMQ
+            Map<String, Object> eventPayload = new HashMap<>();
+            eventPayload.put("id", newScreening.getId());
+            eventPayload.put("movieId", movieId);
+            eventPayload.put("cinemaHallId", hallId);
+            eventPayload.put("date", screeningDate);
+            eventPayload.put("startTime", startTime);
+            eventPayload.put("endTime", endTime);
+
+            rabbitTemplate.convertAndSend("event.screening.created", eventPayload);
 
             return objectMapper.writeValueAsString(newScreening);
         } catch (Exception e) {
