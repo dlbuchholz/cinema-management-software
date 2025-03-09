@@ -32,7 +32,7 @@ public class ScreeningCommandConsumer {
         this.movieRepository = movieRepository;
         this.cinemaHallRepository = cinemaHallRepository;
         this.objectMapper = objectMapper;
-		this.rabbitTemplate = rabbitTemplate;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     // Fetch all screenings
@@ -124,7 +124,7 @@ public class ScreeningCommandConsumer {
             ScreeningEntity newScreening = new ScreeningEntity(movieOpt.get(), hallOpt.get(), screeningDate, startTime, endTime);
             screeningRepository.save(newScreening);
             
-            // ðŸ”” Publish event to RabbitMQ
+            // Publish event to RabbitMQ
             Map<String, Object> eventPayload = new HashMap<>();
             eventPayload.put("id", newScreening.getId());
             eventPayload.put("movieId", movieId);

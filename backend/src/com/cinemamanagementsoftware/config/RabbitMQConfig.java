@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-	
+
 	
 	// Booking Events
     @Bean
@@ -32,7 +32,6 @@ public class RabbitMQConfig {
     @Bean
     public Queue customerDeletedQueue() { return new Queue("event.customer.deleted", true); }
 
-	
 	// Screening-related queues
     @Bean
     public Queue screeningCreateQueue() {
