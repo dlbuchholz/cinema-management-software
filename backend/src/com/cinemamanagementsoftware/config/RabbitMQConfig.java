@@ -10,7 +10,28 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
+
 	
+	// Booking Events
+    @Bean
+    public Queue bookingCreatedQueue() { return new Queue("event.booking.created", true); }
+    @Bean
+    public Queue bookingCanceledQueue() { return new Queue("event.booking.canceled", true); }
+
+    // Screening Events
+    @Bean
+    public Queue screeningCreatedQueue() { return new Queue("event.screening.created", true); }
+    @Bean
+    public Queue screeningUpdatedQueue() { return new Queue("event.screening.updated", true); }
+    @Bean
+    public Queue screeningDeletedQueue() { return new Queue("event.screening.deleted", true); }
+
+    // Customer Events
+    @Bean
+    public Queue customerRegisteredQueue() { return new Queue("event.customer.registered", true); }
+    @Bean
+    public Queue customerDeletedQueue() { return new Queue("event.customer.deleted", true); }
+
 	// Screening-related queues
     @Bean
     public Queue screeningCreateQueue() {

@@ -1,7 +1,6 @@
 package com.cinemamanagementsoftware;
 
 import com.cinemamanagementsoftware.applicationservice.ConsoleInterface;
-import com.cinemamanagementsoftware.statisticsservice.GraphDatabaseController;
 
 import cinemaManagementSoftware.Cinema;
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
@@ -26,7 +25,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "com.cinemamanagementsoftware.persistenceservice",      		// Persistence Layer (JPA)
         "com.cinemamanagementsoftware.persistenceservice.consumers", 	// RabbitMQ Consumers
         "com.cinemamanagementsoftware.persistenceservice.repositories", // MySQL Repositories
-        "com.cinemamanagementsoftware.statisticsservice"        		// MongoDB & Graph Database Statistics
+        "com.cinemamanagementsoftware.statisticsservice"        		// Neo4j & Graph Database Statistics
 })
 @EnableJpaRepositories(basePackages = "com.cinemamanagementsoftware.persistenceservice.repositories")
 @EntityScan("com.cinemamanagementsoftware.persistenceservice.entities") 
@@ -38,15 +37,13 @@ public class Main {
     	
     	// Get RabbitMQ template
         RabbitTemplate rabbitTemplate = context.getBean(RabbitTemplate.class);
-        GraphDatabaseController neo4jController = new GraphDatabaseController();
-        
         // Register Ecore Package
         EPackage.Registry.INSTANCE.put(CinemaManagementSoftwarePackage.eNS_URI, CinemaManagementSoftwarePackage.eINSTANCE);
         //CinemaManagementSoftwarePackage.eINSTANCE.eClass(); // Ensure package is registered
         //Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
         
         // Start the interactive console interface	
-        ConsoleInterface consoleInterface = new ConsoleInterface(rabbitTemplate, neo4jController);
+        ConsoleInterface consoleInterface = new ConsoleInterface(rabbitTemplate);
         consoleInterface.start();
         
         // Shutdown Spring Boot after execution

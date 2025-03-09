@@ -1,33 +1,73 @@
 package com.cinemamanagementsoftware.applicationservice.api;
 
-//import com.cinemamanagementsoftware.config.RabbitMQSender;
-import com.cinemamanagementsoftware.persistenceservice.repositories.ScreeningRepository;
-
-import cinemaManagementSoftware.impl.ScreeningImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Objects;
+
+/*
+ * 	GET /api/statistics/revenue/screening/{screeningId}
+ *	GET /api/statistics/revenue/movie/{movieId}
+ *	GET /api/statistics/revenue/cinema-hall/{hallId}
+ *	GET /api/statistics/revenue/date-range?from=YYYY-MM-DD&to=YYYY-MM-DD
+ *	GET /api/statistics/occupancy/screening/{screeningId}
+ *	GET /api/statistics/occupancy/hall/{hallId}
+ *	GET /api/statistics/top-movies
+ *	GET /api/statistics/top-screenings
+ *	GET /api/statistics/customer-trends
+ */
 
 @RestController
 @RequestMapping("/api/statistics")
 public class StatisticsController {
-	/*
-    private final ScreeningRepository screeningRepository;
-    private final RabbitMQSender rabbitMQSender;
+    private final RabbitTemplate rabbitTemplate;
 
-    @Autowired
-    public StatisticsController(ScreeningRepository screeningRepository, RabbitMQSender rabbitMQSender) {
-        this.screeningRepository = screeningRepository;
-        this.rabbitMQSender = rabbitMQSender;
+    public StatisticsController(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
     }
 
-    // ✅ Send statistics about a screening (e.g., earnings) via RabbitMQ
-    @PostMapping("/earnings")
-    public String sendEarningsStatistics(@RequestBody Map<String, Object> statistics) {
-        rabbitMQSender.send(statistics);
-        return "📨 Earnings statistics sent to RabbitMQ!";
-    }*/
+    @GetMapping("/revenue/screening/{screeningId}")
+    public Object getScreeningRevenue(@PathVariable Long screeningId) {
+        return rabbitTemplate.convertSendAndReceive("statistics.revenue.screening", screeningId);
+    }
+
+    @GetMapping("/revenue/movie/{movieId}")
+    public Object getMovieRevenue(@PathVariable Long movieId) {
+        return rabbitTemplate.convertSendAndReceive("statistics.revenue.movie", movieId);
+    }
+
+    @GetMapping("/revenue/cinema-hall/{hallId}")
+    public Object getCinemaHallRevenue(@PathVariable Long hallId) {
+        return rabbitTemplate.convertSendAndReceive("statistics.revenue.cinemaHall", hallId);
+    }
+
+    @GetMapping("/revenue/date-range")
+    public Object getRevenueByDateRange(@RequestParam String from, @RequestParam String to) {
+        return rabbitTemplate.convertSendAndReceive("statistics.revenue.dateRange", from + "," + to);
+    }
+
+    @GetMapping("/occupancy/screening/{screeningId}")
+    public Object getScreeningOccupancy(@PathVariable Long screeningId) {
+        return rabbitTemplate.convertSendAndReceive("statistics.occupancy.screening", screeningId);
+    }
+
+    @GetMapping("/occupancy/hall/{hallId}")
+    public Object getHallOccupancy(@PathVariable Long hallId) {
+        return rabbitTemplate.convertSendAndReceive("statistics.occupancy.hall", hallId);
+    }
+
+    @GetMapping("/top-movies")
+    public Object getTopMovies() {
+        return rabbitTemplate.convertSendAndReceive("statistics.top.movies", "");
+    }
+
+    @GetMapping("/top-screenings")
+    public Object getTopScreenings() {
+        return rabbitTemplate.convertSendAndReceive("statistics.top.screenings", "");
+    }
+
+    @GetMapping("/customer-trends")
+    public Object getCustomerTrends() {
+        return rabbitTemplate.convertSendAndReceive("statistics.customer.trends", "");
+    }
 }

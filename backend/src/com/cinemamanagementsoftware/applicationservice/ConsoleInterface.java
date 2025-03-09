@@ -2,7 +2,6 @@ package com.cinemamanagementsoftware.applicationservice;
 
 import cinemaManagementSoftware.Cinema;
 import cinemaManagementSoftware.CinemaManagementSoftwareFactory;
-import com.cinemamanagementsoftware.statisticsservice.GraphDatabaseController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -16,14 +15,12 @@ import java.util.UUID;
 
 public class ConsoleInterface {
     private final RabbitTemplate rabbitTemplate;
-    private final GraphDatabaseController graphDatabaseController;
     private final ObjectMapper objectMapper;
     private Cinema cinema;
     private final Scanner scanner = new Scanner(System.in);
 
-    public ConsoleInterface(RabbitTemplate rabbitTemplate, GraphDatabaseController graphDatabaseController) {
+    public ConsoleInterface(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        this.graphDatabaseController = graphDatabaseController;
         
         // Setup EMF JSON-Jackson Serializer
         this.objectMapper = new ObjectMapper();
@@ -122,7 +119,7 @@ public class ConsoleInterface {
 
             case "/stats":
                 System.out.println("📊 Fetching statistics...");
-                graphDatabaseController.executeQuery("MATCH (c:CinemaStatistics) RETURN c");
+                //graphDatabaseController.executeQuery("MATCH (c:CinemaStatistics) RETURN c");
                 break;
 
             default:
