@@ -66,18 +66,16 @@ public class TicketCommandConsumer {
         }
     }
 
-    // 🔹 New: Create a ticket ONLY if the seat is available
     @RabbitListener(queues = "ticket.create")
-    public String processCreateTicket(String jsonRequest) {
+    public String processCreateTicket(Map<String, Object> requestMap) {  
         try {
-            Map<String, Object> requestMap = objectMapper.readValue(jsonRequest, new TypeReference<>() {});
-
+            // Extract values from the received Map
             Long customerId = Long.valueOf(requestMap.get("customerId").toString());
             Long screeningId = Long.valueOf(requestMap.get("screeningId").toString());
             Long seatId = Long.valueOf(requestMap.get("seatId").toString());
             Double price = Double.valueOf(requestMap.get("price").toString());
 
-            // 🔹 Check if seat is already booked
+            // Check if seat is already booked
             if (ticketRepository.existsByScreeningIdAndSeatId(screeningId, seatId)) {
                 return "{\"status\":\"error\",\"message\":\"Seat is already taken\"}";
             }
@@ -91,7 +89,7 @@ public class TicketCommandConsumer {
                 return "{\"status\":\"error\",\"message\":\"Invalid customer, screening, or seat ID!\"}";
             }
 
-            // 🔹 Create and save the ticket
+            // Create and save the ticket
             TicketEntity newTicket = new TicketEntity();
             newTicket.setOwner(customerOpt.get());
             newTicket.setScreening(screeningOpt.get());
@@ -106,6 +104,7 @@ public class TicketCommandConsumer {
             return "{\"status\":\"error\",\"message\":\"Failed to create ticket: " + e.getMessage() + "\"}";
         }
     }
+
     
     @RabbitListener(queues = "ticket.get")
     public String processGetTickets(String jsonRequest) {
