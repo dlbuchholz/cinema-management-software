@@ -177,10 +177,25 @@ public class RabbitMQConfig {
     public Queue ticketCreateQueue() {
         return new Queue("ticket.create", true);
     }
+    
+    @Bean
+    public Queue ticketGetQueue() {
+    	return new Queue("ticket.get", true);
+    }
 
     @Bean
     public Queue ticketGetByCustomerAndScreeningQueue() {
         return new Queue("ticket.getByCustomerAndScreening", true);
+    }
+    
+    @Bean
+    public Queue ticketGetByScreeningQueue() {
+    	return new Queue("ticket.getByScreening", true);
+    }
+
+    @Bean
+    public Queue ticketGetByCustomerQueue() {
+        return new Queue("ticket.getByCustomer", true);
     }
 
     @Bean
@@ -191,6 +206,16 @@ public class RabbitMQConfig {
     @Bean
     public Queue ticketCheckSeatQueue() {
         return new Queue("ticket.checkSeat", true);
+    }
+    
+    @Bean
+    public Queue ticketDeleteQueue() {
+    	return new Queue("ticket.delete", true);
+    }
+    
+    @Bean 
+    public Queue ticketBookQueue() {
+    	return new Queue("ticket.book", true);
     }
 
     // Customer & Owner Queues

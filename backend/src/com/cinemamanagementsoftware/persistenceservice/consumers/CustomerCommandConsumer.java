@@ -52,18 +52,28 @@ public class CustomerCommandConsumer {
     }
 
     @RabbitListener(queues = "customer.create")
-    public String createCustomer(String jsonCustomer) {
+    public String createCustomer(Map<String, Object> request) {  
         try {
-            // Deserialize request payload
-            CustomerEntity customer = objectMapper.readValue(jsonCustomer, CustomerEntity.class);
+            // Extract user details from the received Map
+            String email = (String) request.get("email");
+            String name = (String) request.get("name");
+            String password = (String) request.get("password");
+            String telephone = (String) request.get("telephone");
 
             // Check if email already exists
-            Optional<CustomerEntity> existingCustomer = customerRepository.findByEmail(customer.getEmail());
+            Optional<CustomerEntity> existingCustomer = customerRepository.findByEmail(email);
             if (existingCustomer.isPresent()) {
                 return "{\"status\":\"error\",\"message\":\"User already exists!\"}";
             }
 
-            // Save customer to database
+            // Create a new CustomerEntity
+            CustomerEntity customer = new CustomerEntity();
+            customer.setEmail(email);
+            customer.setName(name);
+            customer.setPassword(password);
+            customer.setTelephone(telephone);
+
+            // Save customer to the database
             customerRepository.save(customer);
             return "{\"status\":\"success\",\"message\":\"Customer registered successfully!\"}";
 
@@ -71,4 +81,5 @@ public class CustomerCommandConsumer {
             return "{\"status\":\"error\",\"message\":\"Error creating customer: " + e.getMessage() + "\"}";
         }
     }
+
 }

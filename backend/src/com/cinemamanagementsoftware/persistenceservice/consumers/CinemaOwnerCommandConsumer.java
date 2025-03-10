@@ -1,5 +1,6 @@
 package com.cinemamanagementsoftware.persistenceservice.consumers;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -51,24 +52,30 @@ public class CinemaOwnerCommandConsumer {
     }
 
     @RabbitListener(queues = "owner.create")
-    public String createOwner(String jsonOwner) {
+    public String createOwner(Map<String, Object> request) {  
         try {
-            // Deserialize request payload
-            CinemaOwnerEntity owner = objectMapper.readValue(jsonOwner, CinemaOwnerEntity.class);
+            // Extract user details from the received Map
+            String email = (String) request.get("email");
+            String name = (String) request.get("name");
 
             // Check if email already exists
-            Optional<CinemaOwnerEntity> existingOwner = cinemaOwnerRepository.findByEmail(owner.getEmail());
+            Optional<CinemaOwnerEntity> existingOwner = cinemaOwnerRepository.findByEmail(email);
             if (existingOwner.isPresent()) {
                 return "{\"status\":\"error\",\"message\":\"Cinema owner already exists!\"}";
             }
 
-            // Save owner to database
+            CinemaOwnerEntity owner = new CinemaOwnerEntity();
+            owner.setEmail(email);
+            owner.setName(name);
+
             cinemaOwnerRepository.save(owner);
+
             return "{\"status\":\"success\",\"message\":\"Cinema owner registered successfully!\"}";
 
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Error creating cinema owner: " + e.getMessage() + "\"}";
         }
     }
+
 }
 

@@ -26,12 +26,7 @@ public class CustomerEntity {
     private String telephone;
 
     // Constructor for New Customer
-    public CustomerEntity(String email, String password, String name, String telephone) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.telephone = telephone;
-    }
+    public CustomerEntity() {}
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

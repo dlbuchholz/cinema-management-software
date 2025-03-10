@@ -33,7 +33,7 @@ public class AuthenticationService {
 
         // Synchronously fetch existing user from customer service
         String existingUserJson = (String) rabbitTemplate.convertSendAndReceive("customer.fetch", email);
-        if (existingUserJson != null && !existingUserJson.trim().isEmpty() && !existingUserJson.equals("{}")) {
+        if (existingUserJson != null && !existingUserJson.trim().isEmpty() && !existingUserJson.equals("{\"status\":\"error\",\"message\":\"Customer not found.\"}")) {
             return "{\"status\":\"error\", \"message\":\"User already exists!\"}";
         }
 
@@ -48,7 +48,7 @@ public class AuthenticationService {
         newUser.put("telephone", telephone);
         
         // Asynchronously send user creation request (no reply expected)
-        rabbitTemplate.convertAndSend("customer.create", newUser);
+        rabbitTemplate.convertSendAndReceive("customer.create", newUser);
 
         // Generate JWT and return success JSON
         String token = jwtUtil.generateToken(email);
@@ -66,7 +66,7 @@ public class AuthenticationService {
 
             // Synchronously fetch existing owner from cinema owner service
             String existingOwnerJson = (String) rabbitTemplate.convertSendAndReceive("owner.fetch", email);
-            if (existingOwnerJson != null && !existingOwnerJson.trim().isEmpty() && !existingOwnerJson.equals("{}")) {
+            if (existingOwnerJson != null && !existingOwnerJson.trim().isEmpty() && !existingOwnerJson.equals("{\"status\":\"error\",\"message\":\"Cinema Owner not found.\"}")) {
                 return "{\"status\":\"error\", \"message\":\"Cinema owner already exists!\"}";
             }
 
@@ -80,7 +80,7 @@ public class AuthenticationService {
             newOwner.put("password", hashedPassword);
 
             // Asynchronously send owner creation request
-            rabbitTemplate.convertAndSend("owner.create", newOwner);
+            rabbitTemplate.convertSendAndReceive("owner.create", newOwner);
 
             // Generate JWT and return success JSON
             String token = jwtUtil.generateToken(email);
