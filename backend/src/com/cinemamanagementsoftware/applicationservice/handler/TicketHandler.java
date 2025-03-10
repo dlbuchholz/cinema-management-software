@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.eclipse.emfcloud.jackson.module.EMFModule;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,7 +24,7 @@ public class TicketHandler {
 	private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
     
-	
+	@Autowired
 	public TicketHandler(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
         this.rabbitTemplate = rabbitTemplate;
         this.objectMapper = objectMapper;
