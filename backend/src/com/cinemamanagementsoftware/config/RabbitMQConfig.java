@@ -10,8 +10,52 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-
 	
+	 	@Bean
+	    public Queue revenueByScreeningQueue() {
+	        return new Queue("statistics.revenue.screening", true);
+	    }
+
+	    @Bean
+	    public Queue revenueByMovieQueue() {
+	        return new Queue("statistics.revenue.movie", true);
+	    }
+
+	    @Bean
+	    public Queue revenueByCinemaHallQueue() {
+	        return new Queue("statistics.revenue.cinema-hall", true);
+	    }
+
+	    @Bean
+	    public Queue revenueByDateRangeQueue() {
+	        return new Queue("statistics.revenue.date-range", true);
+	    }
+
+	    @Bean
+	    public Queue occupancyByScreeningQueue() {
+	        return new Queue("statistics.occupancy.screening", true);
+	    }
+
+	    @Bean
+	    public Queue occupancyByHallQueue() {
+	        return new Queue("statistics.occupancy.hall", true);
+	    }
+	    
+	    @Bean
+	    public Queue topMoviesQueue() {
+	        return new Queue("statistics.top-movies", true);
+	    }
+
+	    @Bean
+	    public Queue topScreeningsQueue() {
+	        return new Queue("statistics.top-screenings", true);
+	    }
+
+	    @Bean
+	    public Queue customerTrendsQueue() {
+	        return new Queue("statistics.customer-trends", true);
+	    }
+
 	// Booking Events
     @Bean
     public Queue bookingCreatedQueue() { return new Queue("event.booking.created", true); }
