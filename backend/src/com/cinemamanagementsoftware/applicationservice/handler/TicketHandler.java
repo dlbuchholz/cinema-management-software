@@ -10,6 +10,7 @@ import org.eclipse.emfcloud.jackson.module.EMFModule;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -20,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import cinemaManagementSoftware.Ticket;
 import cinemaManagementSoftware.Customer;
 
+@Component
 public class TicketHandler {
 	private final RabbitTemplate rabbitTemplate;
     private final ObjectMapper objectMapper;
