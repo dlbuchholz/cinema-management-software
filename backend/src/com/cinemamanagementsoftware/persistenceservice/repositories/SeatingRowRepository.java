@@ -18,4 +18,6 @@ public interface SeatingRowRepository extends JpaRepository<SeatingRowEntity, Lo
 	
 	@Query("SELECT sr FROM SeatingRowEntity sr LEFT JOIN FETCH sr.seats WHERE sr.id = :id")
     Optional<SeatingRowEntity> findByIdWithSeats(@Param("id") Long id);
+	
+	List<SeatingRowEntity> findByCinemaHallId(Long cinemaHallId);
 }

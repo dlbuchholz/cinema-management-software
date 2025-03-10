@@ -169,9 +169,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 		String oldTitle = title;
 		title = newTitle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.MOVIE__TITLE, oldTitle,
-					title));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.MOVIE__TITLE,
+					oldTitle, title));
 	}
 
 	/**
@@ -194,8 +193,7 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION,
 					oldDescription, description));
 	}
 
@@ -219,9 +217,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 		double oldLength = length;
 		length = newLength;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.MOVIE__LENGTH, oldLength,
-					length));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.MOVIE__LENGTH,
+					oldLength, length));
 	}
 
 	/**
@@ -244,8 +241,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.MOVIE__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.MOVIE__ID, oldId,
+					id));
 	}
 
 	/**
@@ -268,9 +265,8 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 		String oldGenre = genre;
 		genre = newGenre;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.MOVIE__GENRE, oldGenre,
-					genre));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.MOVIE__GENRE,
+					oldGenre, genre));
 	}
 
 	/**
@@ -358,18 +354,15 @@ public class MovieImpl extends MinimalEObjectImpl.Container implements Movie {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.MOVIE__TITLE:
-			return TITLE_EDEFAULT == null ? title != null
-					: !TITLE_EDEFAULT.equals(title);
+			return TITLE_EDEFAULT == null ? title != null : !TITLE_EDEFAULT.equals(title);
 		case CinemaManagementSoftwarePackage.MOVIE__DESCRIPTION:
-			return DESCRIPTION_EDEFAULT == null ? description != null
-					: !DESCRIPTION_EDEFAULT.equals(description);
+			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		case CinemaManagementSoftwarePackage.MOVIE__LENGTH:
 			return length != LENGTH_EDEFAULT;
 		case CinemaManagementSoftwarePackage.MOVIE__ID:
 			return id != ID_EDEFAULT;
 		case CinemaManagementSoftwarePackage.MOVIE__GENRE:
-			return GENRE_EDEFAULT == null ? genre != null
-					: !GENRE_EDEFAULT.equals(genre);
+			return GENRE_EDEFAULT == null ? genre != null : !GENRE_EDEFAULT.equals(genre);
 		}
 		return super.eIsSet(featureID);
 	}

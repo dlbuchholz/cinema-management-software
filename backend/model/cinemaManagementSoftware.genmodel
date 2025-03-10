@@ -45,6 +45,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Ticket/price"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Ticket/isBooked"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute cinemaManagementSoftware.ecore#//Ticket/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Ticket/owner"/>
     </genClasses>
     <genClasses ecoreClass="cinemaManagementSoftware.ecore#//Screening">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference cinemaManagementSoftware.ecore#//Screening/movie"/>

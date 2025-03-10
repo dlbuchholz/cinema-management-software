@@ -31,8 +31,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
-		implements CinemaManagementSoftwarePackage {
+public class CinemaManagementSoftwarePackageImpl extends EPackageImpl implements CinemaManagementSoftwarePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,8 +153,7 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 					.getEPackage(CinemaManagementSoftwarePackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredCinemaManagementSoftwarePackage = EPackage.Registry.INSTANCE
-				.get(eNS_URI);
+		Object registeredCinemaManagementSoftwarePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
 		CinemaManagementSoftwarePackageImpl theCinemaManagementSoftwarePackage = registeredCinemaManagementSoftwarePackage instanceof CinemaManagementSoftwarePackageImpl
 				? (CinemaManagementSoftwarePackageImpl) registeredCinemaManagementSoftwarePackage
 				: new CinemaManagementSoftwarePackageImpl();
@@ -172,8 +170,7 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		theCinemaManagementSoftwarePackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(CinemaManagementSoftwarePackage.eNS_URI,
-				theCinemaManagementSoftwarePackage);
+		EPackage.Registry.INSTANCE.put(CinemaManagementSoftwarePackage.eNS_URI, theCinemaManagementSoftwarePackage);
 		return theCinemaManagementSoftwarePackage;
 	}
 
@@ -435,6 +432,16 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 	@Override
 	public EAttribute getTicket_Id() {
 		return (EAttribute) ticketEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTicket_Owner() {
+		return (EReference) ticketEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -827,6 +834,7 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		createEAttribute(ticketEClass, TICKET__PRICE);
 		createEAttribute(ticketEClass, TICKET__IS_BOOKED);
 		createEAttribute(ticketEClass, TICKET__ID);
+		createEReference(ticketEClass, TICKET__OWNER);
 
 		screeningEClass = createEClass(SCREENING);
 		createEReference(screeningEClass, SCREENING__MOVIE);
@@ -902,219 +910,141 @@ public class CinemaManagementSoftwarePackageImpl extends EPackageImpl
 		cinemaOwnerEClass.getESuperTypes().add(this.getPerson());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(cinemaEClass, Cinema.class, "Cinema", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCinema_Id(), ecorePackage.getELong(), "id", null, 0,
-				1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCinema_Name(), ecorePackage.getEString(), "name",
-				null, 0, 1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+		initEClass(cinemaEClass, Cinema.class, "Cinema", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCinema_Id(), ecorePackage.getELong(), "id", null, 0, 1, Cinema.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCinema_Name(), ecorePackage.getEString(), "name", null, 0, 1, Cinema.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCinema_Location(), ecorePackage.getEString(), "location", null, 0, 1, Cinema.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCinema_Owner(), this.getCinemaOwner(), null, "owner", null, 1, 1, Cinema.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getCinema_Location(), ecorePackage.getEString(),
-				"location", null, 0, 1, Cinema.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getCinema_Owner(), this.getCinemaOwner(), null, "owner",
-				null, 1, 1, Cinema.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getCinema_Hall(), this.getCinemaHall(), this.getCinemaHall_Cinema(), "hall", null, 1, -1,
+				Cinema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCinema_Hall(), this.getCinemaHall(),
-				this.getCinemaHall_Cinema(), "hall", null, 1, -1, Cinema.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
-		initEOperation(getCinema__TotalIncome(), null, "totalIncome", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
+		initEOperation(getCinema__TotalIncome(), null, "totalIncome", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(personEClass, Person.class, "Person", IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPerson_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
-				Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPerson_Password(), ecorePackage.getEString(),
-				"password", null, 0, 1, Person.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPerson_Email(), ecorePackage.getEString(), "email",
-				null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
+		initEClass(personEClass, Person.class, "Person", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPerson_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Person.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPerson_Password(), ecorePackage.getEString(), "password", null, 0, 1, Person.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPerson_Email(), ecorePackage.getEString(), "email", null, 0, 1, Person.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(customerEClass, Customer.class, "Customer", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCustomer_Ticket(), this.getTicket(), null, "ticket",
-				null, 1, -1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCustomer_Telephone(), ecorePackage.getEString(),
-				"telephone", null, 0, 1, Customer.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCustomer_Name(), ecorePackage.getEString(), "name",
-				null, 0, 1, Customer.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getCustomer_Surname(), ecorePackage.getEString(),
-				"surname", null, 0, 1, Customer.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getCustomer__Book(), null, "book", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-
-		initEOperation(getCustomer__Reserve(), null, "reserve", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-
-		initEOperation(getCustomer__Cancel(), null, "cancel", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-
-		initEClass(cinemaOwnerEClass, CinemaOwner.class, "CinemaOwner",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(ticketEClass, Ticket.class, "Ticket", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTicket_Screening(), this.getScreening(), null,
-				"screening", null, 1, 1, Ticket.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTicket_Seat(), this.getSeat(), null, "seat", null, 1,
-				1, Ticket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTicket_Price(), ecorePackage.getEDouble(), "price",
-				null, 0, 1, Ticket.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getTicket_IsBooked(), ecorePackage.getEBoolean(),
-				"isBooked", null, 0, 1, Ticket.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTicket_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
-				Ticket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(screeningEClass, Screening.class, "Screening", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getScreening_Movie(), this.getMovie(), null, "movie",
-				null, 1, 1, Screening.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getScreening_Hall(), this.getCinemaHall(), null, "hall",
-				null, 1, 1, Screening.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScreening_Date(), ecorePackage.getEDate(), "date",
-				null, 0, 1, Screening.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getScreening_StartTime(), ecorePackage.getEDouble(),
-				"startTime", null, 0, 1, Screening.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScreening_EndTime(), ecorePackage.getEDouble(),
-				"endTime", null, 0, 1, Screening.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getScreening_Id(), ecorePackage.getEInt(), "id", null, 0,
-				1, Screening.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEOperation(getScreening__HasStarted(), null, "hasStarted", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getScreening__NumReservations(), null, "numReservations",
-				0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getScreening__NumBookings(), null, "numBookings", 0, 1,
-				IS_UNIQUE, IS_ORDERED);
-
-		initEClass(movieEClass, Movie.class, "Movie", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMovie_Title(), ecorePackage.getEString(), "title",
-				null, 0, 1, Movie.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getMovie_Description(), ecorePackage.getEString(),
-				"description", null, 0, 1, Movie.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMovie_Length(), ecorePackage.getEDouble(), "length",
-				null, 0, 1, Movie.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getMovie_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
-				Movie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMovie_Genre(), ecorePackage.getEString(), "genre",
-				null, 0, 1, Movie.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(cinemaHallEClass, CinemaHall.class, "CinemaHall",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCinemaHall_Row(), this.getSeatingRow(),
-				this.getSeatingRow_Cinemahall(), "row", null, 1, -1,
-				CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCinemaHall_Id(), ecorePackage.getEInt(), "id", null,
-				0, 1, CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getCinemaHall_Name(), ecorePackage.getEString(), "name",
-				null, 0, 1, CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getCinemaHall_Cinema(), this.getCinema(),
-				this.getCinema_Hall(), "cinema", null, 1, 1, CinemaHall.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEOperation(getCinemaHall__IsConfigComplete(), null,
-				"isConfigComplete", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(seatingRowEClass, SeatingRow.class, "SeatingRow",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSeatingRow_Cinemahall(), this.getCinemaHall(),
-				this.getCinemaHall_Row(), "cinemahall", null, 1, 1,
-				SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSeatingRow_Category(), this.getCategory(), "category",
-				null, 0, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getSeatingRow_Seats(), this.getSeat(),
-				this.getSeat_Row(), "seats", null, 1, -1, SeatingRow.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getSeatingRow_Id(), ecorePackage.getEInt(), "id", null,
-				0, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getSeatingRow_RowNr(), ecorePackage.getEInt(), "rowNr",
-				null, 0, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(seatEClass, Seat.class, "Seat", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(customerEClass, Customer.class, "Customer", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSeat_Row(), this.getSeatingRow(),
-				this.getSeatingRow_Seats(), "row", null, 1, 1, Seat.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+		initEReference(getCustomer_Ticket(), this.getTicket(), this.getTicket_Owner(), "ticket", null, 1, -1,
+				Customer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomer_Telephone(), ecorePackage.getEString(), "telephone", null, 0, 1, Customer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomer_Name(), ecorePackage.getEString(), "name", null, 0, 1, Customer.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCustomer_Surname(), ecorePackage.getEString(), "surname", null, 0, 1, Customer.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getCustomer__Book(), null, "book", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getCustomer__Reserve(), null, "reserve", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getCustomer__Cancel(), null, "cancel", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(cinemaOwnerEClass, CinemaOwner.class, "CinemaOwner", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(ticketEClass, Ticket.class, "Ticket", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTicket_Screening(), this.getScreening(), null, "screening", null, 1, 1, Ticket.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTicket_Seat(), this.getSeat(), null, "seat", null, 1, 1, Ticket.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEAttribute(getSeat_Id(), ecorePackage.getEInt(), "id", null, 0, 1,
-				Seat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSeat_SeatNumber(), ecorePackage.getEInt(),
-				"seatNumber", null, 0, 1, Seat.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTicket_Price(), ecorePackage.getEDouble(), "price", null, 0, 1, Ticket.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTicket_IsBooked(), ecorePackage.getEBoolean(), "isBooked", null, 0, 1, Ticket.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTicket_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Ticket.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTicket_Owner(), this.getCustomer(), this.getCustomer_Ticket(), "owner", null, 1, 1,
+				Ticket.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(screeningEClass, Screening.class, "Screening", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getScreening_Movie(), this.getMovie(), null, "movie", null, 1, 1, Screening.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getScreening_Hall(), this.getCinemaHall(), null, "hall", null, 1, 1, Screening.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScreening_Date(), ecorePackage.getEDate(), "date", null, 0, 1, Screening.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScreening_StartTime(), ecorePackage.getEDouble(), "startTime", null, 0, 1, Screening.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScreening_EndTime(), ecorePackage.getEDouble(), "endTime", null, 0, 1, Screening.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScreening_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Screening.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getScreening__HasStarted(), null, "hasStarted", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getScreening__NumReservations(), null, "numReservations", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getScreening__NumBookings(), null, "numBookings", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(movieEClass, Movie.class, "Movie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMovie_Title(), ecorePackage.getEString(), "title", null, 0, 1, Movie.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMovie_Description(), ecorePackage.getEString(), "description", null, 0, 1, Movie.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMovie_Length(), ecorePackage.getEDouble(), "length", null, 0, 1, Movie.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMovie_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Movie.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMovie_Genre(), ecorePackage.getEString(), "genre", null, 0, 1, Movie.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cinemaHallEClass, CinemaHall.class, "CinemaHall", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCinemaHall_Row(), this.getSeatingRow(), this.getSeatingRow_Cinemahall(), "row", null, 1, -1,
+				CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCinemaHall_Id(), ecorePackage.getEInt(), "id", null, 0, 1, CinemaHall.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCinemaHall_Name(), ecorePackage.getEString(), "name", null, 0, 1, CinemaHall.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCinemaHall_Cinema(), this.getCinema(), this.getCinema_Hall(), "cinema", null, 1, 1,
+				CinemaHall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEOperation(getCinemaHall__IsConfigComplete(), null, "isConfigComplete", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(seatingRowEClass, SeatingRow.class, "SeatingRow", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSeatingRow_Cinemahall(), this.getCinemaHall(), this.getCinemaHall_Row(), "cinemahall", null,
+				1, 1, SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSeatingRow_Category(), this.getCategory(), "category", null, 0, 1, SeatingRow.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSeatingRow_Seats(), this.getSeat(), this.getSeat_Row(), "seats", null, 1, -1,
+				SeatingRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSeatingRow_Id(), ecorePackage.getEInt(), "id", null, 0, 1, SeatingRow.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSeatingRow_RowNr(), ecorePackage.getEInt(), "rowNr", null, 0, 1, SeatingRow.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(seatEClass, Seat.class, "Seat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSeat_Row(), this.getSeatingRow(), this.getSeatingRow_Seats(), "row", null, 1, 1, Seat.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSeat_Id(), ecorePackage.getEInt(), "id", null, 0, 1, Seat.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSeat_SeatNumber(), ecorePackage.getEInt(), "seatNumber", null, 0, 1, Seat.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(categoryEEnum, Category.class, "Category");

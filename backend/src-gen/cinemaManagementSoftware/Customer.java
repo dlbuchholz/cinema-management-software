@@ -27,11 +27,13 @@ public interface Customer extends Person {
 	/**
 	 * Returns the value of the '<em><b>Ticket</b></em>' reference list.
 	 * The list contents are of type {@link cinemaManagementSoftware.Ticket}.
+	 * It is bidirectional and its opposite is '{@link cinemaManagementSoftware.Ticket#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ticket</em>' reference list.
 	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getCustomer_Ticket()
-	 * @model required="true"
+	 * @see cinemaManagementSoftware.Ticket#getOwner
+	 * @model opposite="owner" required="true"
 	 * @generated
 	 */
 	EList<Ticket> getTicket();

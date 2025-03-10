@@ -11,13 +11,15 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,8 +135,8 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	@Override
 	public EList<Ticket> getTicket() {
 		if (ticket == null) {
-			ticket = new EObjectResolvingEList<Ticket>(Ticket.class, this,
-					CinemaManagementSoftwarePackage.CUSTOMER__TICKET);
+			ticket = new EObjectWithInverseResolvingEList<Ticket>(Ticket.class, this,
+					CinemaManagementSoftwarePackage.CUSTOMER__TICKET, CinemaManagementSoftwarePackage.TICKET__OWNER);
 		}
 		return ticket;
 	}
@@ -159,8 +161,7 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		String oldTelephone = telephone;
 		telephone = newTelephone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE,
 					oldTelephone, telephone));
 	}
 
@@ -184,9 +185,8 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CUSTOMER__NAME, oldName,
-					name));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CUSTOMER__NAME,
+					oldName, name));
 	}
 
 	/**
@@ -209,8 +209,7 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		String oldSurname = surname;
 		surname = newSurname;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CUSTOMER__SURNAME,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CUSTOMER__SURNAME,
 					oldSurname, surname));
 	}
 
@@ -248,6 +247,35 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case CinemaManagementSoftwarePackage.CUSTOMER__TICKET:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTicket()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case CinemaManagementSoftwarePackage.CUSTOMER__TICKET:
+			return ((InternalEList<?>) getTicket()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -331,14 +359,11 @@ public class CustomerImpl extends PersonImpl implements Customer {
 		case CinemaManagementSoftwarePackage.CUSTOMER__TICKET:
 			return ticket != null && !ticket.isEmpty();
 		case CinemaManagementSoftwarePackage.CUSTOMER__TELEPHONE:
-			return TELEPHONE_EDEFAULT == null ? telephone != null
-					: !TELEPHONE_EDEFAULT.equals(telephone);
+			return TELEPHONE_EDEFAULT == null ? telephone != null : !TELEPHONE_EDEFAULT.equals(telephone);
 		case CinemaManagementSoftwarePackage.CUSTOMER__NAME:
-			return NAME_EDEFAULT == null ? name != null
-					: !NAME_EDEFAULT.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case CinemaManagementSoftwarePackage.CUSTOMER__SURNAME:
-			return SURNAME_EDEFAULT == null ? surname != null
-					: !SURNAME_EDEFAULT.equals(surname);
+			return SURNAME_EDEFAULT == null ? surname != null : !SURNAME_EDEFAULT.equals(surname);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -349,8 +374,7 @@ public class CustomerImpl extends PersonImpl implements Customer {
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case CinemaManagementSoftwarePackage.CUSTOMER___BOOK:
 			book();

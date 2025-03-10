@@ -87,8 +87,7 @@ public enum Category implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Category[] VALUES_ARRAY = new Category[] { PARQUET,
-			LOGE, LOGE_SERVICE, };
+	private static final Category[] VALUES_ARRAY = new Category[] { PARQUET, LOGE, LOGE_SERVICE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Category</b></em>' enumerators.
@@ -96,8 +95,7 @@ public enum Category implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Category> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Category> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Category</b></em>' literal with the specified literal value.

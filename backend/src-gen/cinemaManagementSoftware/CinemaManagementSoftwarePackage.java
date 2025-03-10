@@ -425,13 +425,22 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	int TICKET__ID = 4;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TICKET__OWNER = 5;
+
+	/**
 	 * The number of structural features of the '<em>Ticket</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TICKET_FEATURE_COUNT = 5;
+	int TICKET_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Ticket</em>' class.
@@ -1113,6 +1122,17 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 	EAttribute getTicket_Id();
 
 	/**
+	 * Returns the meta object for the reference '{@link cinemaManagementSoftware.Ticket#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owner</em>'.
+	 * @see cinemaManagementSoftware.Ticket#getOwner()
+	 * @see #getTicket()
+	 * @generated
+	 */
+	EReference getTicket_Owner();
+
+	/**
 	 * Returns the meta object for class '{@link cinemaManagementSoftware.Screening <em>Screening</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1707,6 +1727,14 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		EAttribute TICKET__ID = eINSTANCE.getTicket_Id();
 
 		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TICKET__OWNER = eINSTANCE.getTicket_Owner();
+
+		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.ScreeningImpl <em>Screening</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1770,8 +1798,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SCREENING___HAS_STARTED = eINSTANCE
-				.getScreening__HasStarted();
+		EOperation SCREENING___HAS_STARTED = eINSTANCE.getScreening__HasStarted();
 
 		/**
 		 * The meta object literal for the '<em><b>Num Reservations</b></em>' operation.
@@ -1779,8 +1806,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SCREENING___NUM_RESERVATIONS = eINSTANCE
-				.getScreening__NumReservations();
+		EOperation SCREENING___NUM_RESERVATIONS = eINSTANCE.getScreening__NumReservations();
 
 		/**
 		 * The meta object literal for the '<em><b>Num Bookings</b></em>' operation.
@@ -1788,8 +1814,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation SCREENING___NUM_BOOKINGS = eINSTANCE
-				.getScreening__NumBookings();
+		EOperation SCREENING___NUM_BOOKINGS = eINSTANCE.getScreening__NumBookings();
 
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.MovieImpl <em>Movie</em>}' class.
@@ -1889,8 +1914,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CINEMA_HALL___IS_CONFIG_COMPLETE = eINSTANCE
-				.getCinemaHall__IsConfigComplete();
+		EOperation CINEMA_HALL___IS_CONFIG_COMPLETE = eINSTANCE.getCinemaHall__IsConfigComplete();
 
 		/**
 		 * The meta object literal for the '{@link cinemaManagementSoftware.impl.SeatingRowImpl <em>Seating Row</em>}' class.
@@ -1908,8 +1932,7 @@ public interface CinemaManagementSoftwarePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SEATING_ROW__CINEMAHALL = eINSTANCE
-				.getSeatingRow_Cinemahall();
+		EReference SEATING_ROW__CINEMAHALL = eINSTANCE.getSeatingRow_Cinemahall();
 
 		/**
 		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.

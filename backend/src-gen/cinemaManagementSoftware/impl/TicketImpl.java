@@ -3,12 +3,14 @@
 package cinemaManagementSoftware.impl;
 
 import cinemaManagementSoftware.CinemaManagementSoftwarePackage;
+import cinemaManagementSoftware.Customer;
 import cinemaManagementSoftware.Screening;
 import cinemaManagementSoftware.Seat;
 import cinemaManagementSoftware.Ticket;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link cinemaManagementSoftware.impl.TicketImpl#getPrice <em>Price</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.TicketImpl#isIsBooked <em>Is Booked</em>}</li>
  *   <li>{@link cinemaManagementSoftware.impl.TicketImpl#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.impl.TicketImpl#getOwner <em>Owner</em>}</li>
  * </ul>
  *
  * @generated
@@ -114,6 +117,16 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 	protected int id = ID_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwner()
+	 * @generated
+	 * @ordered
+	 */
+	protected Customer owner;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -145,8 +158,7 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 			if (screening != oldScreening) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.TICKET__SCREENING,
-							oldScreening, screening));
+							CinemaManagementSoftwarePackage.TICKET__SCREENING, oldScreening, screening));
 			}
 		}
 		return screening;
@@ -171,8 +183,7 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 		Screening oldScreening = screening;
 		screening = newScreening;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.TICKET__SCREENING,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.TICKET__SCREENING,
 					oldScreening, screening));
 	}
 
@@ -189,8 +200,7 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 			if (seat != oldSeat) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.TICKET__SEAT,
-							oldSeat, seat));
+							CinemaManagementSoftwarePackage.TICKET__SEAT, oldSeat, seat));
 			}
 		}
 		return seat;
@@ -215,8 +225,7 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 		Seat oldSeat = seat;
 		seat = newSeat;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.TICKET__SEAT, oldSeat,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.TICKET__SEAT, oldSeat,
 					seat));
 	}
 
@@ -240,9 +249,8 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 		double oldPrice = price;
 		price = newPrice;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.TICKET__PRICE, oldPrice,
-					price));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.TICKET__PRICE,
+					oldPrice, price));
 	}
 
 	/**
@@ -265,8 +273,7 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 		boolean oldIsBooked = isBooked;
 		isBooked = newIsBooked;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.TICKET__IS_BOOKED,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.TICKET__IS_BOOKED,
 					oldIsBooked, isBooked));
 	}
 
@@ -290,8 +297,109 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.TICKET__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.TICKET__ID, oldId,
+					id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Customer getOwner() {
+		if (owner != null && owner.eIsProxy()) {
+			InternalEObject oldOwner = (InternalEObject) owner;
+			owner = (Customer) eResolveProxy(oldOwner);
+			if (owner != oldOwner) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							CinemaManagementSoftwarePackage.TICKET__OWNER, oldOwner, owner));
+			}
+		}
+		return owner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Customer basicGetOwner() {
+		return owner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(Customer newOwner, NotificationChain msgs) {
+		Customer oldOwner = owner;
+		owner = newOwner;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.TICKET__OWNER, oldOwner, newOwner);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwner(Customer newOwner) {
+		if (newOwner != owner) {
+			NotificationChain msgs = null;
+			if (owner != null)
+				msgs = ((InternalEObject) owner).eInverseRemove(this, CinemaManagementSoftwarePackage.CUSTOMER__TICKET,
+						Customer.class, msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject) newOwner).eInverseAdd(this, CinemaManagementSoftwarePackage.CUSTOMER__TICKET,
+						Customer.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.TICKET__OWNER,
+					newOwner, newOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case CinemaManagementSoftwarePackage.TICKET__OWNER:
+			if (owner != null)
+				msgs = ((InternalEObject) owner).eInverseRemove(this, CinemaManagementSoftwarePackage.CUSTOMER__TICKET,
+						Customer.class, msgs);
+			return basicSetOwner((Customer) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case CinemaManagementSoftwarePackage.TICKET__OWNER:
+			return basicSetOwner(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -316,6 +424,10 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 			return isIsBooked();
 		case CinemaManagementSoftwarePackage.TICKET__ID:
 			return getId();
+		case CinemaManagementSoftwarePackage.TICKET__OWNER:
+			if (resolve)
+				return getOwner();
+			return basicGetOwner();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -342,6 +454,9 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 			return;
 		case CinemaManagementSoftwarePackage.TICKET__ID:
 			setId((Integer) newValue);
+			return;
+		case CinemaManagementSoftwarePackage.TICKET__OWNER:
+			setOwner((Customer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -370,6 +485,9 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 		case CinemaManagementSoftwarePackage.TICKET__ID:
 			setId(ID_EDEFAULT);
 			return;
+		case CinemaManagementSoftwarePackage.TICKET__OWNER:
+			setOwner((Customer) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -392,6 +510,8 @@ public class TicketImpl extends MinimalEObjectImpl.Container implements Ticket {
 			return isBooked != IS_BOOKED_EDEFAULT;
 		case CinemaManagementSoftwarePackage.TICKET__ID:
 			return id != ID_EDEFAULT;
+		case CinemaManagementSoftwarePackage.TICKET__OWNER:
+			return owner != null;
 		}
 		return super.eIsSet(featureID);
 	}
