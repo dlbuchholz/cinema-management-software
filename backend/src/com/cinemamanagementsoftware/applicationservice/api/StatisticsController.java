@@ -38,12 +38,12 @@ public class StatisticsController {
 
     @GetMapping("/revenue/cinema-hall/{hallId}")
     public Object getCinemaHallRevenue(@PathVariable Long hallId) {
-        return rabbitTemplate.convertSendAndReceive("statistics.revenue.cinemaHall", hallId);
+        return rabbitTemplate.convertSendAndReceive("statistics.revenue.cinema-hall", hallId);
     }
 
     @GetMapping("/revenue/date-range")
     public Object getRevenueByDateRange(@RequestParam String from, @RequestParam String to) {
-        return rabbitTemplate.convertSendAndReceive("statistics.revenue.dateRange", from + "," + to);
+        return rabbitTemplate.convertSendAndReceive("statistics.revenue.date-range", from + "," + to);
     }
 
     @GetMapping("/occupancy/screening/{screeningId}")
@@ -58,16 +58,16 @@ public class StatisticsController {
 
     @GetMapping("/top-movies")
     public Object getTopMovies() {
-        return rabbitTemplate.convertSendAndReceive("statistics.top.movies", "");
+        return rabbitTemplate.convertSendAndReceive("statistics.top-movies", "");
     }
 
     @GetMapping("/top-screenings")
     public Object getTopScreenings() {
-        return rabbitTemplate.convertSendAndReceive("statistics.top.screenings", "");
+        return rabbitTemplate.convertSendAndReceive("statistics.top-screenings", "");
     }
 
     @GetMapping("/customer-trends")
     public Object getCustomerTrends() {
-        return rabbitTemplate.convertSendAndReceive("statistics.customer.trends", "");
+        return rabbitTemplate.convertSendAndReceive("statistics.customer-trends", "");
     }
 }
