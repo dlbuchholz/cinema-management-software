@@ -80,40 +80,65 @@ public class DemoService {
         movies.values().removeIf(Objects::isNull);
 
      // Define screening times
-        List<String> screeningDates = List.of("2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13", "2025-03-14");
-
+        List<String> screeningDates = List.of("2025-03-12",
+        		"2025-03-13", "2025-03-14",
+        		"2025-03-15", "2025-03-16",
+        		"2025-03-17", "2025-03-18",
+        		"2025-03-19", "2025-03-20",
+        		"2025-03-21", "2025-03-22");
+        
         int baseStartHour = 14; // Screenings start at 14:00
         double latestStartHour = 21.30; // No screenings start after 21:30
+        int maxScreeningsPerMoviePerDay = 2; // Each movie can have max 2 screenings per day
 
         // Track last end time per hall per date
         Map<String, Map<Long, Double>> hallSchedules = new HashMap<>();
 
-        for (Map.Entry<String, Long> movieEntry : movies.entrySet()) {
-            for (String date : screeningDates) {
-                // Initialize schedule tracking for the date
-                hallSchedules.putIfAbsent(date, new HashMap<>());
+        // Fair scheduling: Rotate movie selection across days
+        List<String> movieTitles = new ArrayList<>(movies.keySet());
+        Collections.shuffle(movieTitles); // Shuffle to avoid bias
+        int movieIndex = 0; // Track which movie should be scheduled next
 
-                for (Long hallId : hallIds) {
-                    // Get the last end time for this hall on this date
-                    double lastEndTime = hallSchedules.get(date).getOrDefault(hallId, (double) baseStartHour);
+        for (String date : screeningDates) {
+            hallSchedules.putIfAbsent(date, new HashMap<>()); // Initialize schedule tracking for the date
+            Map<String, Integer> movieScreeningCount = new HashMap<>(); // Reset screening count per day
 
-                    // Retrieve movie length in hours
-                    double movieLength = 2.5; // Default to 2.5h
+            // Iterate through halls fairly
+            for (Long hallId : hallIds) {
+                // Get the next movie to schedule
+                String movieTitle = movieTitles.get(movieIndex % movieTitles.size());
+                Long movieId = movies.get(movieTitle);
 
-                    // Calculate start and end time
-                    double startTime = lastEndTime;
-                    double endTime = startTime + movieLength;
+                // Ensure movie doesn't exceed max screenings per day
+                movieScreeningCount.putIfAbsent(movieTitle, 0);
+                if (movieScreeningCount.get(movieTitle) >= maxScreeningsPerMoviePerDay) continue;
 
-                    // Stop scheduling if we exceed the latest start time
-                    if (startTime >= latestStartHour || startTime + movieLength > 24) break;
+                // Get last end time for this hall on this date
+                double lastEndTime = hallSchedules.get(date).getOrDefault(hallId, (double) baseStartHour);
 
-                    createScreening(movieEntry.getValue(), hallId, date, startTime, endTime);
+                // Get movie length in hours
+                double movieLength = 2.5;
 
-                    // Update last end time for the hall
-                    hallSchedules.get(date).put(hallId, endTime + 0.5); // Add a 30-minute gap before the next screening
-                }
+                // Calculate start and end time
+                double startTime = lastEndTime;
+                double endTime = startTime + movieLength;
+
+                // Stop scheduling if we exceed the latest start time
+                if (startTime >= latestStartHour || startTime + movieLength > 24) break;
+
+                createScreening(movieId, hallId, date, startTime, endTime);
+
+                // Update last end time for the hall
+                hallSchedules.get(date).put(hallId, endTime + 0.5); // Add a 30-minute gap before the next screening
+
+                // Increase screening count for the movie
+                movieScreeningCount.put(movieTitle, movieScreeningCount.get(movieTitle) + 1);
+
+                // Move to the next movie in a fair rotation
+                movieIndex++;
             }
         }
+     
     }
     
     private void createCategory(String name) {
