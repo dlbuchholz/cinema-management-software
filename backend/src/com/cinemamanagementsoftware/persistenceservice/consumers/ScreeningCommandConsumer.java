@@ -129,7 +129,7 @@ public class ScreeningCommandConsumer {
             eventPayload.put("id", newScreening.getId());
             eventPayload.put("movieId", movieId);
             eventPayload.put("cinemaHallId", hallId);
-            eventPayload.put("date", screeningDate);
+            eventPayload.put("date", new SimpleDateFormat("yyyy-MM-dd").format(screeningDate));
             eventPayload.put("startTime", startTime);
             eventPayload.put("endTime", endTime);
 

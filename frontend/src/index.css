@@ -86,7 +86,7 @@ button:hover, .ant-btn:hover {
   transition: transform var(--transition-speed);
 }
 .ant-card:hover {
-  /* transform: translateY(-4px); */
+  transform: translateY(-4px);
 }
 
 /* For card titles */
