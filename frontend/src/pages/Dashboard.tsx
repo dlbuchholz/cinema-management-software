@@ -6,6 +6,7 @@ import { RootState } from '../store/store';
 import cinemaService from '../services/cinemaService';
 import { Movie, Screening, CinemaHall, SeatingRow, Seat } from '../types';
 import { filmImages } from '../assets/images';
+import moment from 'moment';
 
 const { Text, Title } = Typography;
 const { Search } = Input;
@@ -180,14 +181,14 @@ const Dashboard: React.FC = () => {
       >
         <List
           dataSource={screenings}
-          renderItem={(screening) => (
-            <List.Item onClick={() => onScreeningSelect(screening)} style={{ cursor: 'pointer' }}>
+          renderItem={(screening) => {
+            return <List.Item onClick={() => onScreeningSelect(screening)} style={{ cursor: 'pointer' }}>
               <List.Item.Meta
                 title={`Hall: ${screening.cinemaHall?.name}`}
-                description={`Starts: ${new Date(screening.startTime).toLocaleString()}`}
+                description={`Starts: ${moment(screening.date).format('DD.MM.YYYY')} - ${JSON.stringify(screening.startTime).substring(0, 2)}:00`}
               />
             </List.Item>
-          )}
+          }}
         />
       </Modal>
       <Modal
