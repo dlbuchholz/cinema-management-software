@@ -82,7 +82,7 @@ public class UserHandler {
 
     public ResponseEntity<String> login(Map<String, String> user) {
         try {
-            if (!user.containsKey("username") || !user.containsKey("password")) {
+            if (!user.containsKey("email") || !user.containsKey("password")) {
                 return ResponseEntity.badRequest()
                         .body("{\"status\":\"error\",\"message\":\"Missing required fields: email and password\"}");
             }

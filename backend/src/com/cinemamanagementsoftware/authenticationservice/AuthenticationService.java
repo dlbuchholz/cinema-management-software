@@ -94,7 +94,7 @@ public class AuthenticationService {
 
     @RabbitListener(queues = "auth.login")
     public String login(Map<String, String> request) {
-        String email = request.get("username");
+        String email = request.get("email");
         String password = request.get("password");
 
         try {
