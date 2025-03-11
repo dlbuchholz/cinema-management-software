@@ -34,15 +34,12 @@ public class TicketController {
         this.ticketHandler = ticketHandler;
     }
     
-    
     @PostMapping
     public ResponseEntity<String> createTicket(@RequestBody String jsonTicket) {
         try {
-            // Ensure JSON has correct EClass
-            String validatedJson = ensureEClassField(jsonTicket);
 
             // Deserialize JSON into a Map (extract only required fields)
-            Map<String, Object> ticketMap = objectMapper.readValue(validatedJson, new TypeReference<Map<String, Object>>() {});
+            Map<String, Object> ticketMap = objectMapper.readValue(jsonTicket, new TypeReference<Map<String, Object>>() {});
 
             // Extract customerId, screeningId, seatId, and price
             if (!ticketMap.containsKey("customer") || !ticketMap.containsKey("screening") || !ticketMap.containsKey("seat") || !ticketMap.containsKey("price")) {
