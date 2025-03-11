@@ -68,7 +68,7 @@ public class TicketController {
         return ticketHandler.getCustomerTicketsForScreening(customerId, screeningId);
     }
     
-    @GetMapping("/{screeningId}/tickets")
+    @GetMapping("/screening/{screeningId}/tickets")
     public ResponseEntity<String> getTicketsForScreening(@PathVariable Long screeningId) {
         return ticketHandler.getTicketsForScreening(screeningId);
     }
