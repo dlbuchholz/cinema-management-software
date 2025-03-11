@@ -102,7 +102,8 @@ public class CinemaStatisticsService {
     public void addMovieToGraph(Long movieId, String title, String genre, String description, Double length) {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run(
-                "CREATE (:Movie {id: $movieId, title: $title, genre: $genre, description: $description, length: $length})",
+                "MERGE (m:Movie {id: $movieId}) " +  // Ensures movie exists or creates it
+                "SET m.title = $title, m.genre = $genre, m.description = $description, m.length = $length",
                 Values.parameters("movieId", movieId, "title", title, "genre", genre, "description", description, "length", length)
             ));
         }
@@ -112,9 +113,11 @@ public class CinemaStatisticsService {
     public void addScreeningToGraph(Long screeningId, Long movieId, Long hallId, String date, Double startTime, Double endTime) {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run(
-                "MATCH (m:Movie {id: $movieId}), (h:CinemaHall {id: $hallId}) " +
+                "MERGE (m:Movie {id: $movieId}) " +  // Ensure the movie exists before linking
+                "MERGE (h:CinemaHall {id: $hallId}) " +  // Ensure the hall exists
                 "CREATE (s:Screening {id: $screeningId, date: date($date), startTime: $startTime, endTime: $endTime}) " +
-                "-[:FOR_MOVIE]->(m), (s)-[:IN_HALL]->(h)",
+                "-[:FOR_MOVIE]->(m), " +  // Link screening to movie
+                "(s)-[:IN_HALL]->(h)",  // Link screening to hall
                 Values.parameters("screeningId", screeningId, "movieId", movieId, "hallId", hallId, "date", date, "startTime", startTime, "endTime", endTime)
             ));
         }
