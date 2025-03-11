@@ -39,8 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class ScreeningImpl extends MinimalEObjectImpl.Container
-		implements Screening {
+public class ScreeningImpl extends MinimalEObjectImpl.Container implements Screening {
 	/**
 	 * The cached value of the '{@link #getMovie() <em>Movie</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -173,8 +172,7 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 			if (movie != oldMovie) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.SCREENING__MOVIE,
-							oldMovie, movie));
+							CinemaManagementSoftwarePackage.SCREENING__MOVIE, oldMovie, movie));
 			}
 		}
 		return movie;
@@ -199,9 +197,8 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		Movie oldMovie = movie;
 		movie = newMovie;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SCREENING__MOVIE, oldMovie,
-					movie));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SCREENING__MOVIE,
+					oldMovie, movie));
 	}
 
 	/**
@@ -217,8 +214,7 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 			if (hall != oldHall) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.SCREENING__HALL,
-							oldHall, hall));
+							CinemaManagementSoftwarePackage.SCREENING__HALL, oldHall, hall));
 			}
 		}
 		return hall;
@@ -243,9 +239,8 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		CinemaHall oldHall = hall;
 		hall = newHall;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SCREENING__HALL, oldHall,
-					hall));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SCREENING__HALL,
+					oldHall, hall));
 	}
 
 	/**
@@ -268,9 +263,8 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		Date oldDate = date;
 		date = newDate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SCREENING__DATE, oldDate,
-					date));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SCREENING__DATE,
+					oldDate, date));
 	}
 
 	/**
@@ -293,8 +287,7 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		double oldStartTime = startTime;
 		startTime = newStartTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SCREENING__START_TIME,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SCREENING__START_TIME,
 					oldStartTime, startTime));
 	}
 
@@ -318,8 +311,7 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		double oldEndTime = endTime;
 		endTime = newEndTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SCREENING__END_TIME,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SCREENING__END_TIME,
 					oldEndTime, endTime));
 	}
 
@@ -343,8 +335,8 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SCREENING__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SCREENING__ID, oldId,
+					id));
 	}
 
 	/**
@@ -484,8 +476,7 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 		case CinemaManagementSoftwarePackage.SCREENING__HALL:
 			return hall != null;
 		case CinemaManagementSoftwarePackage.SCREENING__DATE:
-			return DATE_EDEFAULT == null ? date != null
-					: !DATE_EDEFAULT.equals(date);
+			return DATE_EDEFAULT == null ? date != null : !DATE_EDEFAULT.equals(date);
 		case CinemaManagementSoftwarePackage.SCREENING__START_TIME:
 			return startTime != START_TIME_EDEFAULT;
 		case CinemaManagementSoftwarePackage.SCREENING__END_TIME:
@@ -502,8 +493,7 @@ public class ScreeningImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case CinemaManagementSoftwarePackage.SCREENING___HAS_STARTED:
 			hasStarted();

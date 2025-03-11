@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class SeatingRowImpl extends MinimalEObjectImpl.Container
-		implements SeatingRow {
+public class SeatingRowImpl extends MinimalEObjectImpl.Container implements SeatingRow {
 	/**
 	 * The cached value of the '{@link #getCinemahall() <em>Cinemahall</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -155,8 +154,7 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 			if (cinemahall != oldCinemahall) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL,
-							oldCinemahall, cinemahall));
+							CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL, oldCinemahall, cinemahall));
 			}
 		}
 		return cinemahall;
@@ -176,15 +174,12 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCinemahall(CinemaHall newCinemahall,
-			NotificationChain msgs) {
+	public NotificationChain basicSetCinemahall(CinemaHall newCinemahall, NotificationChain msgs) {
 		CinemaHall oldCinemahall = cinemahall;
 		cinemahall = newCinemahall;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL,
-					oldCinemahall, newCinemahall);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL, oldCinemahall, newCinemahall);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -204,19 +199,16 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 			NotificationChain msgs = null;
 			if (cinemahall != null)
 				msgs = ((InternalEObject) cinemahall).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW,
-						CinemaHall.class, msgs);
+						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW, CinemaHall.class, msgs);
 			if (newCinemahall != null)
 				msgs = ((InternalEObject) newCinemahall).eInverseAdd(this,
-						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW,
-						CinemaHall.class, msgs);
+						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW, CinemaHall.class, msgs);
 			msgs = basicSetCinemahall(newCinemahall, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL,
-					newCinemahall, newCinemahall));
+					CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL, newCinemahall, newCinemahall));
 	}
 
 	/**
@@ -239,8 +231,7 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		Category oldCategory = category;
 		category = newCategory == null ? CATEGORY_EDEFAULT : newCategory;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEATING_ROW__CATEGORY,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SEATING_ROW__CATEGORY,
 					oldCategory, category));
 	}
 
@@ -253,8 +244,7 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	public EList<Seat> getSeats() {
 		if (seats == null) {
 			seats = new EObjectWithInverseResolvingEList<Seat>(Seat.class, this,
-					CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
-					CinemaManagementSoftwarePackage.SEAT__ROW);
+					CinemaManagementSoftwarePackage.SEATING_ROW__SEATS, CinemaManagementSoftwarePackage.SEAT__ROW);
 		}
 		return seats;
 	}
@@ -279,9 +269,8 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEATING_ROW__ID, oldId,
-					id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SEATING_ROW__ID,
+					oldId, id));
 	}
 
 	/**
@@ -304,8 +293,7 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 		int oldRowNr = rowNr;
 		rowNr = newRowNr;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SEATING_ROW__ROW_NR,
 					oldRowNr, rowNr));
 	}
 
@@ -316,18 +304,15 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL:
 			if (cinemahall != null)
 				msgs = ((InternalEObject) cinemahall).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW,
-						CinemaHall.class, msgs);
+						CinemaManagementSoftwarePackage.CINEMA_HALL__ROW, CinemaHall.class, msgs);
 			return basicSetCinemahall((CinemaHall) otherEnd, msgs);
 		case CinemaManagementSoftwarePackage.SEATING_ROW__SEATS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSeats())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSeats()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -338,8 +323,7 @@ public class SeatingRowImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL:
 			return basicSetCinemahall(null, msgs);

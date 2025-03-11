@@ -1,5 +1,6 @@
 package com.cinemamanagementsoftware.authenticationservice;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -32,7 +33,7 @@ public class AuthenticationService {
 
         // Synchronously fetch existing user from customer service
         String existingUserJson = (String) rabbitTemplate.convertSendAndReceive("customer.fetch", email);
-        if (existingUserJson != null && !existingUserJson.trim().isEmpty() && !existingUserJson.equals("{}")) {
+        if (existingUserJson != null && !existingUserJson.trim().isEmpty() && !existingUserJson.equals("{\"status\":\"error\",\"message\":\"Customer not found.\"}")) {
             return "{\"status\":\"error\", \"message\":\"User already exists!\"}";
         }
 
@@ -47,38 +48,88 @@ public class AuthenticationService {
         newUser.put("telephone", telephone);
         
         // Asynchronously send user creation request (no reply expected)
-        rabbitTemplate.convertAndSend("customer.create", newUser);
+        rabbitTemplate.convertSendAndReceive("customer.create", newUser);
 
         // Generate JWT and return success JSON
         String token = jwtUtil.generateToken(email);
         return "{\"status\":\"success\", \"token\":\"" + token + "\"}";
     }
+    
+    @RabbitListener(queues = "auth.ownerRegister")
+    public String registerOwner(String jsonOwner) {
+        try {
+            // Deserialize request payload
+            Map<String, String> request = objectMapper.readValue(jsonOwner, new TypeReference<Map<String, String>>() {});
+            String email = request.get("email");
+            String name = request.get("name");
+            String password = request.get("password");
+
+            // Synchronously fetch existing owner from cinema owner service
+            String existingOwnerJson = (String) rabbitTemplate.convertSendAndReceive("owner.fetch", email);
+            if (existingOwnerJson != null && !existingOwnerJson.trim().isEmpty() && !existingOwnerJson.equals("{\"status\":\"error\",\"message\":\"Cinema Owner not found.\"}")) {
+                return "{\"status\":\"error\", \"message\":\"Cinema owner already exists!\"}";
+            }
+
+            // Encode the password using PasswordEncoder
+            String hashedPassword = passwordEncoder.encode(password);
+
+            // Prepare new owner payload with the hashed password
+            Map<String, String> newOwner = new HashMap<>();
+            newOwner.put("email", email);
+            newOwner.put("name", name);
+            newOwner.put("password", hashedPassword);
+
+            // Asynchronously send owner creation request
+            rabbitTemplate.convertSendAndReceive("owner.create", newOwner);
+
+            // Generate JWT and return success JSON
+            String token = jwtUtil.generateToken(email);
+            return "{\"status\":\"success\", \"token\":\"" + token + "\"}";
+
+        } catch (Exception e) {
+            return "{\"status\":\"error\", \"message\":\"Error registering owner: " + e.getMessage() + "\"}";
+        }
+    }
+
 
     @RabbitListener(queues = "auth.login")
     public String login(Map<String, String> request) {
         String email = request.get("email");
         String password = request.get("password");
 
-        // Synchronously fetch user from customer service
-        String userJson = (String) rabbitTemplate.convertSendAndReceive("customer.fetch", email);
-        if (userJson == null || userJson.trim().isEmpty() || userJson.equals("{}")) {
-            return "{\"status\":\"error\", \"message\":\"Invalid credentials!\"}";
-        }
         try {
-            // Convert the JSON string to a Map
-            Map<String, String> user = objectMapper.readValue(userJson, Map.class);
-            String storedPassword = user.get("password");
-            // Compare raw password with the stored hashed password using PasswordEncoder
-            if (!passwordEncoder.matches(password, storedPassword)) {
-                return "{\"status\":\"error\", \"message\":\"Invalid credentials!\"}";
+            // 🔹 Fetch user from Customer Service
+            String customerJson = (String) rabbitTemplate.convertSendAndReceive("customer.fetch", email);
+            if (customerJson != null && !customerJson.trim().isEmpty() && !customerJson.equals("{}")) {
+                Map<String, String> customer = objectMapper.readValue(customerJson, Map.class);
+                String storedPassword = customer.get("password");
+                if (passwordEncoder.matches(password, storedPassword)) {
+                    String token = jwtUtil.generateToken(email);
+                    return String.format("{\"status\":\"success\", \"role\":\"customer\", \"token\":\"%s\", \"id\":%s, \"email\":\"%s\"}", 
+                            token, customer.get("id"), customer.get("email"));
+                }
             }
-            // Generate JWT token on successful authentication
-            String token = jwtUtil.generateToken(email);
-            return "{\"status\":\"success\", \"token\":\"" + token + "\"}";
+
+            // 🔹 Fetch user from Cinema Owner Service
+            String ownerJson = (String) rabbitTemplate.convertSendAndReceive("owner.fetch", email);
+            if (ownerJson != null && !ownerJson.trim().isEmpty() && !ownerJson.equals("{}")) {
+                Map<String, String> owner = objectMapper.readValue(ownerJson, Map.class);
+                String storedPassword = owner.get("password");
+
+                if (passwordEncoder.matches(password, storedPassword)) {
+                    String token = jwtUtil.generateToken(email);
+                    return String.format("{\"status\":\"success\", \"role\":\"owner\", \"token\":\"%s\", \"id\":%s, \"email\":\"%s\"}", 
+                            token, owner.get("id"), owner.get("email"));
+                }
+            }
+
+            return "{\"status\":\"error\", \"message\":\"Invalid credentials!\"}";
+
         } catch (Exception e) {
             return "{\"status\":\"error\", \"message\":\"Error processing login: " + e.getMessage() + "\"}";
         }
     }
+
 
     @RabbitListener(queues = "auth.validateToken")
     public String validateToken(Map<String, String> request) {

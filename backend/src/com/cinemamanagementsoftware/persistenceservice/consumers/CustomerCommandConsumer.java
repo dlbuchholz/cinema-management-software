@@ -5,6 +5,7 @@ import com.cinemamanagementsoftware.persistenceservice.repositories.CustomerRepo
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -13,58 +14,90 @@ import java.util.Map;
 @Service
 public class CustomerCommandConsumer {
 
-    private final CustomerRepository customerRepository;
-    private final RabbitTemplate rabbitTemplate;
-    private final ObjectMapper objectMapper;
+    @Autowired
+    private CustomerRepository customerRepository;
 
-    public CustomerCommandConsumer(CustomerRepository customerRepository, RabbitTemplate rabbitTemplate, 
-                                   ObjectMapper objectMapper) {
-        this.customerRepository = customerRepository;
-        this.rabbitTemplate = rabbitTemplate;
-        this.objectMapper = objectMapper;
-    }
-    
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @RabbitListener(queues = "customer.fetchById")
-    public String fetchCustomerById(Long id) {
-        Optional<CustomerEntity> customer = customerRepository.findById(id);
-        if (customer.isPresent()) {
-            try {
-                return objectMapper.writeValueAsString(customer.get());
-            } catch (Exception e) {
-                return "{}";
+    public String fetchCustomerById(String customerId) {
+        try {
+            Long id = Long.valueOf(customerId);
+            Optional<CustomerEntity> customerOpt = customerRepository.findById(id);
+
+            if (customerOpt.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Customer not found.\"}";
             }
-        } else {
-            return "{}";
+
+            return objectMapper.writeValueAsString(customerOpt.get());
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error retrieving customer: " + e.getMessage() + "\"}";
         }
     }
 
     @RabbitListener(queues = "customer.fetch")
-    public String fetchCustomer(String email) {
-        Optional<CustomerEntity> customer = customerRepository.findByEmail(email);
+    public String fetchCustomerByEmail(String email) {
+        try {
+            Optional<CustomerEntity> customerOpt = customerRepository.findByEmail(email);
 
-        if (customer.isPresent()) {
-            try {
-                return objectMapper.writeValueAsString(customer.get());
-            } catch (Exception e) {
-                return "{}";
+            if (customerOpt.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Customer not found.\"}";
             }
-        } else {
-            return "{}";
+
+            return objectMapper.writeValueAsString(customerOpt.get());
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error retrieving customer: " + e.getMessage() + "\"}";
         }
     }
+    
+    @RabbitListener(queues = "customer.getId")
+    public String getCustomerId(String email) {
+        try {
+            Optional<CustomerEntity> customerOpt = customerRepository.findByEmail(email);
+
+            if (customerOpt.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Customer not found\"}";
+            }
+
+            Long customerId = customerOpt.get().getId();
+            return "{\"status\":\"success\",\"customerId\":\"" + customerId + "\"}";
+
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error retrieving customer ID: " + e.getMessage() + "\"}";
+        }
+    }
+
 
     @RabbitListener(queues = "customer.create")
-    public void createCustomer(Map<String, String> request) {
+    public String createCustomer(Map<String, Object> request) {  
         try {
-            String email = request.get("email");
-            String password = request.get("password");
-            String telephone = request.get("telephone");
-            String name = request.get("name");
+            // Extract user details from the received Map
+            String email = (String) request.get("email");
+            String name = (String) request.get("name");
+            String password = (String) request.get("password");
+            String telephone = (String) request.get("telephone");
 
-            CustomerEntity newCustomer = new CustomerEntity(email, password, name, telephone);
-            customerRepository.save(newCustomer);
+            // Check if email already exists
+            Optional<CustomerEntity> existingCustomer = customerRepository.findByEmail(email);
+            if (existingCustomer.isPresent()) {
+                return "{\"status\":\"error\",\"message\":\"User already exists!\"}";
+            }
+
+            // Create a new CustomerEntity
+            CustomerEntity customer = new CustomerEntity();
+            customer.setEmail(email);
+            customer.setName(name);
+            customer.setPassword(password);
+            customer.setTelephone(telephone);
+
+            // Save customer to the database
+            customerRepository.save(customer);
+            return "{\"status\":\"success\",\"message\":\"Customer registered successfully!\"}";
+
         } catch (Exception e) {
-            System.err.println("Error creating customer: " + e.getMessage());
+            return "{\"status\":\"error\",\"message\":\"Error creating customer: " + e.getMessage() + "\"}";
         }
     }
+
 }

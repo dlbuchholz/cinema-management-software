@@ -112,9 +112,8 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 			row = (SeatingRow) eResolveProxy(oldRow);
 			if (row != oldRow) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.SEAT__ROW, oldRow,
-							row));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CinemaManagementSoftwarePackage.SEAT__ROW,
+							oldRow, row));
 			}
 		}
 		return row;
@@ -134,14 +133,12 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRow(SeatingRow newRow,
-			NotificationChain msgs) {
+	public NotificationChain basicSetRow(SeatingRow newRow, NotificationChain msgs) {
 		SeatingRow oldRow = row;
 		row = newRow;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, CinemaManagementSoftwarePackage.SEAT__ROW,
-					oldRow, newRow);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.SEAT__ROW, oldRow, newRow);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -160,19 +157,17 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 		if (newRow != row) {
 			NotificationChain msgs = null;
 			if (row != null)
-				msgs = ((InternalEObject) row).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
+				msgs = ((InternalEObject) row).eInverseRemove(this, CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 						SeatingRow.class, msgs);
 			if (newRow != null)
-				msgs = ((InternalEObject) newRow).eInverseAdd(this,
-						CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
+				msgs = ((InternalEObject) newRow).eInverseAdd(this, CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 						SeatingRow.class, msgs);
 			msgs = basicSetRow(newRow, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEAT__ROW, newRow, newRow));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SEAT__ROW, newRow,
+					newRow));
 	}
 
 	/**
@@ -195,8 +190,7 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEAT__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SEAT__ID, oldId, id));
 	}
 
 	/**
@@ -219,8 +213,7 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 		int oldSeatNumber = seatNumber;
 		seatNumber = newSeatNumber;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.SEAT__SEAT_NUMBER,
 					oldSeatNumber, seatNumber));
 	}
 
@@ -230,13 +223,11 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.SEAT__ROW:
 			if (row != null)
-				msgs = ((InternalEObject) row).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
+				msgs = ((InternalEObject) row).eInverseRemove(this, CinemaManagementSoftwarePackage.SEATING_ROW__SEATS,
 						SeatingRow.class, msgs);
 			return basicSetRow((SeatingRow) otherEnd, msgs);
 		}
@@ -249,8 +240,7 @@ public class SeatImpl extends MinimalEObjectImpl.Container implements Seat {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.SEAT__ROW:
 			return basicSetRow(null, msgs);

@@ -19,8 +19,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl
-		implements CinemaManagementSoftwareFactory {
+public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl implements CinemaManagementSoftwareFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -77,8 +76,7 @@ public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl
 		case CinemaManagementSoftwarePackage.SEAT:
 			return createSeat();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName()
-					+ "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -93,8 +91,7 @@ public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl
 		case CinemaManagementSoftwarePackage.CATEGORY:
 			return createCategoryFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -109,8 +106,7 @@ public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl
 		case CinemaManagementSoftwarePackage.CATEGORY:
 			return convertCategoryToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '"
-					+ eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -218,13 +214,11 @@ public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Category createCategoryFromString(EDataType eDataType,
-			String initialValue) {
+	public Category createCategoryFromString(EDataType eDataType, String initialValue) {
 		Category result = Category.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
@@ -233,8 +227,7 @@ public class CinemaManagementSoftwareFactoryImpl extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertCategoryToString(EDataType eDataType,
-			Object instanceValue) {
+	public String convertCategoryToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

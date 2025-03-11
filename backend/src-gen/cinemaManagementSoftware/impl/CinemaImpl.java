@@ -161,8 +161,8 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 		long oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA__ID, oldId,
+					id));
 	}
 
 	/**
@@ -185,8 +185,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA__NAME, oldName,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA__NAME, oldName,
 					name));
 	}
 
@@ -210,8 +209,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 		String oldLocation = location;
 		location = newLocation;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA__LOCATION,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA__LOCATION,
 					oldLocation, location));
 	}
 
@@ -228,8 +226,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 			if (owner != oldOwner) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.CINEMA__OWNER,
-							oldOwner, owner));
+							CinemaManagementSoftwarePackage.CINEMA__OWNER, oldOwner, owner));
 			}
 		}
 		return owner;
@@ -254,9 +251,8 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 		CinemaOwner oldOwner = owner;
 		owner = newOwner;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA__OWNER, oldOwner,
-					owner));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA__OWNER,
+					oldOwner, owner));
 	}
 
 	/**
@@ -267,10 +263,8 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	@Override
 	public EList<CinemaHall> getHall() {
 		if (hall == null) {
-			hall = new EObjectWithInverseResolvingEList<CinemaHall>(
-					CinemaHall.class, this,
-					CinemaManagementSoftwarePackage.CINEMA__HALL,
-					CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA);
+			hall = new EObjectWithInverseResolvingEList<CinemaHall>(CinemaHall.class, this,
+					CinemaManagementSoftwarePackage.CINEMA__HALL, CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA);
 		}
 		return hall;
 	}
@@ -294,12 +288,10 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CINEMA__HALL:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHall())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHall()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -310,8 +302,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CINEMA__HALL:
 			return ((InternalEList<?>) getHall()).basicRemove(otherEnd, msgs);
@@ -410,11 +401,9 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 		case CinemaManagementSoftwarePackage.CINEMA__ID:
 			return id != ID_EDEFAULT;
 		case CinemaManagementSoftwarePackage.CINEMA__NAME:
-			return NAME_EDEFAULT == null ? name != null
-					: !NAME_EDEFAULT.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case CinemaManagementSoftwarePackage.CINEMA__LOCATION:
-			return LOCATION_EDEFAULT == null ? location != null
-					: !LOCATION_EDEFAULT.equals(location);
+			return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
 		case CinemaManagementSoftwarePackage.CINEMA__OWNER:
 			return owner != null;
 		case CinemaManagementSoftwarePackage.CINEMA__HALL:
@@ -429,8 +418,7 @@ public class CinemaImpl extends MinimalEObjectImpl.Container implements Cinema {
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case CinemaManagementSoftwarePackage.CINEMA___TOTAL_INCOME:
 			totalIncome();

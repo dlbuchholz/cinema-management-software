@@ -211,27 +211,108 @@ public class RabbitMQConfig {
     @Bean
     public Queue cinemaDeleteQueue() { return new Queue("cinema.delete", true); }
 
-    // Authentication & Customer Queues
+    // Authentication Queues
     @Bean
-    public Queue registerQueue() { return new Queue("auth.register"); }
+    public Queue authLoginQueue() {
+        return new Queue("auth.login", true);
+    }
 
     @Bean
-    public Queue loginQueue() { return new Queue("auth.login"); }
+    public Queue authRegisterQueue() {
+        return new Queue("auth.register", true);
+    }
 
     @Bean
-    public Queue logoutQueue() { return new Queue("auth.logout"); }
+    public Queue authOwnerRegisterQueue() {
+        return new Queue("auth.ownerRegister", true);
+    }
 
     @Bean
-    public Queue validateTokenQueue() { return new Queue("auth.validateToken"); }
+    public Queue authValidateTokenQueue() {
+        return new Queue("auth.validateToken", true);
+    }
 
     @Bean
-    public Queue customerCreateQueue() { return new Queue("customer.create", true); }
+    public Queue authLogoutQueue() {
+        return new Queue("auth.logout", true);
+    }
+
+    // Ticket Queues
+    @Bean
+    public Queue ticketCreateQueue() {
+        return new Queue("ticket.create", true);
+    }
+    
+    @Bean
+    public Queue ticketGetQueue() {
+    	return new Queue("ticket.get", true);
+    }
 
     @Bean
-    public Queue customerFetchQueue() { return new Queue("customer.fetch", true); }
+    public Queue ticketGetByCustomerAndScreeningQueue() {
+        return new Queue("ticket.getByCustomerAndScreening", true);
+    }
+    
+    @Bean
+    public Queue ticketGetByScreeningQueue() {
+    	return new Queue("ticket.getByScreening", true);
+    }
 
     @Bean
-    public Queue customerFetchByIdQueue() { return new Queue("customer.fetchById", true); }
+    public Queue ticketGetByCustomerQueue() {
+        return new Queue("ticket.getByCustomer", true);
+    }
+
+    @Bean
+    public Queue ticketGetSeatsQueue() {
+        return new Queue("ticket.getSeats", true);
+    }
+
+    @Bean
+    public Queue ticketCheckSeatQueue() {
+        return new Queue("ticket.checkSeat", true);
+    }
+    
+    @Bean
+    public Queue ticketDeleteQueue() {
+    	return new Queue("ticket.delete", true);
+    }
+    
+    @Bean 
+    public Queue ticketBookQueue() {
+    	return new Queue("ticket.book", true);
+    }
+
+    // Customer & Owner Queues
+    @Bean
+    public Queue customerCreateQueue() {
+        return new Queue("customer.create", true);
+    }
+
+    @Bean
+    public Queue customerFetchQueue() {
+        return new Queue("customer.fetch", true);
+    }
+
+    @Bean
+    public Queue customerFetchByIdQueue() { 
+        return new Queue("customer.fetchById", true);
+    }
+
+    @Bean
+    public Queue ownerCreateQueue() {
+        return new Queue("owner.create", true);
+    }
+
+    @Bean
+    public Queue ownerFetchQueue() {
+        return new Queue("owner.fetch", true);
+    }
+    
+    @Bean
+    public Queue ownerFetchByIdQueue() { 
+        return new Queue("owner.fetchById", true);
+        }
 
     // Exchanges
     @Bean

@@ -9,13 +9,13 @@ public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false)
     private String name;
-    
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<TicketEntity> tickets;
-    
+
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -25,19 +25,17 @@ public class CustomerEntity {
     @Column(nullable = false)
     private String telephone;
 
-    // Default Constructor (Required for JPA)
-    public CustomerEntity() {}
-
     // Constructor for New Customer
-    public CustomerEntity(String email, String password, String name, String telephone) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.telephone = telephone;
-    }
+    public CustomerEntity() {}
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public List<TicketEntity> getTickets() { return tickets; }
+    public void setTickets(List<TicketEntity> tickets) { this.tickets = tickets; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
@@ -48,4 +46,3 @@ public class CustomerEntity {
     public String getTelephone() { return telephone; }
     public void setTelephone(String telephone) { this.telephone = telephone; }
 }
-

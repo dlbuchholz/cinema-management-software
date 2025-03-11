@@ -41,8 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class CinemaHallImpl extends MinimalEObjectImpl.Container
-		implements CinemaHall {
+public class CinemaHallImpl extends MinimalEObjectImpl.Container implements CinemaHall {
 	/**
 	 * The cached value of the '{@link #getRow() <em>Row</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -130,8 +129,7 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	@Override
 	public EList<SeatingRow> getRow() {
 		if (row == null) {
-			row = new EObjectWithInverseResolvingEList<SeatingRow>(
-					SeatingRow.class, this,
+			row = new EObjectWithInverseResolvingEList<SeatingRow>(SeatingRow.class, this,
 					CinemaManagementSoftwarePackage.CINEMA_HALL__ROW,
 					CinemaManagementSoftwarePackage.SEATING_ROW__CINEMAHALL);
 		}
@@ -158,9 +156,8 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA_HALL__ID, oldId,
-					id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA_HALL__ID,
+					oldId, id));
 	}
 
 	/**
@@ -183,9 +180,8 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA_HALL__NAME, oldName,
-					name));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA_HALL__NAME,
+					oldName, name));
 	}
 
 	/**
@@ -201,8 +197,7 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 			if (cinema != oldCinema) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA,
-							oldCinema, cinema));
+							CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA, oldCinema, cinema));
 			}
 		}
 		return cinema;
@@ -222,15 +217,12 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCinema(Cinema newCinema,
-			NotificationChain msgs) {
+	public NotificationChain basicSetCinema(Cinema newCinema, NotificationChain msgs) {
 		Cinema oldCinema = cinema;
 		cinema = newCinema;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA,
-					oldCinema, newCinema);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA, oldCinema, newCinema);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -249,19 +241,16 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 		if (newCinema != cinema) {
 			NotificationChain msgs = null;
 			if (cinema != null)
-				msgs = ((InternalEObject) cinema).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.CINEMA__HALL,
+				msgs = ((InternalEObject) cinema).eInverseRemove(this, CinemaManagementSoftwarePackage.CINEMA__HALL,
 						Cinema.class, msgs);
 			if (newCinema != null)
-				msgs = ((InternalEObject) newCinema).eInverseAdd(this,
-						CinemaManagementSoftwarePackage.CINEMA__HALL,
+				msgs = ((InternalEObject) newCinema).eInverseAdd(this, CinemaManagementSoftwarePackage.CINEMA__HALL,
 						Cinema.class, msgs);
 			msgs = basicSetCinema(newCinema, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA,
 					newCinema, newCinema));
 	}
 
@@ -284,16 +273,13 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CINEMA_HALL__ROW:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRow())
-					.basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRow()).basicAdd(otherEnd, msgs);
 		case CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA:
 			if (cinema != null)
-				msgs = ((InternalEObject) cinema).eInverseRemove(this,
-						CinemaManagementSoftwarePackage.CINEMA__HALL,
+				msgs = ((InternalEObject) cinema).eInverseRemove(this, CinemaManagementSoftwarePackage.CINEMA__HALL,
 						Cinema.class, msgs);
 			return basicSetCinema((Cinema) otherEnd, msgs);
 		}
@@ -306,8 +292,7 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case CinemaManagementSoftwarePackage.CINEMA_HALL__ROW:
 			return ((InternalEList<?>) getRow()).basicRemove(otherEnd, msgs);
@@ -402,8 +387,7 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 		case CinemaManagementSoftwarePackage.CINEMA_HALL__ID:
 			return id != ID_EDEFAULT;
 		case CinemaManagementSoftwarePackage.CINEMA_HALL__NAME:
-			return NAME_EDEFAULT == null ? name != null
-					: !NAME_EDEFAULT.equals(name);
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case CinemaManagementSoftwarePackage.CINEMA_HALL__CINEMA:
 			return cinema != null;
 		}
@@ -416,8 +400,7 @@ public class CinemaHallImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments)
-			throws InvocationTargetException {
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case CinemaManagementSoftwarePackage.CINEMA_HALL___IS_CONFIG_COMPLETE:
 			isConfigComplete();

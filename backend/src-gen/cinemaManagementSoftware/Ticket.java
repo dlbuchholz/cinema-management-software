@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link cinemaManagementSoftware.Ticket#getPrice <em>Price</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Ticket#isIsBooked <em>Is Booked</em>}</li>
  *   <li>{@link cinemaManagementSoftware.Ticket#getId <em>Id</em>}</li>
+ *   <li>{@link cinemaManagementSoftware.Ticket#getOwner <em>Owner</em>}</li>
  * </ul>
  *
  * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getTicket()
@@ -134,5 +135,29 @@ public interface Ticket extends EObject {
 	 * @generated
 	 */
 	void setId(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Owner</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link cinemaManagementSoftware.Customer#getTicket <em>Ticket</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner</em>' reference.
+	 * @see #setOwner(Customer)
+	 * @see cinemaManagementSoftware.CinemaManagementSoftwarePackage#getTicket_Owner()
+	 * @see cinemaManagementSoftware.Customer#getTicket
+	 * @model opposite="ticket" required="true"
+	 * @generated
+	 */
+	Customer getOwner();
+
+	/**
+	 * Sets the value of the '{@link cinemaManagementSoftware.Ticket#getOwner <em>Owner</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner</em>' reference.
+	 * @see #getOwner()
+	 * @generated
+	 */
+	void setOwner(Customer value);
 
 } // Ticket
