@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate6.Hibernate6Module;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +22,13 @@ public class CinemaHallCommandConsumer {
     private final CinemaHallRepository cinemaHallRepository;
     private final CinemaRepository cinemaRepository;
     private final ObjectMapper objectMapper;
+    private final RabbitTemplate rabbitTemplate;
 
-    public CinemaHallCommandConsumer(CinemaHallRepository cinemaHallRepository, CinemaRepository cinemaRepository, ObjectMapper objectMapper) {
+    public CinemaHallCommandConsumer(CinemaHallRepository cinemaHallRepository, CinemaRepository cinemaRepository, RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
         this.cinemaHallRepository = cinemaHallRepository;
         this.cinemaRepository = cinemaRepository;
         this.objectMapper = objectMapper;
+        this.rabbitTemplate = rabbitTemplate;
         objectMapper.registerModule(new Hibernate6Module());
     }
 
@@ -79,6 +82,10 @@ public class CinemaHallCommandConsumer {
 
             // Save the entity and return the created object
             CinemaHallEntity savedHall = cinemaHallRepository.save(newHall);
+            rabbitTemplate.convertAndSend("event.cinema-hall.created", Map.of(
+                    "id", savedHall.getId(),
+                    "name", savedHall.getName()
+                ));
             return objectMapper.writeValueAsString(savedHall);
 
         } catch (Exception e) {
@@ -118,6 +125,9 @@ public class CinemaHallCommandConsumer {
     public String deleteCinemaHall(Long id) {
         try {
             cinemaHallRepository.deleteById(id);
+            rabbitTemplate.convertAndSend("event.cinema-hall.deleted", Map.of(
+                    "id", id
+                ));
             return "{\"status\":\"success\",\"message\":\"Cinema Hall deleted\"}";
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Cinema Hall deletion failed\"}";

@@ -11,50 +11,83 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 	
-	 	@Bean
-	    public Queue revenueByScreeningQueue() {
-	        return new Queue("statistics.revenue.screening", true);
-	    }
+ 	@Bean
+    public Queue revenueByScreeningQueue() {
+        return new Queue("statistics.revenue.screening", true);
+    }
 
-	    @Bean
-	    public Queue revenueByMovieQueue() {
-	        return new Queue("statistics.revenue.movie", true);
-	    }
+    @Bean
+    public Queue revenueByMovieQueue() {
+        return new Queue("statistics.revenue.movie", true);
+    }
 
-	    @Bean
-	    public Queue revenueByCinemaHallQueue() {
-	        return new Queue("statistics.revenue.cinema-hall", true);
-	    }
+    @Bean
+    public Queue revenueByCinemaHallQueue() {
+        return new Queue("statistics.revenue.cinema-hall", true);
+    }
 
-	    @Bean
-	    public Queue revenueByDateRangeQueue() {
-	        return new Queue("statistics.revenue.date-range", true);
-	    }
+    @Bean
+    public Queue revenueByDateRangeQueue() {
+        return new Queue("statistics.revenue.date-range", true);
+    }
 
-	    @Bean
-	    public Queue occupancyByScreeningQueue() {
-	        return new Queue("statistics.occupancy.screening", true);
-	    }
+    @Bean
+    public Queue occupancyByScreeningQueue() {
+        return new Queue("statistics.occupancy.screening", true);
+    }
 
-	    @Bean
-	    public Queue occupancyByHallQueue() {
-	        return new Queue("statistics.occupancy.hall", true);
-	    }
+    @Bean
+    public Queue occupancyByHallQueue() {
+        return new Queue("statistics.occupancy.hall", true);
+    }
+    
+    @Bean
+    public Queue topMoviesQueue() {
+        return new Queue("statistics.top-movies", true);
+    }
+
+    @Bean
+    public Queue topScreeningsQueue() {
+        return new Queue("statistics.top-screenings", true);
+    }
+
+    @Bean
+    public Queue customerTrendsQueue() {
+        return new Queue("statistics.customer-trends", true);
+    }
+    
+    @Bean
+    public Queue cinemaHallCreatedQueue() {
+        return new Queue("event.cinema-hall.created", true);
+    }
+
+    @Bean
+    public Queue cinemaHallDeletedQueue() {
+        return new Queue("event.cinema-hall.deleted", true);
+    }
+
+    @Bean
+    public Queue seatingRowCreatedQueue() {
+        return new Queue("event.seating-row.created", true);
+    }
+
+    @Bean
+    public Queue seatingRowDeletedQueue() {
+        return new Queue("event.seating-row.deleted", true);
+    }
+
+    @Bean
+    public Queue seatCreatedQueue() {
+        return new Queue("event.seat.created", true);
+    }
+
+    @Bean
+    public Queue seatDeletedQueue() {
+        return new Queue("event.seat.deleted", true);
+    }
 	    
-	    @Bean
-	    public Queue topMoviesQueue() {
-	        return new Queue("statistics.top-movies", true);
-	    }
-
-	    @Bean
-	    public Queue topScreeningsQueue() {
-	        return new Queue("statistics.top-screenings", true);
-	    }
-
-	    @Bean
-	    public Queue customerTrendsQueue() {
-	        return new Queue("statistics.customer-trends", true);
-	    }
+	@Bean
+	public Queue eventMovieCreatedQueue() { return new Queue("event.movie.created", true); }
 
 	// Booking Events
     @Bean
@@ -297,6 +330,11 @@ public class RabbitMQConfig {
     @Bean
     public Queue customerFetchByIdQueue() { 
         return new Queue("customer.fetchById", true);
+    }
+    
+    @Bean
+    public Queue customerGetIdQueue() { 
+        return new Queue("customer.getId", true);
     }
 
     @Bean
