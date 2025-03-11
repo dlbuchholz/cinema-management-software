@@ -42,7 +42,7 @@ public class TicketController {
             Map<String, Object> ticketMap = objectMapper.readValue(jsonTicket, new TypeReference<Map<String, Object>>() {});
 
             // Extract customerId, screeningId, seatId, and price
-            if (!ticketMap.containsKey("customerId") || !ticketMap.containsKey("screeningId") || !ticketMap.containsKey("seatID") || !ticketMap.containsKey("price")) {
+            if (!ticketMap.containsKey("customerId") || !ticketMap.containsKey("screeningId") || !ticketMap.containsKey("seatd") || !ticketMap.containsKey("price")) {
                 return ResponseEntity.badRequest().body("{\"status\":\"error\",\"message\":\"Missing required ticket data!\"}");
             }
 
