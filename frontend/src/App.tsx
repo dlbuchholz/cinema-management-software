@@ -15,6 +15,8 @@ import CinemaHallDetailEdit from './pages/CinemaHallDetailEdit';
 import CreateFilm from './pages/CreateFilm';
 import 'antd/dist/reset.css';
 import { message } from 'antd';
+import AdminSignupForm from './components/Auth/OwnerSignupForm';
+import MyTickets from './pages/MyTickets';
 
 message.config({
   top: 100,       
@@ -27,9 +29,10 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
-
+                <Route path="/admin-register" element={<AdminSignupForm />} />
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/tickets" element={<ProtectedRoute><MyTickets /></ProtectedRoute>} />
                     <Route path="/account" element={<AdminRoute><AccountView /></AdminRoute>}>
                         <Route path="film" element={<AdminRoute><FilmEdit /></AdminRoute>} />
                         <Route path="film/:id" element={<AdminRoute><FilmDetailEdit /></AdminRoute>} />

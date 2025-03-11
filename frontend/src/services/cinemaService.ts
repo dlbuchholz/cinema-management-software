@@ -4,17 +4,66 @@ import { Movie, Screening, CinemaHall, SeatingRow, Category, Seat, Ticket } from
 const MOVIES_URL = 'http://localhost:8080/api/movies';
 const SCREENINGS_URL = 'http://localhost:8080/api/screenings';
 const HALLS_URL = 'http://localhost:8080/api/halls';
-const API_URL = 'http://localhost:8080/api/tickets';
+const API_URL = 'http://localhost:8080/api/ticket';
 
-/**
- * Request payload for creating a new reservation or booking.
- * Adjust the properties as needed.
- */
 export interface TicketRequest {
   screeningId: number;
   seatId: number;
-  // You may add additional fields, e.g., price, user info, etc.
 }
+
+export interface TicketData {
+  customerId: number;
+  screeningId: number;
+  seatId: number;
+  price: number;
+}
+
+
+const createTicket = async (ticket: TicketData): Promise<string> => {
+  const payload = {
+    customer: ticket.customerId,
+    customerId: ticket.customerId,
+    screening: ticket.screeningId,
+    screeningId: ticket.screeningId,
+    seat: ticket.seatId,
+    seatId: ticket.seatId,
+    price: ticket.price
+  };
+  const response = await axios.post<string>(API_URL, payload, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+  return response.data;
+};
+
+const getCustomerTicketsForScreening = async (customerId: number, screeningId: number): Promise<string> => {
+  const response = await axios.get<string>(`${API_URL}/${customerId}/screenings/${screeningId}/tickets`);
+  return response.data;
+};
+
+const getTicketsForScreening = async (screeningId: number): Promise<string> => {
+  const response = await axios.get<string>(`${API_URL}/${screeningId}/tickets`);
+  return response.data;
+};
+
+const getTicketsForCustomer = async (customerId: number): Promise<string> => {
+  const response = await axios.get<string>(`${API_URL}/${customerId}/tickets`);
+  return response.data;
+};
+
+const deleteTicket = async (ticketId: number): Promise<string> => {
+  const response = await axios.delete<string>(`${API_URL}/${ticketId}`);
+  return response.data;
+};
+
+const bookTicket = async (ticketId: number): Promise<string> => {
+  const response = await axios.patch<string>(`${API_URL}/${ticketId}/book`);
+  return response.data;
+};
+
+const getSeatsForScreening = async (screeningId: number): Promise<string> => {
+  const response = await axios.get<string>(`${API_URL}/screenings/${screeningId}/seats`);
+  return response.data;
+};
 
 /**
  * Creates a new reservation.
@@ -231,4 +280,11 @@ export default {
   getTicketDetails,
   updateHall,
   deleteHall,
+  createTicket,
+  getCustomerTicketsForScreening,
+  getTicketsForScreening,
+  getTicketsForCustomer,
+  deleteTicket,
+  bookTicket,
+  getSeatsForScreening
 };

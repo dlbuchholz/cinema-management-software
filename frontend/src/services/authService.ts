@@ -1,19 +1,11 @@
-// src/services/authService.ts
-
 import axios from 'axios';
+import { User } from '../features/auth/authSlice';
 
-/**
- * Interface for login credentials.
- */
 export interface LoginCredentials {
-  email: string;
   username: string;
   password: string;
 }
 
-/**
- * Interface for registration credentials.
- */
 export interface RegisterCredentials {
   email: string;
   password: string;
@@ -22,9 +14,13 @@ export interface RegisterCredentials {
   telephone: string;
 }
 
-/**
- * Interface for the authentication response from the server.
- */
+export interface OwnerRegisterCredentials {
+  email: string;
+  password: string;
+  name: string;
+  telephone: string;
+}
+
 export interface AuthResponse {
   status: string;
   token?: string;
@@ -32,38 +28,52 @@ export interface AuthResponse {
 }
 
 const API_URL = 'http://localhost:8080/api/customers';
+const OWNERS_API_URL = 'http://localhost:8080/api/owners';
 
-/**
- * Sends login credentials to the server and saves the token if login is successful.
- */
-const login = async (credentials: LoginCredentials): Promise<AuthResponse> => {
+const login = async (credentials: LoginCredentials): Promise<User> => {
   const response = await axios.post<AuthResponse>(`${API_URL}/login`, {
     email: credentials.username,
     password: credentials.password
   });
   const data = response.data;
   if (data.status === 'success' && data.token) {
+    const user: User = { username: credentials.username, role: 'user', token: data.token };
     localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(user));
+    return user;
+  } else {
+    throw new Error(data.message || 'Login failed');
   }
-  return data;
 };
 
-/**
- * Sends registration data to the server and saves the token if registration is successful.
- */
-const signup = async (credentials: RegisterCredentials): Promise<AuthResponse> => {
+const signup = async (credentials: RegisterCredentials): Promise<User> => {
   const response = await axios.post<AuthResponse>(`${API_URL}/register`, credentials);
   const data = response.data;
   if (data.status === 'success' && data.token) {
-    localStorage.setItem('user', JSON.stringify(data.token));
+    const user: User = { username: credentials.email, role: 'user', token: data.token };
     localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(user));
+    return user;
+  } else {
+    throw new Error(data.message || 'Signup failed');
   }
-  return data;
 };
 
-/**
- * Clears the token from localStorage.
- */
+const ownerSignup = async (credentials: OwnerRegisterCredentials): Promise<User> => {
+  const response = await axios.post<string>(`${OWNERS_API_URL}/register`, credentials, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+  const data: AuthResponse = JSON.parse(response.data);
+  if (data.status === 'success' && data.token) {
+    const user: User = { username: credentials.email, role: 'owner', token: data.token };
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(user));
+    return user;
+  } else {
+    throw new Error(data.message || 'Owner registration failed');
+  }
+};
+
 const logout = (): void => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
@@ -72,5 +82,6 @@ const logout = (): void => {
 export default {
   login,
   signup,
+  ownerSignup,
   logout,
 };

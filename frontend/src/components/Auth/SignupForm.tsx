@@ -8,6 +8,7 @@ import { signup } from '../../features/auth/authSlice';
 interface SignupData {
     email: string;
     name: string;
+    telephone: string,
     password: string;
     confirmPassword: string;
 }
@@ -20,6 +21,7 @@ const SignupForm: React.FC = () => {
         email: '',
         name: '',
         password: '',
+        telephone: '',
         confirmPassword: ''
     });
 
@@ -33,7 +35,7 @@ const SignupForm: React.FC = () => {
             alert("Passwords do not match!");
             return;
         }
-        dispatch(signup({ email: signupData.email, name: signupData.name, password: signupData.password }));
+        dispatch(signup(signupData));
     };
 
     if (isAuthenticated) {
@@ -60,6 +62,15 @@ const SignupForm: React.FC = () => {
                     placeholder="E-Mail"
                     onChange={handleChange}
                     value={signupData.email}
+                    required
+                    className={styles['auth-input']}
+                />
+                <input
+                    type="text"
+                    name="telephone"
+                    placeholder="Telefonnummer"
+                    onChange={handleChange}
+                    value={signupData.telephone}
                     required
                     className={styles['auth-input']}
                 />

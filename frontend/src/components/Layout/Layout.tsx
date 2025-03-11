@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout as AntLayout, Menu, Button, LayoutProps } from 'antd';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { UserOutlined, YoutubeOutlined } from '@ant-design/icons';
+import { BookOutlined, UserOutlined, YoutubeOutlined } from '@ant-design/icons';
 import styles from '../../assets/styles/Layout.module.css';
 import authService from '../../services/authService';
 import { useSelector } from 'react-redux';
@@ -38,7 +38,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         defaultSelectedKeys={[location.pathname]}
                     >
                         <Menu.Item key="/" icon={<YoutubeOutlined />}>
-                            <Link to="/">Filme</Link>
+                            <Link to="/">Movies</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/tickets" icon={<BookOutlined />}>
+                            <Link to="/tickets">My Tickets</Link>
                         </Menu.Item>
                         {user?.role === 'admin' && <Menu.Item key="/account" icon={<UserOutlined />}>
                             <Link to="/account">Admin Panel</Link>

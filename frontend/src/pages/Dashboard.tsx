@@ -1,5 +1,3 @@
-// src/pages/Dashboard.tsx
-
 import React, { useEffect, useState } from 'react';
 import { Input, Row, Col, Card, Typography, Spin, Modal, List, Button, message } from 'antd';
 import { PlayCircleOutlined, CalendarOutlined } from '@ant-design/icons';
@@ -23,13 +21,9 @@ const Dashboard: React.FC = () => {
   const [films, setFilms] = useState<Movie[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
-
-  // State for screening selection
   const [selectedFilm, setSelectedFilm] = useState<Movie | null>(null);
   const [screenings, setScreenings] = useState<Screening[]>([]);
   const [isScreeningModalVisible, setIsScreeningModalVisible] = useState<boolean>(false);
-
-  // State for seat selection
   const [selectedScreening, setSelectedScreening] = useState<Screening | null>(null);
   const [isSeatModalVisible, setIsSeatModalVisible] = useState<boolean>(false);
   const [selectedSeatIds, setSelectedSeatIds] = useState<number[]>([]);
@@ -52,11 +46,9 @@ const Dashboard: React.FC = () => {
         setLoading(false);
       }
     };
-
     fetchFilms();
   }, [searchTerm]);
 
-  // When a film is selected, fetch its screenings and open the screening modal
   const onFilmSelect = async (film: Movie) => {
     setSelectedFilm(film);
     try {
@@ -73,27 +65,24 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  // When a screening is selected, open the seat selection modal
   const onScreeningSelect = (screening: Screening) => {
     setSelectedScreening(screening);
-    setSelectedSeatIds([]); // Reset any previous seat selections
+    setSelectedSeatIds([]);
     setIsScreeningModalVisible(false);
     setIsSeatModalVisible(true);
   };
 
-  // Toggle seat selection state
   const toggleSeatSelection = (seatId: number) => {
     setSelectedSeatIds(prev => prev.includes(seatId) ? prev.filter(id => id !== seatId) : [...prev, seatId]);
   };
 
-  // Render seating layout from the selected screening's hall data
   const renderSeatingLayout = () => {
     if (!selectedScreening || !selectedScreening.cinemaHall) return null;
     const hall: CinemaHall = selectedScreening.cinemaHall;
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
         {hall.seatingRows.map((row: SeatingRow) => (
-          <div key={row.id} style={{ width: '100%', textAlign: 'center' }}>
+          <div key={row.id} style={{ width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center' }}>
             <Text strong>Row {row.rowNr}</Text>
             <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 4 }}>
               {row.seats.map((seat: Seat) => {
@@ -123,7 +112,6 @@ const Dashboard: React.FC = () => {
     );
   };
 
-  // Book the selected seats by calling the booking endpoint for each seat
   const onBookSeats = async () => {
     if (!selectedScreening) return;
     if (selectedSeatIds.length === 0) {
@@ -131,9 +119,10 @@ const Dashboard: React.FC = () => {
       return;
     }
     try {
-      // You might choose to batch the request; here we book each seat individually.
+      const customerId = 1;
+      const ticketPrice = selectedScreening.ticketPrice || 10.0;
       for (const seatId of selectedSeatIds) {
-        await cinemaService.createBooking({ screeningId: selectedScreening.id, seatId });
+        await cinemaService.createTicket({ customerId, screeningId: selectedScreening.id, seatId, price: ticketPrice });
       }
       message.success('Seats booked successfully');
       setIsSeatModalVisible(false);
@@ -182,8 +171,6 @@ const Dashboard: React.FC = () => {
           </Col>
         ))}
       </Row>
-
-      {/* Screening Modal */}
       <Modal
         title={`${selectedFilm?.title} - Screenings`}
         visible={isScreeningModalVisible}
@@ -202,8 +189,6 @@ const Dashboard: React.FC = () => {
           )}
         />
       </Modal>
-
-      {/* Seat Selection Modal */}
       <Modal
         title="Select Your Seats"
         visible={isSeatModalVisible}
