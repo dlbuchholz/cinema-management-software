@@ -82,7 +82,7 @@ public class UserHandler {
 
     public ResponseEntity<String> login(Map<String, String> user) {
         try {
-            if (!user.containsKey("email") || !user.containsKey("password")) {
+            if (!user.containsKey("username") || !user.containsKey("password")) {
                 return ResponseEntity.badRequest()
                         .body("{\"status\":\"error\",\"message\":\"Missing required fields: email and password\"}");
             }
@@ -137,6 +137,22 @@ public class UserHandler {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("{\"status\":\"error\",\"message\":\"Error processing registration: " + e.getMessage() + "\"}");
+        }
+    }
+    
+    public String processLogout(Map<String, String> request) {
+        try {
+            return (String) rabbitTemplate.convertSendAndReceive("auth.logout", request);
+        } catch (Exception e) {
+            return "{\"status\":\"error\", \"message\":\"Logout request failed\"}";
+        }
+    }
+    
+    public String processTokenValidation(Map<String, String> request) {
+        try {
+            return (String) rabbitTemplate.convertSendAndReceive("auth.validateToken", request);
+        } catch (Exception e) {
+            return "{\"status\":\"error\", \"message\":\"Token validation request failed\"}";
         }
     }
 }
