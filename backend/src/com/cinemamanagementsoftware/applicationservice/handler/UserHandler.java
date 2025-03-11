@@ -139,5 +139,21 @@ public class UserHandler {
                     .body("{\"status\":\"error\",\"message\":\"Error processing registration: " + e.getMessage() + "\"}");
         }
     }
+    
+    public String processLogout(Map<String, String> request) {
+        try {
+            return (String) rabbitTemplate.convertSendAndReceive("auth.logout", request);
+        } catch (Exception e) {
+            return "{\"status\":\"error\", \"message\":\"Logout request failed\"}";
+        }
+    }
+    
+    public String processTokenValidation(Map<String, String> request) {
+        try {
+            return (String) rabbitTemplate.convertSendAndReceive("auth.validateToken", request);
+        } catch (Exception e) {
+            return "{\"status\":\"error\", \"message\":\"Token validation request failed\"}";
+        }
+    }
 }
 
