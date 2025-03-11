@@ -336,11 +336,6 @@ public class RabbitMQConfig {
     public Queue customerFetchByIdQueue() { 
         return new Queue("customer.fetchById", true);
     }
-    
-    @Bean
-    public Queue customerGetIdQueue() { 
-        return new Queue("customer.getId", true);
-    }
 
     @Bean
     public Queue ownerCreateQueue() {
