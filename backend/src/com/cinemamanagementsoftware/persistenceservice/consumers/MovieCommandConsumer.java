@@ -5,6 +5,7 @@ import com.cinemamanagementsoftware.persistenceservice.repositories.MovieReposit
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +17,12 @@ public class MovieCommandConsumer {
 
     private final MovieRepository movieRepository;
     private final ObjectMapper objectMapper;
+    private final RabbitTemplate rabbitTemplate;
 
-    public MovieCommandConsumer(MovieRepository movieRepository, ObjectMapper objectMapper) {
+    public MovieCommandConsumer(MovieRepository movieRepository, ObjectMapper objectMapper, RabbitTemplate rabbitTemplate) {
         this.movieRepository = movieRepository;
         this.objectMapper = objectMapper;
+        this.rabbitTemplate = rabbitTemplate;
     }
     
     @RabbitListener(queues = "movie.search")
@@ -72,6 +75,13 @@ public class MovieCommandConsumer {
             String extractedJson = extractNestedJson(movieJson, "movie");
             MovieEntity cinema = objectMapper.readValue(extractedJson, MovieEntity.class);
             MovieEntity savedMovie = movieRepository.save(cinema);
+            rabbitTemplate.convertAndSend("event.movie.created", Map.of(
+                    "movieId", savedMovie.getId(),
+                    "title", savedMovie.getTitle(),
+                    "genre", savedMovie.getGenre(),
+                    "description", savedMovie.getDescription(),
+                    "length", savedMovie.getLength()
+                ));
             return objectMapper.writeValueAsString(savedMovie);
 
         } catch (Exception e) {

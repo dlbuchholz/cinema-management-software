@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,6 +42,9 @@ public class TicketCommandConsumer {
     
     @Autowired
     SeatingRowRepository seatingrowRepository;
+    
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private ObjectMapper objectMapper; // JSON processor
@@ -98,6 +102,7 @@ public class TicketCommandConsumer {
             newTicket.setBookedStatus(false); // Default to reserved
 
             ticketRepository.save(newTicket);
+            
             return "{\"status\":\"success\",\"message\":\"Ticket created successfully!\"}";
 
         } catch (Exception e) {
@@ -183,6 +188,14 @@ public class TicketCommandConsumer {
 
             // Delete ticket
             ticketRepository.delete(ticket);
+            
+            rabbitTemplate.convertAndSend("event.booking.canceled", Map.of(
+                    "bookingId", ticket.getId(),
+                    "screeningId", ticket.getScreening().getId(),
+                    "customerId", ticket.getOwner().getId(),
+                    "totalPrice", ticket.getPrice()
+                ));
+            
             return "{\"status\":\"success\",\"message\":\"Ticket deleted successfully.\"}";
 
         } catch (Exception e) {
@@ -213,6 +226,13 @@ public class TicketCommandConsumer {
             // Update status
             ticket.setBookedStatus(true);
             ticketRepository.save(ticket);
+            
+            rabbitTemplate.convertAndSend("event.booking.created", Map.of(
+                    "bookingId", ticket.getId(),
+                    "screeningId", ticket.getScreening().getId(),
+                    "customerId", ticket.getOwner().getId(),
+                    "totalPrice", ticket.getPrice()
+                ));
 
             return "{\"status\":\"success\",\"message\":\"Ticket successfully booked.\"}";
 

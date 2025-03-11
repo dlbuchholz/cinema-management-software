@@ -19,6 +19,9 @@ public class CustomerCommandConsumer {
 
     @Autowired
     private ObjectMapper objectMapper;
+    
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @RabbitListener(queues = "customer.fetchById")
     public String fetchCustomerById(String customerId) {
@@ -92,7 +95,15 @@ public class CustomerCommandConsumer {
             customer.setTelephone(telephone);
 
             // Save customer to the database
-            customerRepository.save(customer);
+            CustomerEntity newCustomer = customerRepository.save(customer);
+            
+            rabbitTemplate.convertAndSend("event.customer.registered", Map.of(
+                    "id", newCustomer.getId(),
+                    "name", newCustomer.getName(),
+                    "email", newCustomer.getEmail(),
+                    "telephone", newCustomer.getTelephone()
+                ));
+            
             return "{\"status\":\"success\",\"message\":\"Customer registered successfully!\"}";
 
         } catch (Exception e) {

@@ -95,7 +95,13 @@ public class SeatingRowCommandConsumer {
             newRow.setCategory(categoryOptional.get());
             newRow.setRowNr(Integer.parseInt(requestData.get("nr").toString()));
 
-            seatingRowRepository.save(newRow);
+            SeatingRowEntity savedRow = seatingRowRepository.save(newRow);
+            rabbitTemplate.convertAndSend("event.seating-row.created", Map.of(
+                    "id", savedRow.getId(),
+                    "hallId", hallId,
+                    "category", savedRow.getCategory().getName(),
+                    "rowNumber", savedRow.getNr()
+                ));
             return objectMapper.writeValueAsString(newRow);
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Failed to create Seating Row: " + e.getMessage() + "\"}";
@@ -130,6 +136,9 @@ public class SeatingRowCommandConsumer {
     public String deleteSeatingRow(Long id) {
         try {
             seatingRowRepository.deleteById(id);
+            rabbitTemplate.convertAndSend("event.seating-row.deleted", Map.of(
+                    "id", id
+                ));
             return "{\"status\":\"success\",\"message\":\"Seating row deleted\"}";
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Seating row deletion failed\"}";
