@@ -76,16 +76,42 @@ public class DemoService {
         movies.put("Star Wars: The Force Awakens", createMovie("Star Wars: The Force Awakens", "Sci-Fi", "A new hero rises as the First Order threatens the galaxy.", 138));
         movies.put("Star Wars: The Last Jedi", createMovie("Star Wars: The Last Jedi", "Sci-Fi", "Rey seeks Luke Skywalker's guidance while the Resistance fights the First Order.", 152));
         movies.put("Star Wars: The Rise of Skywalker", createMovie("Star Wars: The Rise of Skywalker", "Sci-Fi", "The Resistance faces the Final Order in the ultimate battle.", 142));
-
         // Remove null movies
         movies.values().removeIf(Objects::isNull);
 
-        // Create Screenings
+     // Define screening times
         List<String> screeningDates = List.of("2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13", "2025-03-14");
 
+        int baseStartHour = 14; // Screenings start at 14:00
+        double latestStartHour = 21.30; // No screenings start after 21:30
+
+        // Track last end time per hall per date
+        Map<String, Map<Long, Double>> hallSchedules = new HashMap<>();
+
         for (Map.Entry<String, Long> movieEntry : movies.entrySet()) {
-            for (int i = 0; i < hallIds.size(); i++) {
-                createScreening(movieEntry.getValue(), hallIds.get(i), screeningDates.get(i % screeningDates.size()), 17.00 + (i * 1.5), 20.00 + (i * 1.5));
+            for (String date : screeningDates) {
+                // Initialize schedule tracking for the date
+                hallSchedules.putIfAbsent(date, new HashMap<>());
+
+                for (Long hallId : hallIds) {
+                    // Get the last end time for this hall on this date
+                    double lastEndTime = hallSchedules.get(date).getOrDefault(hallId, (double) baseStartHour);
+
+                    // Retrieve movie length in hours
+                    double movieLength = 2.5; // Default to 2.5h
+
+                    // Calculate start and end time
+                    double startTime = lastEndTime;
+                    double endTime = startTime + movieLength;
+
+                    // Stop scheduling if we exceed the latest start time
+                    if (startTime >= latestStartHour || startTime + movieLength > 24) break;
+
+                    createScreening(movieEntry.getValue(), hallId, date, startTime, endTime);
+
+                    // Update last end time for the hall
+                    hallSchedules.get(date).put(hallId, endTime + 0.5); // Add a 30-minute gap before the next screening
+                }
             }
         }
     }
