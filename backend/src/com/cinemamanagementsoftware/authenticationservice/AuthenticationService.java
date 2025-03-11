@@ -103,7 +103,6 @@ public class AuthenticationService {
             if (customerJson != null && !customerJson.trim().isEmpty() && !customerJson.equals("{}")) {
                 Map<String, String> customer = objectMapper.readValue(customerJson, Map.class);
                 String storedPassword = customer.get("password");
-
                 if (passwordEncoder.matches(password, storedPassword)) {
                     String token = jwtUtil.generateToken(email);
                     return String.format("{\"status\":\"success\", \"role\":\"customer\", \"token\":\"%s\", \"id\":%s, \"email\":\"%s\"}", 

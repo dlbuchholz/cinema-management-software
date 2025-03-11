@@ -25,6 +25,12 @@ public class CustomerController {
     public ResponseEntity<String> getCustomerProfile() {
         return userHandler.getUserProfile("customer.fetch");
     }
+    
+    @GetMapping("/id/{email}")
+    public ResponseEntity<String> getCustomerId(@PathVariable("email") String email) {
+            String response = userHandler.fetchCustomerId(email);
+            return ResponseEntity.ok(response);
+    }
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody String jsonCustomer) {

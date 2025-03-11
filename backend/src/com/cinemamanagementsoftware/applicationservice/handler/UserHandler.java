@@ -65,6 +65,20 @@ public class UserHandler {
                     .body("{\"status\":\"error\",\"message\":\"Error retrieving user profile: " + e.getMessage() + "\"}");
         }
     }
+    
+    public String fetchCustomerId(String email) {
+        try {
+            Object response = rabbitTemplate.convertSendAndReceive("customer.getId", email);
+            
+            if (response == null || response.toString().trim().isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Customer not found\"}";
+            }
+
+            return response.toString();
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error processing request: " + e.getMessage() + "\"}";
+        }
+    }
 
     public ResponseEntity<String> login(Map<String, String> user) {
         try {
@@ -82,6 +96,11 @@ public class UserHandler {
 
             // Deserialize response and check role
             Map<String, Object> responseMap = objectMapper.readValue(response.toString(), new TypeReference<Map<String, Object>>() {});
+            if (responseMap.containsKey("status") && "error".equals(responseMap.get("status"))) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(objectMapper.writeValueAsString(responseMap));
+            }
+
             if (!responseMap.containsKey("role")) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body("{\"status\":\"error\",\"message\":\"Invalid authentication response.\"}");

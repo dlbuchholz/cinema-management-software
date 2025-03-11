@@ -50,6 +50,24 @@ public class CustomerCommandConsumer {
             return "{\"status\":\"error\",\"message\":\"Error retrieving customer: " + e.getMessage() + "\"}";
         }
     }
+    
+    @RabbitListener(queues = "customer.getId")
+    public String getCustomerId(String email) {
+        try {
+            Optional<CustomerEntity> customerOpt = customerRepository.findByEmail(email);
+
+            if (customerOpt.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Customer not found\"}";
+            }
+
+            Long customerId = customerOpt.get().getId();
+            return "{\"status\":\"success\",\"customerId\":\"" + customerId + "\"}";
+
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Error retrieving customer ID: " + e.getMessage() + "\"}";
+        }
+    }
+
 
     @RabbitListener(queues = "customer.create")
     public String createCustomer(Map<String, Object> request) {  

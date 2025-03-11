@@ -49,9 +49,9 @@ public class TicketController {
                 return ResponseEntity.badRequest().body("{\"status\":\"error\",\"message\":\"Missing required ticket data!\"}");
             }
 
-            Long customerId = Long.valueOf(ticketMap.get("customer").toString());
-            Long screeningId = Long.valueOf(ticketMap.get("screening").toString());
-            Long seatId = Long.valueOf(ticketMap.get("seat").toString());
+            Long customerId = Long.valueOf(ticketMap.get("customerId").toString());
+            Long screeningId = Long.valueOf(ticketMap.get("screeningId").toString());
+            Long seatId = Long.valueOf(ticketMap.get("seatId").toString());
             Double price = Double.valueOf(ticketMap.get("price").toString());
 
             // Call handler
