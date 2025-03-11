@@ -19,7 +19,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.cinemamanagementsoftware.config",                 			// Configurations (RabbitMQ, etc.)
-        "com.cinemamanagementsoftware.applicationservice",  
+        "com.cinemamanagementsoftware.applicationservice",
+        "com.cinemamanagementsoftware.applicationservice.handler",  
         "com.cinemamanagementsoftware.authenticationservice",  			 // Security Service
         "com.cinemamanagementsoftware.demoservice",						// Demo Service
         "com.cinemamanagementsoftware.persistenceservice",      		// Persistence Layer (JPA)

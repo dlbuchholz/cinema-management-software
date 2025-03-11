@@ -14,9 +14,70 @@ public class CinemaStatisticsService {
     public CinemaStatisticsService(Driver neo4jDriver) {
         this.neo4jDriver = neo4jDriver;
     }
+    
+    /** Add a new Cinema Hall to the graph */
+    public void addCinemaHallToGraph(Long hallId, String name) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "CREATE (:CinemaHall {id: $hallId, name: $name})",
+                Values.parameters("hallId", hallId, "name", name)
+            ));
+        }
+    }
+
+    /** Remove a Cinema Hall from the graph */
+    public void removeCinemaHallFromGraph(Long hallId) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "MATCH (h:CinemaHall {id: $hallId}) DETACH DELETE h",
+                Values.parameters("hallId", hallId)
+            ));
+        }
+    }
+
+    /** Add a Seating Row to the Graph */
+    public void addSeatingRowToGraph(Long rowId, Long hallId, String category, int rowNumber) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "MATCH (h:CinemaHall {id: $hallId}) " +
+                "CREATE (r:SeatingRow {id: $rowId, category: $category, rowNumber: $rowNumber})-[:IN_HALL]->(h)",
+                Values.parameters("rowId", rowId, "hallId", hallId, "category", category, "rowNumber", rowNumber)
+            ));
+        }
+    }
+
+    /** Remove a Seating Row from the Graph */
+    public void removeSeatingRowFromGraph(Long rowId) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "MATCH (r:SeatingRow {id: $rowId}) DETACH DELETE r",
+                Values.parameters("rowId", rowId)
+            ));
+        }
+    }
+
+    /** Add a Seat to the Graph */
+    public void addSeatToGraph(Long seatId, Long rowId, int seatNumber) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "MATCH (r:SeatingRow {id: $rowId}) " +
+                "CREATE (s:Seat {id: $seatId, seatNumber: $seatNumber})-[:IN_ROW]->(r)",
+                Values.parameters("seatId", seatId, "rowId", rowId, "seatNumber", seatNumber)
+            ));
+        }
+    }
+
+    /** Remove a Seat from the Graph */
+    public void removeSeatFromGraph(Long seatId) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "MATCH (s:Seat {id: $seatId}) DETACH DELETE s",
+                Values.parameters("seatId", seatId)
+            ));
+        }
+    }
 
     /** Add a booking to the graph */
-    
 	public void addBookingToGraph(Long bookingId, Long screeningId, Long customerId, Double totalPrice) {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run(
@@ -33,6 +94,16 @@ public class CinemaStatisticsService {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run("MATCH (b:Booking {id: $bookingId}) DETACH DELETE b", 
                 Values.parameters("bookingId", bookingId)
+            ));
+        }
+    }
+    
+    /** Add a new movie to the graph database */
+    public void addMovieToGraph(Long movieId, String title, String genre, String description, Double length) {
+        try (Session session = neo4jDriver.session()) {
+            session.writeTransaction(tx -> tx.run(
+                "CREATE (:Movie {id: $movieId, title: $title, genre: $genre, description: $description, length: $length})",
+                Values.parameters("movieId", movieId, "title", title, "genre", genre, "description", description, "length", length)
             ));
         }
     }
@@ -70,11 +141,11 @@ public class CinemaStatisticsService {
     }
 
     /** Add a customer */
-    public void addCustomerToGraph(Long customerId, String name, String email) {
+    public void addCustomerToGraph(Long customerId, String name, String email, String telephone) {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run(
-                "CREATE (:Customer {id: $customerId, name: $name, email: $email})",
-                Values.parameters("customerId", customerId, "name", name, "email", email)
+                "CREATE (:Customer {id: $customerId, name: $name, email: $email, telephone: $telephone})",
+                Values.parameters("customerId", customerId, "name", name, "email", email, "telephone", telephone)
             ));
         }
     }
