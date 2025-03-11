@@ -269,6 +269,11 @@ public class RabbitMQConfig {
     public Queue authLogoutQueue() {
         return new Queue("auth.logout", true);
     }
+    
+    @Bean
+    public Queue getCustIdQueue() {
+    	return new Queue("customer.getId", true);
+    }
 
     // Ticket Queues
     @Bean

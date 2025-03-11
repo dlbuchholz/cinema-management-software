@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cinemamanagementsoftware.applicationservice.handler.UserHandler;
 
 @RestController
-@RequestMapping("/api/owners")
+@RequestMapping("/api/owner")
 public class CinemaOwnerController {
 
     private final UserHandler userHandler;
