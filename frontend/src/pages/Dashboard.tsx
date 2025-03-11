@@ -149,15 +149,15 @@ const Dashboard: React.FC = () => {
       />
       <Row gutter={[24, 24]} justify="center">
         {films.map((film) => (
-          <Col key={film.id} xs={24} sm={12} md={8} lg={6}>
+          <Col key={film.id} xs={24} sm={12} md={8} lg={4}>
             <Card
               hoverable
-              title={film.title}
+              onClick={() => onFilmSelect(film)}
               cover={
                 <img
                   alt={film.title}
-                  src={filmImages[film.title] || 'https://via.placeholder.com/300x400'}
-                  style={{ width: '100%', height: 250, objectFit: 'cover' }}
+                  src={filmImages[film.title] || filmImages['Astor']}
+                  style={{ width: '100%', height: 360, objectFit: 'fill' }}
                 />
               }
               actions={[
@@ -165,8 +165,9 @@ const Dashboard: React.FC = () => {
                 <CalendarOutlined key="screenings" onClick={() => onFilmSelect(film)} />,
               ]}
             >
+              <Title level={4}>{film.title}</Title>
               <Text type="secondary">{film.genre} | {film.length} mins</Text>
-              <p>{film.description.slice(0, 60)}...</p>
+              <p style={{ color: '#e1e1e1' }}>{film.description.slice(0, 30)}...</p>
             </Card>
           </Col>
         ))}
