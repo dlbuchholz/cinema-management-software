@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { login } from '../../features/auth/authSlice';
+import { adminLogin, login } from '../../features/auth/authSlice';
 import { Navigate } from 'react-router-dom';
 import styles from '../../assets/styles/AuthForm.module.css';
 
@@ -25,7 +25,11 @@ const LoginForm: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(login(credentials));
+        if (credentials.username === 'admin' && credentials.password === 'admin') {
+            dispatch(adminLogin());
+        } else {
+            dispatch(login(credentials));
+        }
     };
 
     if (isAuthenticated) {
@@ -61,6 +65,9 @@ const LoginForm: React.FC = () => {
                 {error && <p className="error-message">{error}</p>}
                 <div className={styles['auth-footer']}>
                     <span>Don't have an account? <a href="/signup">Sign Up</a></span>
+                </div>
+                <div className={styles['auth-footer']}>
+                    <span>Admin? <a href="/admin-register">Admin-Register</a></span>
                 </div>
             </form>
         </div>

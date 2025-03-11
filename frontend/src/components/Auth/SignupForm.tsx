@@ -6,7 +6,9 @@ import styles from '../../assets/styles/AuthForm.module.css';
 import { signup } from '../../features/auth/authSlice';
 
 interface SignupData {
-    username: string;
+    email: string;
+    name: string;
+    telephone: string,
     password: string;
     confirmPassword: string;
 }
@@ -16,8 +18,10 @@ const SignupForm: React.FC = () => {
     const { isAuthenticated, loading, error } = useSelector((state: RootState) => state.auth);
 
     const [signupData, setSignupData] = useState<SignupData>({
-        username: '',
+        email: '',
+        name: '',
         password: '',
+        telephone: '',
         confirmPassword: ''
     });
 
@@ -31,7 +35,7 @@ const SignupForm: React.FC = () => {
             alert("Passwords do not match!");
             return;
         }
-        dispatch(signup({ username: signupData.username, password: signupData.password }));
+        dispatch(signup(signupData));
     };
 
     if (isAuthenticated) {
@@ -45,10 +49,28 @@ const SignupForm: React.FC = () => {
                 <p>Start managing your cinemas with ease.</p>
                 <input
                     type="text"
-                    name="username"
-                    placeholder="Username"
+                    name="name"
+                    placeholder="name"
                     onChange={handleChange}
-                    value={signupData.username}
+                    value={signupData.name}
+                    required
+                    className={styles['auth-input']}
+                />
+                <input
+                    type="text"
+                    name="email"
+                    placeholder="E-Mail"
+                    onChange={handleChange}
+                    value={signupData.email}
+                    required
+                    className={styles['auth-input']}
+                />
+                <input
+                    type="text"
+                    name="telephone"
+                    placeholder="Telefonnummer"
+                    onChange={handleChange}
+                    value={signupData.telephone}
                     required
                     className={styles['auth-input']}
                 />

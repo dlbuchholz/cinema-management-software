@@ -27,7 +27,7 @@ public class MovieController {
     }
     
     @GetMapping("/search")
-    public Object searchMovies(@RequestParam String query) {
+    public Object searchMovies(@RequestParam(name = "query") String query) {
         if (query == null || query.trim().isEmpty()) {
             return "{\"status\":\"error\",\"message\":\"Search query cannot be empty!\"}";
         }

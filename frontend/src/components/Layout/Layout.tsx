@@ -1,54 +1,63 @@
 import React from 'react';
-import { Layout as AntLayout, Menu, Breadcrumb, LayoutProps } from 'antd';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import { HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { Layout as AntLayout, Menu, Button, LayoutProps } from 'antd';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { BookOutlined, UserOutlined, YoutubeOutlined } from '@ant-design/icons';
 import styles from '../../assets/styles/Layout.module.css';
+import authService from '../../services/authService';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-const { Content, Footer, Sider } = AntLayout;
+const { Header, Content, Footer } = AntLayout;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const { user } = useSelector((state: RootState) => state.auth);
+
+    const handleLogout = () => {
+        authService.logout();
+        navigate('/login');
+    };
 
     return (
-        <AntLayout style={{ minHeight: '100vh' }}>
-            <Sider
-                breakpoint="lg"
-                collapsedWidth="0"
-                onBreakpoint={(broken) => {
-                    console.log(broken);
-                }}
-                onCollapse={(collapsed, type) => {
-                    console.log(collapsed, type);
-                }}
-            >
-                <div className={styles.logo}>Cinema Management</div>
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    defaultSelectedKeys={[location.pathname]}
-                >
-                    <Menu.Item key="/" icon={<HomeOutlined />}>
-                        <Link to="/">Dashboard</Link>
-                    </Menu.Item>
-                    <Menu.Item key="/admin" icon={<UserOutlined />}>
-                        <Link to="/admin">Admin Panel</Link>
-                    </Menu.Item>
-                </Menu>
-            </Sider>
+        <AntLayout className={styles.layoutContainer}>
             <AntLayout>
+                <Header
+                    className={styles.header}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        alignItems: 'center',
+                        paddingRight: 20,
+                    }}
+                >
+                    <Menu
+                        theme="dark"
+                        mode="inline"
+                        style={{ display: 'flex' }}
+                        defaultSelectedKeys={[location.pathname]}
+                    >
+                        <Menu.Item key="/" icon={<YoutubeOutlined />}>
+                            <Link to="/">Movies</Link>
+                        </Menu.Item>
+                        <Menu.Item key="/tickets" icon={<BookOutlined />}>
+                            <Link to="/tickets">My Tickets</Link>
+                        </Menu.Item>
+                        {user?.role === 'admin' && <Menu.Item key="/account" icon={<UserOutlined />}>
+                            <Link to="/account">Admin Panel</Link>
+                        </Menu.Item>}
+                    </Menu>
+                    <Button type="default" onClick={handleLogout}>
+                        Logout
+                    </Button>
+                </Header>
                 <Content style={{ margin: '24px 16px 0' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            {location.pathname === '/admin' ? 'Admin Panel' : 'Dashboard'}
-                        </Breadcrumb.Item>
-                    </Breadcrumb>
                     <div className={styles.content}>
                         <Outlet />
                         {children}
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>
+                <Footer className={styles.footer}>
                     Cinema Management Software ©2025
                 </Footer>
             </AntLayout>
