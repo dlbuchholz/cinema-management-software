@@ -27,8 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public abstract class PersonImpl extends MinimalEObjectImpl.Container
-		implements Person {
+public abstract class PersonImpl extends MinimalEObjectImpl.Container implements Person {
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -128,8 +127,8 @@ public abstract class PersonImpl extends MinimalEObjectImpl.Container
 		int oldId = id;
 		id = newId;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.PERSON__ID, oldId, id));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.PERSON__ID, oldId,
+					id));
 	}
 
 	/**
@@ -152,8 +151,7 @@ public abstract class PersonImpl extends MinimalEObjectImpl.Container
 		String oldPassword = password;
 		password = newPassword;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.PERSON__PASSWORD,
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.PERSON__PASSWORD,
 					oldPassword, password));
 	}
 
@@ -177,9 +175,8 @@ public abstract class PersonImpl extends MinimalEObjectImpl.Container
 		String oldEmail = email;
 		email = newEmail;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					CinemaManagementSoftwarePackage.PERSON__EMAIL, oldEmail,
-					email));
+			eNotify(new ENotificationImpl(this, Notification.SET, CinemaManagementSoftwarePackage.PERSON__EMAIL,
+					oldEmail, email));
 	}
 
 	/**
@@ -253,11 +250,9 @@ public abstract class PersonImpl extends MinimalEObjectImpl.Container
 		case CinemaManagementSoftwarePackage.PERSON__ID:
 			return id != ID_EDEFAULT;
 		case CinemaManagementSoftwarePackage.PERSON__PASSWORD:
-			return PASSWORD_EDEFAULT == null ? password != null
-					: !PASSWORD_EDEFAULT.equals(password);
+			return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
 		case CinemaManagementSoftwarePackage.PERSON__EMAIL:
-			return EMAIL_EDEFAULT == null ? email != null
-					: !EMAIL_EDEFAULT.equals(email);
+			return EMAIL_EDEFAULT == null ? email != null : !EMAIL_EDEFAULT.equals(email);
 		}
 		return super.eIsSet(featureID);
 	}

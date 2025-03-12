@@ -6,6 +6,7 @@ import com.cinemamanagementsoftware.persistenceservice.repositories.SeatReposito
 import com.cinemamanagementsoftware.persistenceservice.repositories.SeatingRowRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public class SeatCommandConsumer {
     private final SeatRepository seatRepository;
     private final ObjectMapper objectMapper;
 	private final SeatingRowRepository seatingRowRepository;
+	private final RabbitTemplate rabbitTemplate;
 
-    public SeatCommandConsumer(SeatRepository seatRepository,  SeatingRowRepository seatingRowRepository, ObjectMapper objectMapper) {
+    public SeatCommandConsumer(SeatRepository seatRepository,  SeatingRowRepository seatingRowRepository, RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
         this.seatRepository = seatRepository;
         this.seatingRowRepository = seatingRowRepository;
         this.objectMapper = objectMapper;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     // Fetch all seats
@@ -73,7 +76,12 @@ public class SeatCommandConsumer {
             }
             newSeat.setRow(row.get());
 
-            seatRepository.save(newSeat);
+            SeatEntity savedSeat = seatRepository.save(newSeat);
+            rabbitTemplate.convertAndSend("event.seat.created", Map.of(
+                    "id", savedSeat.getId(),
+                    "rowId", rowId,
+                    "seatNumber", savedSeat.getSeatNumber()
+                ));
             return objectMapper.writeValueAsString(newSeat);
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Failed to create Seat: " + e.getMessage() + "\"}";
@@ -108,6 +116,10 @@ public class SeatCommandConsumer {
     public String deleteSeat(Long id) {
         try {
             seatRepository.deleteById(id);
+            rabbitTemplate.convertAndSend("event.seat.deleted", Map.of(
+                    "id", id
+                ));
+
             return "{\"status\":\"success\",\"message\":\"Seat deleted\"}";
         } catch (Exception e) {
             return "{\"status\":\"error\",\"message\":\"Seat deletion failed\"}";

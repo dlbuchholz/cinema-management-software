@@ -76,18 +76,69 @@ public class DemoService {
         movies.put("Star Wars: The Force Awakens", createMovie("Star Wars: The Force Awakens", "Sci-Fi", "A new hero rises as the First Order threatens the galaxy.", 138));
         movies.put("Star Wars: The Last Jedi", createMovie("Star Wars: The Last Jedi", "Sci-Fi", "Rey seeks Luke Skywalker's guidance while the Resistance fights the First Order.", 152));
         movies.put("Star Wars: The Rise of Skywalker", createMovie("Star Wars: The Rise of Skywalker", "Sci-Fi", "The Resistance faces the Final Order in the ultimate battle.", 142));
-
         // Remove null movies
         movies.values().removeIf(Objects::isNull);
 
-        // Create Screenings
-        List<String> screeningDates = List.of("2025-03-10", "2025-03-11", "2025-03-12", "2025-03-13", "2025-03-14");
+     // Define screening times
+        List<String> screeningDates = List.of("2025-03-12",
+        		"2025-03-13", "2025-03-14",
+        		"2025-03-15", "2025-03-16",
+        		"2025-03-17", "2025-03-18",
+        		"2025-03-19", "2025-03-20",
+        		"2025-03-21", "2025-03-22");
+        
+        int baseStartHour = 14; // Screenings start at 14:00
+        double latestStartHour = 21.30; // No screenings start after 21:30
+        int maxScreeningsPerMoviePerDay = 2; // Each movie can have max 2 screenings per day
 
-        for (Map.Entry<String, Long> movieEntry : movies.entrySet()) {
-            for (int i = 0; i < hallIds.size(); i++) {
-                createScreening(movieEntry.getValue(), hallIds.get(i), screeningDates.get(i % screeningDates.size()), 17.00 + (i * 1.5), 20.00 + (i * 1.5));
+        // Track last end time per hall per date
+        Map<String, Map<Long, Double>> hallSchedules = new HashMap<>();
+
+        // Fair scheduling: Rotate movie selection across days
+        List<String> movieTitles = new ArrayList<>(movies.keySet());
+        Collections.shuffle(movieTitles); // Shuffle to avoid bias
+        int movieIndex = 0; // Track which movie should be scheduled next
+
+        for (String date : screeningDates) {
+            hallSchedules.putIfAbsent(date, new HashMap<>()); // Initialize schedule tracking for the date
+            Map<String, Integer> movieScreeningCount = new HashMap<>(); // Reset screening count per day
+
+            // Iterate through halls fairly
+            for (Long hallId : hallIds) {
+                // Get the next movie to schedule
+                String movieTitle = movieTitles.get(movieIndex % movieTitles.size());
+                Long movieId = movies.get(movieTitle);
+
+                // Ensure movie doesn't exceed max screenings per day
+                movieScreeningCount.putIfAbsent(movieTitle, 0);
+                if (movieScreeningCount.get(movieTitle) >= maxScreeningsPerMoviePerDay) continue;
+
+                // Get last end time for this hall on this date
+                double lastEndTime = hallSchedules.get(date).getOrDefault(hallId, (double) baseStartHour);
+
+                // Get movie length in hours
+                double movieLength = 2.5;
+
+                // Calculate start and end time
+                double startTime = lastEndTime;
+                double endTime = startTime + movieLength;
+
+                // Stop scheduling if we exceed the latest start time
+                if (startTime >= latestStartHour || startTime + movieLength > 24) break;
+
+                createScreening(movieId, hallId, date, startTime, endTime);
+
+                // Update last end time for the hall
+                hallSchedules.get(date).put(hallId, endTime + 0.5); // Add a 30-minute gap before the next screening
+
+                // Increase screening count for the movie
+                movieScreeningCount.put(movieTitle, movieScreeningCount.get(movieTitle) + 1);
+
+                // Move to the next movie in a fair rotation
+                movieIndex++;
             }
         }
+     
     }
     
     private void createCategory(String name) {

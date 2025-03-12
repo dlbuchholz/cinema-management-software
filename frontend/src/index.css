@@ -1,205 +1,394 @@
+/* ---------------------------
+   1) Global Variables & Reset
+----------------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg-gradient: linear-gradient(135deg, #0d141f 0%, #141b29 100%);
+  --accent-color: orange; /* Neon green accent */
+  --text-color: black;
+  --card-bg: rgba(255, 255, 255, 0.1); /* Glass effect background */
+  --card-border: rgba(255, 255, 255, 0.2);
+  --modal-bg: rgba(255, 255, 255, 0.07);
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
+  --border-radius: 14px;
+  --transition-speed: 0.3s;
+  font-family: 'Poppins', sans-serif, Arial, sans-serif;
+  color: var(--text-color);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
-  display: flex;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-.login-form {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-}
-
-.login-form h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.custom-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.custom-button {
+/* ---------------------------
+   2) Body & Root Container
+----------------------------- */
+body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Root container for your entire app */
+#root {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
+  margin: 0 auto;
+  padding: 1rem 2rem;
 }
 
-.custom-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.custom-button:hover {
-  background-color: #0056b3;
-}
-
-.error-message {
-  color: red;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 10px 20px;
-  color: white;
-}
-
-.navbar h2 {
+/* ---------------------------
+   3) Typography & Links
+----------------------------- */
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  color: #fff;
+  color: var(--text-color);
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+p {
+  color: var(--text-color);
 }
 
-.navbar ul li {
-  color: white;
-}
-
-.navbar ul li a {
-  color: white;
+a {
+  color: var(--accent-color);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color var(--transition-speed);
+}
+a:hover {
+  color: orange;
 }
 
-.navbar ul li a:hover {
-  color: #ccc;
+/* ---------------------------
+   4) Buttons
+----------------------------- */
+button, .ant-btn {
+  border-radius: var(--border-radius) !important;
+  transition: background-color var(--transition-speed), 
+              box-shadow var(--transition-speed);
+  font-family: 'Poppins', sans-serif, Arial, sans-serif;
 }
 
-.logout-button {
-  background: none;
+/* Default button hover/focus states */
+button:hover, .ant-btn:hover {
+  opacity: 0.9;
+}
+
+/* ---------------------------
+   5) Cards (Glassmorphism)
+----------------------------- */
+.ant-card {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: transform var(--transition-speed);
+}
+.ant-card:hover {
+  transform: translateY(-4px);
+}
+
+/* For card titles */
+.ant-card-head-title {
+  color: var(--text-color) !important;
+}
+
+/* ---------------------------
+   6) Modals (Seat Selection, etc.)
+----------------------------- */
+.ant-modal-content {
+  background: var(--modal-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  color: var(--text-color) !important;
+}
+
+.ant-modal-header, .ant-modal-body, .ant-modal-footer {
+  background: transparent !important;
+  color: var(--text-color) !important;
+  border: none !important;
+}
+
+.ant-modal-title {
+  color: var(--text-color) !important;
+}
+
+/* ---------------------------
+   7) Search Input
+----------------------------- */
+.ant-input-search {
+  max-width: 100%;
+}
+.ant-input {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  border-radius: var(--border-radius);
+}
+
+/* ---------------------------
+   8) Custom Utility Classes
+----------------------------- */
+/* For seat buttons */
+.seat-btn {
   border: none;
-  color: white;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 600;
+  transition: background-color var(--transition-speed);
+}
+.seat-btn.selected {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* Example seat categories if needed:
+   .seat-parquet { background-color: #87CEFA; }
+   .seat-loge { background-color: #90EE90; }
+   .seat-loge-service { background-color: #FFA500; }
+*/
+
+/* Example for a "Watch Trailer" button */
+.watch-trailer-btn {
+  background-color: var(--accent-color);
+  color: #000;
+  font-weight: 600;
+  margin-right: 10px;
   cursor: pointer;
-  font-size: 1em;
-  transition: color 0.3s;
 }
 
-.logout-button:hover {
-  color: #ccc;
+/* Admin panel link */
+.admin-panel-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--accent-color);
+  color: #000;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: background-color var(--transition-speed);
+}
+.admin-panel-link:hover {
+  background-color: orange;
 }
 
+/* antd-overrides.css */
+
+/* 
+  1) Global Dark Gradient & Text Colors
+  - Force the entire app to have a dark background, 
+    even if AntD tries to apply white or gray backgrounds.
+*/
+
+html, body, #root, .ant-layout {
+  background: linear-gradient(135deg, #0d141f 0%, #141b29 100%) !important;
+  color: #ffffff !important;
+}
+
+/* 
+  2) Glassy Surfaces
+  - Force backgrounds to be semi-transparent, with a blur effect.
+  - This applies to layout content, cards, modals, and sider.
+*/
+
+.ant-layout-header,
+.ant-layout-content,
+.ant-layout-footer,
+.ant-card,
+.ant-modal-content,
+.ant-layout-sider,
+.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/*
+  3) Typography
+  - Override text color in cards, modals, etc.
+*/
+.ant-card-head-title,
+.ant-card-meta-title,
+.ant-card-meta-description,
+.ant-modal-title,
+.ant-typography,
+.ant-breadcrumb,
+.ant-breadcrumb-link {
+  color: #ffffff !important;
+}
+
+/* 
+  4) Menus & Active States
+  - Adjust the menu item highlight/hover to neon accent.
+*/
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item:hover,
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-submenu:hover,
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-item-active,
+.ant-menu-dark .ant-menu-submenu-active,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.ant-menu-dark.ant-menu-horizontal > .ant-menu-item-selected,
+.ant-menu-dark .ant-menu-item-selected {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  color: orange !important; /* Neon green accent */
+  border-radius: 8px;
+}
+
+/* 
+  5) Buttons
+  - Make default and primary buttons match the neon/dark style
+*/
+
+.ant-btn {
+  border-radius: 14px !important;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-weight: 600;
+}
+
+.ant-btn-primary {
+  background-color: orange !important; /* Neon green */
+  border-color: orange !important;
+  color: #000 !important;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: orange !important; 
+  border-color: orange !important;
+  color: #000 !important;
+}
+
+/*
+  6) Cards
+  - Add a subtle hover lift effect 
+*/
+
+.ant-card {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+  transition: transform 0.3s ease;
+}
+
+.ant-card:hover {
+  /* transform: translateY(-4px); */
+}
+
+/*
+  7) Footer
+  - Make the footer text lighter
+*/
+.ant-layout-footer {
+  color: #cccccc !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/*
+  8) Misc. Adjustments
+  - Force text color in certain places, if still white
+*/
+.ant-modal-body,
+.ant-card-body,
+.ant-list-item-meta-title,
+.ant-list-item-meta-description,
+.ant-breadcrumb-link > a {
+  color: #ffffff !important;
+}
+
+/*
+  9) Overriding Input background color
+*/
+.ant-input,
+.ant-input-search .ant-input,
+.ant-select-selector {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+/* forms.css */
+
+/* Apply white text color to all form elements */
+input,
+textarea,
+select,
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-textarea,
+.ant-select-selector {
+  color: #000 !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Set white placeholder text */
+input::placeholder,
+textarea::placeholder,
+.ant-input::placeholder,
+.ant-input-affix-wrapper::placeholder {
+  color: #000 !important;
+  opacity: 0.8;
+}
+
+/* Style form labels (for Ant Design Form items) */
+.ant-form-item-label > label {
+  color: #ffffff !important;
+}
+
+/* Focus state: white border and subtle glow */
+input:focus,
+textarea:focus,
+.ant-input:focus,
+.ant-input-affix-wrapper:focus,
+.ant-select-selector:focus {
+  color: white;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* For Ant Design buttons (if you want white text on default buttons) */
+.ant-btn {
+  
+}
+
+/* Optional: If you use antd's Input Number, etc. */
+.ant-input-number-input {
+  
+}
+
+/* Prevent white background on hover/focus for AntD inputs */
+.ant-input,
+.ant-input-affix-wrapper {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff;
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper-focused {
+  color: white;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: none !important;
+}
+
+.ant-layout-sider {
+  border: 0;
+}
+
+.ant-layout-sider-children {
+  background: #0e1521;
+}
+
+.ant-input {
+  color: white;
+}
