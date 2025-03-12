@@ -102,7 +102,8 @@ public class CinemaStatisticsService {
     public void addMovieToGraph(Long movieId, String title, String genre, String description, Double length) {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run(
-                "CREATE (:Movie {id: $movieId, title: $title, genre: $genre, description: $description, length: $length})",
+                "MERGE (m:Movie {id: $movieId}) " +  // Ensures movie exists or creates it
+                "SET m.title = $title, m.genre = $genre, m.description = $description, m.length = $length",
                 Values.parameters("movieId", movieId, "title", title, "genre", genre, "description", description, "length", length)
             ));
         }
@@ -112,9 +113,11 @@ public class CinemaStatisticsService {
     public void addScreeningToGraph(Long screeningId, Long movieId, Long hallId, String date, Double startTime, Double endTime) {
         try (Session session = neo4jDriver.session()) {
             session.writeTransaction(tx -> tx.run(
-                "MATCH (m:Movie {id: $movieId}), (h:CinemaHall {id: $hallId}) " +
+                "MERGE (m:Movie {id: $movieId}) " +  // Ensure the movie exists before linking
+                "MERGE (h:CinemaHall {id: $hallId}) " +  // Ensure the hall exists
                 "CREATE (s:Screening {id: $screeningId, date: date($date), startTime: $startTime, endTime: $endTime}) " +
-                "-[:FOR_MOVIE]->(m), (s)-[:IN_HALL]->(h)",
+                "-[:FOR_MOVIE]->(m), " +  // Link screening to movie
+                "(s)-[:IN_HALL]->(h)",  // Link screening to hall
                 Values.parameters("screeningId", screeningId, "movieId", movieId, "hallId", hallId, "date", date, "startTime", startTime, "endTime", endTime)
             ));
         }
@@ -241,7 +244,7 @@ public class CinemaStatisticsService {
                     "MATCH (s)-[:IN_HALL]->(h:CinemaHall) " +
                     "MATCH (h)-[:HAS_ROW]->(r:SeatingRow)-[:HAS_SEAT]->(seat) " +
                     "WITH COUNT(b) AS bookedSeats, COUNT(seat) AS totalSeats " +
-                    "RETURN (toFloat(bookedSeats) / totalSeats) * 100 AS occupancyRate",
+                    "RETURN CASE WHEN totalSeats > 0 THEN (toFloat(bookedSeats) / totalSeats) * 100 ELSE 0 END AS occupancyRate",
                     Values.parameters("screeningId", screeningId)
                 );
                 return result.hasNext() ? result.single().get("occupancyRate").asDouble(0.0) : 0.0;
@@ -249,7 +252,6 @@ public class CinemaStatisticsService {
         }
     }
     
-
     /** Get occupancy rate for a cinema hall */
     public Double getOccupancyByHall(Long hallId) {
         try (Session session = neo4jDriver.session()) {
@@ -259,7 +261,7 @@ public class CinemaStatisticsService {
                     "MATCH (h)-[:HAS_SCREENING]->(s:Screening)<-[:FOR_SCREENING]-(b:Booking) " +
                     "MATCH (h)-[:HAS_ROW]->(r:SeatingRow)-[:HAS_SEAT]->(seat) " +
                     "WITH COUNT(b) AS bookedSeats, COUNT(seat) AS totalSeats " +
-                    "RETURN (toFloat(bookedSeats) / totalSeats) * 100 AS occupancyRate",
+                    "RETURN CASE WHEN totalSeats > 0 THEN (toFloat(bookedSeats) / totalSeats) * 100 ELSE 0 END AS occupancyRate",
                     Values.parameters("hallId", hallId)
                 );
                 return result.hasNext() ? result.single().get("occupancyRate").asDouble(0.0) : 0.0;
