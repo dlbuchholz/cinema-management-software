@@ -43,15 +43,45 @@ public class TicketHandler {
 	        messagePayload.put("seatId", seatId);
 	        messagePayload.put("price", price);
 
-	        // 🔹 Check if seat is already reserved
+	        // Check if seat is already reserved
 	        String seatCheckResponse = (String) rabbitTemplate.convertSendAndReceive("ticket.checkSeat", messagePayload);
 	        if (seatCheckResponse != null && seatCheckResponse.contains("taken")) {
 	            return ResponseEntity.status(HttpStatus.CONFLICT)
 	                    .body("{\"status\":\"error\",\"message\":\"Seat is already booked for this screening.\"}");
 	        }
 
-	        // 🔹 Proceed with ticket creation
+	        // Proceed with ticket creation
 	        String response = (String) rabbitTemplate.convertSendAndReceive("ticket.create", messagePayload);
+	        if (response != null) {
+	            return ResponseEntity.ok(response);
+	        } else {
+	            return ResponseEntity.status(HttpStatus.GATEWAY_TIMEOUT)
+	                    .body("{\"status\":\"error\",\"message\":\"Ticket Service Timeout\"}");
+	        }
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body("{\"status\":\"error\",\"message\":\"Failed to create ticket: " + e.getMessage() + "\"}");
+	    }
+	}
+	
+	public ResponseEntity<String> sendCreateBookedTicketMessage(Long customerId, Long screeningId, Long seatId, Double price) {
+		try {
+	        // Construct message payload
+	        Map<String, Object> messagePayload = new HashMap<>();
+	        messagePayload.put("customerId", customerId);
+	        messagePayload.put("screeningId", screeningId);
+	        messagePayload.put("seatId", seatId);
+	        messagePayload.put("price", price);
+
+	        // Check if seat is already reserved
+	        String seatCheckResponse = (String) rabbitTemplate.convertSendAndReceive("ticket.checkSeat", messagePayload);
+	        if (seatCheckResponse != null && seatCheckResponse.contains("taken")) {
+	            return ResponseEntity.status(HttpStatus.CONFLICT)
+	                    .body("{\"status\":\"error\",\"message\":\"Seat is already booked for this screening.\"}");
+	        }
+
+	        // Proceed with ticket creation
+	        String response = (String) rabbitTemplate.convertSendAndReceive("ticket.createbooked", messagePayload);
 	        if (response != null) {
 	            return ResponseEntity.ok(response);
 	        } else {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Movie, Screening, CinemaHall, SeatingRow, Category, Seat, Ticket } from '../types';
+import {Movie, ScreeningData, CinemaHall, SeatingRow, Category, Seat, Ticket, SeatForSelection} from '../types';
 
 const MOVIES_URL = 'http://localhost:8080/api/movies';
 const SCREENINGS_URL = 'http://localhost:8080/api/screenings';
@@ -21,15 +21,25 @@ export interface TicketData {
 
 const createTicket = async (ticket: TicketData): Promise<string> => {
   const payload = {
-    customer: ticket.customerId,
     customerId: ticket.customerId,
-    screening: ticket.screeningId,
     screeningId: ticket.screeningId,
-    seat: ticket.seatId,
     seatId: ticket.seatId,
     price: ticket.price
   };
   const response = await axios.post<string>(API_URL, payload, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+  return response.data;
+};
+
+const createBookedTicket = async (ticket: TicketData): Promise<string> => {
+  const payload = {
+    customerId: ticket.customerId,
+    screeningId: ticket.screeningId,
+    seatId: ticket.seatId,
+    price: ticket.price
+  };
+  const response = await axios.post<string>(API_URL+'/createbooked', payload, {
     headers: { 'Content-Type': 'application/json' }
   });
   return response.data;
@@ -60,8 +70,8 @@ const bookTicket = async (ticketId: number): Promise<string> => {
   return response.data;
 };
 
-const getSeatsForScreening = async (screeningId: number): Promise<string> => {
-  const response = await axios.get<string>(`${API_URL}/screenings/${screeningId}/seats`);
+const getSeatsForScreening = async (screeningId: number): Promise<SeatForSelection[]> => {
+  const response = await axios.get<SeatForSelection[]>(`${API_URL}/screenings/${screeningId}/seats`);
   return response.data;
 };
 
@@ -107,6 +117,15 @@ const createBooking = async (data: TicketRequest): Promise<Ticket> => {
  */
 const getTicketDetails = async (ticketId: number): Promise<Ticket> => {
   const response = await axios.get<Ticket>(`${API_URL}/${ticketId}`);
+  return response.data;
+};
+
+/**
+ * Retrieves all tickets from a customer.
+ * Endpoint: GET /api/tickets/{id}
+ */
+const getAllTicketsForCustomer = async (userId: number): Promise<Ticket[]> => {
+  const response = await axios.get<Ticket[]>(`${API_URL}/${userId}/tickets`);
   return response.data;
 };
 
@@ -207,8 +226,8 @@ export function generateSeatingRows(
 }
 
 
-export const getScreeningsByMovieId = async (movieId: string): Promise<Screening[]> => {
-  const response = await axios.get<Screening[]>(`${SCREENINGS_URL}/movie/${movieId}`);
+export const getScreeningsByMovieId = async (movieId: string): Promise<ScreeningData[]> => {
+  const response = await axios.get<ScreeningData[]>(`${SCREENINGS_URL}/movie/${movieId}`);
 
   return response.data.map(d => ({
     ...d,
@@ -219,15 +238,15 @@ export const getScreeningsByMovieId = async (movieId: string): Promise<Screening
   }));
 };
 
-export const createScreening = async (movieId: string, screeningData: Screening): Promise<Screening> => {
+export const createScreening = async (movieId: string, screeningData: ScreeningData): Promise<ScreeningData> => {
   // Construct the payload by merging the movieId with screening data.
   const payload = { movieId, ...screeningData };
-  const response = await axios.post<Screening>(SCREENINGS_URL, payload);
+  const response = await axios.post<ScreeningData>(SCREENINGS_URL, payload);
   return response.data;
 };
 
-export const deleteScreening = async (screeningId: string): Promise<Screening> => {
-  const response = await axios.delete<Screening>(`${SCREENINGS_URL}/${screeningId}`);
+export const deleteScreening = async (screeningId: string): Promise<ScreeningData> => {
+  const response = await axios.delete<ScreeningData>(`${SCREENINGS_URL}/${screeningId}`);
   return response.data;
 };
 
@@ -281,10 +300,12 @@ export default {
   updateHall,
   deleteHall,
   createTicket,
+  createBookedTicket,
   getCustomerTicketsForScreening,
   getTicketsForScreening,
   getTicketsForCustomer,
   deleteTicket,
   bookTicket,
-  getSeatsForScreening
+  getSeatsForScreening,
+  getAllTicketsForCustomer
 };

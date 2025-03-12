@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Typography, message, List, Modal } from 'antd';
 import { useParams, useNavigate } from 'react-router-dom';
 import filmService from '../services/cinemaService';
-import { Movie, Screening } from '../types';
+import { Movie, ScreeningData } from '../types';
 const { Title } = Typography;
 
 const FilmDetailEdit: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [film, setFilm] = useState<Movie | null>(null);
-  const [screenings, setScreenings] = useState<Screening[]>([]);
+  const [screenings, setScreenings] = useState<ScreeningData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isScreeningModalVisible, setIsScreeningModalVisible] = useState<boolean>(false);
 

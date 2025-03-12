@@ -1,6 +1,6 @@
 // src/mock/sampleTestData.ts
 
-import { Category, Movie, Screening, CinemaHall, SeatingRow, Seat } from '../types';
+import { Category, Movie, ScreeningData, CinemaHall, SeatingRow, Seat } from '../types';
 
 // A sample movie for testing
 export const sampleMovie: Movie = {
@@ -48,7 +48,7 @@ const sampleRow2: SeatingRow = {
 export const sampleCinemaHall: CinemaHall = {
   id: 1,
   name: "Main Hall",
-  rows: [sampleRow1, sampleRow2],
+  seatingRows: [sampleRow1, sampleRow2],
 };
 
 // Link each seating row back to the cinema hall
@@ -56,10 +56,10 @@ sampleRow1.cinemaHall = sampleCinemaHall;
 sampleRow2.cinemaHall = sampleCinemaHall;
 
 // Create a sample screening for the sample movie in the sample cinema hall
-export const sampleScreening: Screening = {
+export const sampleScreening: ScreeningData = {
   id: 1,
   movie: sampleMovie,
-  hall: sampleCinemaHall,
+  cinemaHall: sampleCinemaHall,
   date: new Date().toISOString(),
   startTime: 18.00,
   endTime: 20.00,

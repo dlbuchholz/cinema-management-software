@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import authService from '../../services/authService';
 
 export interface LoginCredentials {
@@ -24,6 +24,8 @@ export interface User {
   username: string;
   role: string;
   token: string;
+  id: number;
+  email: string;
 }
 
 export interface AuthResponse {
@@ -58,13 +60,12 @@ export const login = createAsyncThunk<
 >('auth/login', async (credentials, thunkAPI) => {
   try {
     if (credentials.username === 'admin' && credentials.password === 'admin') {
-      const fakeAdmin: User = { username: 'admin', role: 'admin', token: 'fake-admin-token' };
+      const fakeAdmin: User = { username: 'admin', role: 'admin', token: 'fake-admin-token', id: 1, email: 'admin@example.com' };
       localStorage.setItem('user', JSON.stringify(fakeAdmin));
       localStorage.setItem('token', fakeAdmin.token);
       return fakeAdmin;
     }
-    const response = await authService.login(credentials);
-    return response;
+    return await authService.login(credentials);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message || 'Login failed');
   }
@@ -76,8 +77,7 @@ export const signup = createAsyncThunk<
   { rejectValue: string }
 >('auth/signup', async (credentials, thunkAPI) => {
   try {
-    const response = await authService.signup(credentials);
-    return response;
+    return await authService.signup(credentials);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message || 'Signup failed');
   }
@@ -89,8 +89,7 @@ export const ownerSignup = createAsyncThunk<
   { rejectValue: string }
 >('auth/ownerSignup', async (credentials, thunkAPI) => {
   try {
-    const response = await authService.ownerSignup(credentials);
-    return response;
+    return await authService.ownerSignup(credentials);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message || 'Owner signup failed');
   }
@@ -101,7 +100,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     adminLogin: (state) => {
-      const adminUser: User = { username: 'admin', role: 'admin', token: 'admin' };
+      const adminUser: User = { username: 'admin', role: 'admin', token: 'admin' , id: 1, email: 'admin@example.com' };
       localStorage.setItem('user', JSON.stringify(adminUser));
       localStorage.setItem('token', 'admin');
       state.user = adminUser;

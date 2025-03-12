@@ -4,12 +4,14 @@ import { PlayCircleOutlined, CalendarOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import cinemaService from '../services/cinemaService';
-import { Movie, Screening, CinemaHall, SeatingRow, Seat } from '../types';
+import { Movie, ScreeningData, CinemaHall, SeatingRow, Seat } from '../types';
 import { filmImages } from '../assets/images';
 import moment from 'moment';
 
 const { Text, Title } = Typography;
 const { Search } = Input;
+import { useNavigate } from 'react-router-dom';
+
 
 const categoryColor: Record<string, string> = {
   PARQUET: '#87CEFA',
@@ -23,11 +25,13 @@ const Dashboard: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
   const [selectedFilm, setSelectedFilm] = useState<Movie | null>(null);
-  const [screenings, setScreenings] = useState<Screening[]>([]);
+  const [screenings, setScreenings] = useState<ScreeningData[]>([]);
   const [isScreeningModalVisible, setIsScreeningModalVisible] = useState<boolean>(false);
-  const [selectedScreening, setSelectedScreening] = useState<Screening | null>(null);
+  const [selectedScreening] = useState<ScreeningData | null>(null);
   const [isSeatModalVisible, setIsSeatModalVisible] = useState<boolean>(false);
   const [selectedSeatIds, setSelectedSeatIds] = useState<number[]>([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchFilms = async () => {
@@ -66,8 +70,9 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  const onScreeningSelect = (screening: Screening) => {
-    setSelectedScreening(screening);
+  const onScreeningSelect = (screening: ScreeningData) => {
+      navigate(`/seats/${screening.id}`);
+
     setSelectedSeatIds([]);
     setIsScreeningModalVisible(false);
     setIsSeatModalVisible(true);
@@ -121,7 +126,7 @@ const Dashboard: React.FC = () => {
     }
     try {
       const customerId = 1;
-      const ticketPrice = selectedScreening.ticketPrice || 10.0;
+      const ticketPrice =  12.0;
       for (const seatId of selectedSeatIds) {
         await cinemaService.createTicket({ customerId, screeningId: selectedScreening.id, seatId, price: ticketPrice });
       }
