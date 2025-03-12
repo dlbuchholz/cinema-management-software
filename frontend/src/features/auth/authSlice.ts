@@ -21,6 +21,7 @@ export interface OwnerRegisterCredentials {
 }
 
 export interface User {
+  id: string;
   username: string;
   role: string;
   token: string;
@@ -147,7 +148,6 @@ const authSlice = createSlice({
       .addCase(signup.fulfilled, (state, action: PayloadAction<User>) => {
         state.loading = false;
         state.user = action.payload;
-        state.isAuthenticated = !!localStorage.getItem('token');
         state.success = true;
         state.error = null;
       })

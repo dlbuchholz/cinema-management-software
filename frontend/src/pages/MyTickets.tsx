@@ -1,34 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { List, Card, Spin, Typography, message, Button } from 'antd';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import cinemaService from '../services/cinemaService';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { List, Card, Spin, Typography, message, Button } from "antd";
+import cinemaService from "../services/cinemaService";
+import { Navigate } from "react-router-dom";
+import { Ticket } from "../types";
+import moment from "moment";
+import { filmImages } from "../assets/images";
+import { BookOutlined, CloseOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
-interface Ticket {
-  id: number;
-  screeningId: number;
-  seatId: number;
-  price: number;
-  bookingTime?: string;
-}
-
 const MyTickets: React.FC = () => {
-  const { user } = useSelector((state: RootState) => state.auth);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const user = JSON.parse(localStorage.getItem('user'))
 
   const fetchTickets = async () => {
     setLoading(true);
     try {
-      const customerId = 1;
+      const customerId = user.id;
       const data = await cinemaService.getTicketsForCustomer(customerId);
-      const parsed = JSON.parse(data) as Ticket[];
-      setTickets(parsed);
+      setTickets(data);
     } catch (error) {
-      message.error('Error fetching tickets');
+      message.error("Error fetching tickets");
     } finally {
       setLoading(false);
     }
@@ -43,25 +36,63 @@ const MyTickets: React.FC = () => {
   }
 
   if (loading) {
-    return <Spin size="large" style={{ display: 'block', marginTop: 100, textAlign: 'center' }} />;
+    return (
+      <Spin
+        size="large"
+        style={{ display: "block", marginTop: 100, textAlign: "center" }}
+      />
+    );
   }
 
   return (
     <div style={{ padding: 20 }}>
       <Title level={2}>My Tickets</Title>
-      <Button type="primary" onClick={fetchTickets} style={{ marginBottom: 20 }}>
+      <Button
+        type="primary"
+        onClick={fetchTickets}
+        style={{ marginBottom: 20 }}
+      >
         Refresh
       </Button>
       <List
-        grid={{ gutter: 16, column: 1 }}
+        grid={{ gutter: 16, column: 4 }}
         dataSource={tickets}
         renderItem={(ticket) => (
           <List.Item>
-            <Card title={`Ticket #${ticket.id}`}>
-              <Text>Screening ID: {ticket.screeningId}</Text><br />
-              <Text>Seat ID: {ticket.seatId}</Text><br />
-              <Text>Price: ${ticket.price}</Text><br />
-              {ticket.bookingTime && <Text>Booking Time: {ticket.bookingTime}</Text>}
+            <Card
+              title={`Ticket #${ticket.id}`}
+              actions={[
+                <CloseOutlined key="watch" onClick={async () => await cinemaService.cancelReservation(ticket.id)} />,
+                <BookOutlined key="screenings" onClick={async () => await cinemaService.bookTicket(ticket.id)} />,
+              ]}
+              cover={
+                <img
+                  src={
+                    filmImages[ticket.screening.movie.title] ||
+                    filmImages["Astor"]
+                  }
+                  style={{ width: "100%", height: 360, objectFit: "fill" }}
+                />
+              }
+            >
+              <Title level={4}>{ticket.screening.movie.title}</Title>
+              <Text>
+                Cinema: {ticket.screening.cinemaHall.cinema?.name} -{" "}
+                {ticket.screening.cinemaHall.name}
+              </Text>
+              <br />
+              <Text>
+                Screening:{" "}
+                {moment(ticket.screening.date).format("dddd DD.MM.yyyy")}
+              </Text>
+              <br />
+              <Text>Seat Number: {ticket.seat.seatNumber}</Text>
+              <br />
+              <Text>Price: ${ticket.price}</Text>
+              <br />
+              {ticket.bookedStatus && (
+                <Text>Ticket booked</Text>
+              )}
             </Card>
           </List.Item>
         )}

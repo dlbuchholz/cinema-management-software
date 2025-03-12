@@ -4,15 +4,16 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { BookOutlined, UserOutlined, YoutubeOutlined } from '@ant-design/icons';
 import styles from '../../assets/styles/Layout.module.css';
 import authService from '../../services/authService';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../../store/store';
 
 const { Header, Content, Footer } = AntLayout;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { user } = useSelector((state: RootState) => state.auth);
+    // const { user } = useSelector((state: RootState) => state.auth);
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const handleLogout = () => {
         authService.logout();
