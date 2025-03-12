@@ -28,7 +28,7 @@ export interface AuthResponse {
 }
 
 const API_URL = 'http://localhost:8080/api/users';
-const OWNERS_API_URL = 'http://localhost:8080/api/owners';
+const OWNERS_API_URL = 'http://localhost:8080/api/owner';
 
 const login = async (credentials: LoginCredentials): Promise<User> => {
   const response = await axios.post<AuthResponse>(`${API_URL}/login`, {
@@ -47,12 +47,10 @@ const login = async (credentials: LoginCredentials): Promise<User> => {
 };
 
 const signup = async (credentials: RegisterCredentials): Promise<User> => {
-  const response = await axios.post<AuthResponse>(`${API_URL}/register`, credentials);
+  const response = await axios.post<AuthResponse>(`http://localhost:8080/api/customers/register`, credentials);
   const data = response.data;
   if (data.status === 'success' && data.token) {
     const user: User = { username: credentials.email, role: 'user', token: data.token, ...data };
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('user', JSON.stringify(user));
     return user;
   } else {
     throw new Error(data.message || 'Signup failed');

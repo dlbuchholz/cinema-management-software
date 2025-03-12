@@ -63,7 +63,7 @@ const MyTickets: React.FC = () => {
               title={`Ticket #${ticket.id}`}
               actions={[
                 <CloseOutlined key="watch" onClick={async () => await cinemaService.cancelReservation(ticket.id)} />,
-                <BookOutlined key="screenings" onClick={async () => await cinemaService.confirmReservation(ticket.id)} />,
+                <BookOutlined key="screenings" onClick={async () => await cinemaService.bookTicket(ticket.id)} />,
               ]}
               cover={
                 <img
@@ -91,7 +91,7 @@ const MyTickets: React.FC = () => {
               <Text>Price: ${ticket.price}</Text>
               <br />
               {ticket.bookedStatus && (
-                <Text>Booking Time: {ticket.bookingTime}</Text>
+                <Text>Ticket booked</Text>
               )}
             </Card>
           </List.Item>

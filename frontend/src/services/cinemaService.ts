@@ -88,7 +88,7 @@ const confirmReservation = async (ticketId: number): Promise<Ticket> => {
  * Endpoint: DELETE /api/tickets/{id}/cancel
  */
 const cancelReservation = async (ticketId: number): Promise<{ status: string; message?: string }> => {
-  const response = await axios.delete<{ status: string; message?: string }>(`${API_URL}/${ticketId}/cancel`);
+  const response = await axios.delete<{ status: string; message?: string }>(`${API_URL}/${ticketId}`);
   return response.data;
 };
 
