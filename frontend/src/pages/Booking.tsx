@@ -31,7 +31,7 @@ const Booking: React.FC = () => {
                 // Booking multiple tickets (creating tickets for each seat)
                 for (const seatId of selectedSeats) {
                     await cinemaService.createBookedTicket({
-                        customerId: user.id,
+                        customerId: Number(user.id),
                         screeningId: Number(screeningId),
                         seatId,
                         price: 12,

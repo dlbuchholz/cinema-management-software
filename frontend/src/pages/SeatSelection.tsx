@@ -65,7 +65,7 @@ const SeatSelection: React.FC = () => {
 
             for (const seatId of selectedSeats) {
                 await cinemaService.createTicket({
-                    customerId: user.id,
+                    customerId: Number(user.id),
                     screeningId: Number(screeningId),
                     seatId,
                     price: 12,

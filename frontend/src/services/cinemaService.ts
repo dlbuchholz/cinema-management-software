@@ -124,7 +124,7 @@ const getTicketDetails = async (ticketId: number): Promise<Ticket> => {
  * Retrieves all tickets from a customer.
  * Endpoint: GET /api/tickets/{id}
  */
-const getAllTicketsForCustomer = async (userId: number): Promise<Ticket[]> => {
+const getAllTicketsForCustomer = async (userId: string): Promise<Ticket[]> => {
   const response = await axios.get<Ticket[]>(`${API_URL}/${userId}/tickets`);
   return response.data;
 };

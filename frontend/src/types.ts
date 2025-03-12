@@ -96,7 +96,7 @@ export interface SeatForSelection {
   seatNumber: number;
   rowId: number;
   rowNumber: number;
-  category: string;
+  category: Category;
   isTaken: boolean;
 }
 
