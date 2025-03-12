@@ -120,7 +120,7 @@ const Dashboard: React.FC = () => {
       return;
     }
     try {
-      const customerId = 1;
+      const customerId = JSON.parse(localStorage.getItem('user')).id;
       const ticketPrice = selectedScreening.ticketPrice || 10.0;
       for (const seatId of selectedSeatIds) {
         await cinemaService.createTicket({ customerId, screeningId: selectedScreening.id, seatId, price: ticketPrice });
@@ -131,7 +131,7 @@ const Dashboard: React.FC = () => {
       console.error('Booking failed:', error);
       message.error('Booking failed');
     }
-  };
+  };  
 
   if (loading) {
     return <Spin size="large" style={{ display: 'block', margin: 'auto', marginTop: 100 }} />;
