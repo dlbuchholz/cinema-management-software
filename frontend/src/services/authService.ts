@@ -27,7 +27,7 @@ export interface AuthResponse {
   message?: string;
 }
 
-const API_URL = 'http://localhost:8080/api/customers';
+const API_URL = 'http://localhost:8080/api/users';
 const OWNERS_API_URL = 'http://localhost:8080/api/owners';
 
 const login = async (credentials: LoginCredentials): Promise<User> => {
@@ -37,7 +37,7 @@ const login = async (credentials: LoginCredentials): Promise<User> => {
   });
   const data = response.data;
   if (data.status === 'success' && data.token) {
-    const user: User = { username: credentials.username, role: 'user', token: data.token };
+    const user: User = { username: credentials.username, role: 'user', token: data.token, ...data };
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(user));
     return user;
@@ -50,7 +50,7 @@ const signup = async (credentials: RegisterCredentials): Promise<User> => {
   const response = await axios.post<AuthResponse>(`${API_URL}/register`, credentials);
   const data = response.data;
   if (data.status === 'success' && data.token) {
-    const user: User = { username: credentials.email, role: 'user', token: data.token };
+    const user: User = { username: credentials.email, role: 'user', token: data.token, ...data };
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(user));
     return user;
@@ -65,7 +65,7 @@ const ownerSignup = async (credentials: OwnerRegisterCredentials): Promise<User>
   });
   const data: AuthResponse = JSON.parse(response.data);
   if (data.status === 'success' && data.token) {
-    const user: User = { username: credentials.email, role: 'owner', token: data.token };
+    const user: User = { username: credentials.email, role: 'owner', token: data.token, ...data };
     localStorage.setItem('token', data.token);
     localStorage.setItem('user', JSON.stringify(user));
     return user;
