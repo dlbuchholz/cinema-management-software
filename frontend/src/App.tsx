@@ -17,6 +17,7 @@ import 'antd/dist/reset.css';
 import { message } from 'antd';
 import AdminSignupForm from './components/Auth/OwnerSignupForm';
 import MyTickets from './pages/MyTickets';
+import SeatSelection from './pages/SeatSelection';
 
 message.config({
   top: 100,       
@@ -33,6 +34,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/tickets" element={<ProtectedRoute><MyTickets /></ProtectedRoute>} />
+                    <Route path="/seats/:screeningId" element={<ProtectedRoute><SeatSelection /></ProtectedRoute>} />
                     <Route path="/account" element={<AdminRoute><AccountView /></AdminRoute>}>
                         <Route path="film" element={<AdminRoute><FilmEdit /></AdminRoute>} />
                         <Route path="film/:id" element={<AdminRoute><FilmDetailEdit /></AdminRoute>} />

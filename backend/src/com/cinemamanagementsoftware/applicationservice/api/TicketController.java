@@ -60,6 +60,32 @@ public class TicketController {
         }
     }
     
+    @PostMapping("/createbooked")
+    public ResponseEntity<String> createBookedTicket(@RequestBody String jsonTicket) {
+        try {
+
+            // Deserialize JSON into a Map (extract only required fields)
+            Map<String, Object> ticketMap = objectMapper.readValue(jsonTicket, new TypeReference<Map<String, Object>>() {});
+
+            // Extract customerId, screeningId, seatId, and price
+            if (!ticketMap.containsKey("customerId") || !ticketMap.containsKey("screeningId") || !ticketMap.containsKey("seatId") || !ticketMap.containsKey("price")) {
+                return ResponseEntity.badRequest().body("{\"status\":\"error\",\"message\":\"Missing required ticket data!\"}");
+            }
+
+            Long customerId = Long.valueOf(ticketMap.get("customerId").toString());
+            Long screeningId = Long.valueOf(ticketMap.get("screeningId").toString());
+            Long seatId = Long.valueOf(ticketMap.get("seatId").toString());
+            Double price = Double.valueOf(ticketMap.get("price").toString());
+
+            // Call handler
+            return ticketHandler.sendCreateBookedTicketMessage(customerId, screeningId, seatId, price);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"status\":\"error\",\"message\":\"Error processing ticket: " + e.getMessage() + "\"}");
+        }
+    }
+    
     @GetMapping("/{customerId}/screenings/{screeningId}/tickets")
     public ResponseEntity<?> getCustomerTicketsForScreening(@PathVariable Long customerId, @PathVariable Long screeningId) {
         return ticketHandler.getCustomerTicketsForScreening(customerId, screeningId);

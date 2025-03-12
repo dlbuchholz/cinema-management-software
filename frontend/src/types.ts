@@ -70,7 +70,7 @@ export interface Movie {
 /**
  * Screening model: Represents a screening of a movie in a specific hall.
  */
-export interface Screening {
+export interface ScreeningData {
   id: number;
   movie: Movie;
   cinemaHall: CinemaHall;
@@ -89,6 +89,18 @@ export interface Seat {
 }
 
 /**
+ * Seat model: Represents an individual seat in a seating row for Selection.
+ */
+export interface SeatForSelection {
+  id: number;
+  seatNumber: number;
+  rowId: number;
+  rowNumber: number;
+  category: string;
+  isTaken: boolean;
+}
+
+/**
  * SeatingRow model: A row in a cinema hall containing seats.
  */
 export interface SeatingRow {
@@ -104,7 +116,7 @@ export interface SeatingRow {
  */
 export interface Ticket {
   id: number;
-  screening: Screening;
+  screening: ScreeningData;
   seat: Seat;
   price: number;
   isBooked: boolean;

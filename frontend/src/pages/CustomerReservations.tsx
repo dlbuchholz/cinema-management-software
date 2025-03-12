@@ -4,18 +4,30 @@ import React, { useEffect, useState } from 'react';
 import { List, Button, Typography, Spin, message } from 'antd';
 import ticketService from '../services/cinemaService';
 import { Ticket } from '../types';
+import { useNavigate } from 'react-router-dom';
+import cinemaService from '../services/cinemaService';
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store.ts";
 
 const { Title, Text } = Typography;
 
 const CustomerReservations: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.auth.user);
+
+
 
   // Fetch tickets for the currently logged-in customer
   const fetchReservations = async () => {
     setLoading(true);
     try {
-      const data = []; // need to see if we have api for it (await ticketService.getMyTickets())
+      if (!user) {
+        message.error('You must be logged in to book tickets.');
+        return;
+      }
+      const data = await cinemaService.getAllTicketsForCustomer(user?.id); // need to see if we have api for it (await ticketService.getMyTickets())
       setTickets(data);
     } catch (error) {
       console.error('Error fetching reservations:', error);
@@ -26,27 +38,25 @@ const CustomerReservations: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchReservations();
-  }, []);
+      fetchReservations();
+  });
 
   // Confirm a reservation (convert it to a confirmed booking)
   const onConfirm = async (ticketId: number) => {
-    try {
-      await ticketService.confirmReservation(ticketId);
-      message.success('Reservation confirmed successfully');
-      fetchReservations();
-    } catch (error) {
-      console.error('Error confirming reservation:', error);
-      message.error('Failed to confirm reservation');
-    }
+      navigate(`/booking/${ticketId}`);
   };
 
   // Cancel a reservation
-  const onCancelReservation = async (ticketId: number) => {
+  const onCancelReservation = async (ticketId: number, isBooked: boolean) => {
     try {
-      await ticketService.cancelReservation(ticketId);
-      message.success('Reservation canceled successfully');
-      fetchReservations();
+      if(!isBooked){
+        await ticketService.cancelReservation(ticketId);
+        message.success('Reservation canceled successfully');
+        await fetchReservations();
+      }
+      else {
+        message.error('A booked ticket cannot be canceled');
+      }
     } catch (error) {
       console.error('Error canceling reservation:', error);
       message.error('Failed to cancel reservation');
@@ -71,10 +81,10 @@ const CustomerReservations: React.FC = () => {
               actions={[
                 !ticket.isBooked && (
                   <Button type="primary" onClick={() => onConfirm(ticket.id)}>
-                    Confirm
+                    Book Ticket
                   </Button>
                 ),
-                <Button danger onClick={() => onCancelReservation(ticket.id)}>
+                <Button danger onClick={() => onCancelReservation(ticket.id, ticket.isBooked)}>
                   Cancel
                 </Button>,
               ]}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {ScreeningData} from "../types.ts";
 
 export interface Film {
     id: string;
@@ -39,8 +40,15 @@ const getFilmScreenings = async (filmId: string): Promise<Screening[]> => {
     const response = await axios.get(`${API_URL}/${filmId}/screenings`);
     return response.data;
 };
+const getScreening = async (screeningId: string): Promise<ScreeningData> => {
+    const response = await axios.get(`${API_URL}/${screeningId}/screenings`);
+    return response.data;
+};
+
+
 
 export default {
     getAvailableFilms,
-    getFilmScreenings
+    getFilmScreenings,
+    getScreening
 };

@@ -109,6 +109,46 @@ public class TicketCommandConsumer {
             return "{\"status\":\"error\",\"message\":\"Failed to create ticket: " + e.getMessage() + "\"}";
         }
     }
+    
+    @RabbitListener(queues = "ticket.createbooked")
+    public String processCreateTicketBooked(Map<String, Object> requestMap) {  
+        try {
+            // Extract values from the received Map
+            Long customerId = Long.valueOf(requestMap.get("customerId").toString());
+            Long screeningId = Long.valueOf(requestMap.get("screeningId").toString());
+            Long seatId = Long.valueOf(requestMap.get("seatId").toString());
+            Double price = Double.valueOf(requestMap.get("price").toString());
+
+            // Check if seat is already booked
+            if (ticketRepository.existsByScreeningIdAndSeatId(screeningId, seatId)) {
+                return "{\"status\":\"error\",\"message\":\"Seat is already taken\"}";
+            }
+
+            // Fetch related entities
+            Optional<CustomerEntity> customerOpt = customerRepository.findById(customerId);
+            Optional<ScreeningEntity> screeningOpt = screeningRepository.findById(screeningId);
+            Optional<SeatEntity> seatOpt = seatRepository.findById(seatId);
+
+            if (customerOpt.isEmpty() || screeningOpt.isEmpty() || seatOpt.isEmpty()) {
+                return "{\"status\":\"error\",\"message\":\"Invalid customer, screening, or seat ID!\"}";
+            }
+
+            // Create and save the ticket
+            TicketEntity newTicket = new TicketEntity();
+            newTicket.setOwner(customerOpt.get());
+            newTicket.setScreening(screeningOpt.get());
+            newTicket.setSeat(seatOpt.get());
+            newTicket.setPrice(price);
+            newTicket.setBookedStatus(true); // Default to reserved
+
+            ticketRepository.save(newTicket);
+            
+            return "{\"status\":\"success\",\"message\":\"Ticket created and booked successfully!\"}";
+
+        } catch (Exception e) {
+            return "{\"status\":\"error\",\"message\":\"Failed to create ticket: " + e.getMessage() + "\"}";
+        }
+    }
 
     
     @RabbitListener(queues = "ticket.get")

@@ -282,6 +282,11 @@ public class RabbitMQConfig {
     }
     
     @Bean
+    public Queue ticketBookedCreateQueue() {
+        return new Queue("ticket.createbooked", true);
+    }
+    
+    @Bean
     public Queue ticketGetQueue() {
     	return new Queue("ticket.get", true);
     }
