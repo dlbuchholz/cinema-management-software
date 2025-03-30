@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.9 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.9" pages="3">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.9 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.9" pages="4">
   <diagram id="qS6SpZiyglDDxvSr4whf" name="UML-Fachklassendiagramm">
     <mxGraphModel dx="806" dy="399" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -561,6 +561,120 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="460" y="330" as="sourcePoint" />
             <mxPoint x="440" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="2hrrUYa1jRK4znyL9R0E" name="Sequenzdiagramm">
+    <mxGraphModel dx="1518" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-1" value="CRUD-Request" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" target="HFtSi3Zi-4jHOa50fzN2-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="270.0238095238095" y="140" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="300" y="140" />
+            </Array>
+            <mxPoint x="480" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-2" value="Client" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="100" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-3" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="HFtSi3Zi-4jHOa50fzN2-2" vertex="1">
+          <mxGeometry x="45" y="70" width="10" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-4" value="Request" style="html=1;verticalAlign=bottom;startArrow=oval;endArrow=block;startSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="HFtSi3Zi-4jHOa50fzN2-2" target="HFtSi3Zi-4jHOa50fzN2-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-15" y="70" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-5" value="HTTP-Request" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="HFtSi3Zi-4jHOa50fzN2-3" target="HFtSi3Zi-4jHOa50fzN2-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="195" y="130" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="180" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-6" value="Application&lt;div&gt;Service&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="220" y="40" width="100" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-7" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="HFtSi3Zi-4jHOa50fzN2-6" vertex="1">
+          <mxGeometry x="45" y="80" width="10" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-8" value="RabbitMQ" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="400" y="40" width="100" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-9" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="HFtSi3Zi-4jHOa50fzN2-8" vertex="1">
+          <mxGeometry x="45" y="100" width="10" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-10" value="Authentication&lt;div&gt;Service&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="580" y="40" width="100" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-11" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="HFtSi3Zi-4jHOa50fzN2-10" vertex="1">
+          <mxGeometry x="45" y="120" width="10" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-12" value="Persistence&lt;div&gt;Service&lt;/div&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="760" y="40" width="100" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-13" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="HFtSi3Zi-4jHOa50fzN2-12" vertex="1">
+          <mxGeometry x="45" y="200" width="10" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-14" value="Authentication-Request" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="HFtSi3Zi-4jHOa50fzN2-9" target="HFtSi3Zi-4jHOa50fzN2-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460.00380952380954" y="160" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="489.98" y="160" />
+            </Array>
+            <mxPoint x="620" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-15" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="HFtSi3Zi-4jHOa50fzN2-11" target="HFtSi3Zi-4jHOa50fzN2-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="555" y="200" />
+            </Array>
+            <mxPoint x="610" y="200" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-16" value="CRUD-Request" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="HFtSi3Zi-4jHOa50fzN2-9" target="HFtSi3Zi-4jHOa50fzN2-13" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="465" y="240" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="499.98" y="240" />
+            </Array>
+            <mxPoint x="635" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-17" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="HFtSi3Zi-4jHOa50fzN2-13" target="HFtSi3Zi-4jHOa50fzN2-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="730" y="320" />
+            </Array>
+            <mxPoint x="800" y="320" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-18" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" target="HFtSi3Zi-4jHOa50fzN2-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="370" y="339.64" />
+            </Array>
+            <mxPoint x="445" y="339.64" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HFtSi3Zi-4jHOa50fzN2-19" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" parent="1" source="HFtSi3Zi-4jHOa50fzN2-7" target="HFtSi3Zi-4jHOa50fzN2-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="360" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="195" y="360" />
+            </Array>
+            <mxPoint x="240" y="360" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
       </root>
